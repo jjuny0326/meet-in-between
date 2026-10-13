@@ -1,6 +1,7 @@
 import threading
 import json
 import time
+import os
 import unittest
 from http.client import HTTPConnection
 from unittest.mock import patch
@@ -31,7 +32,7 @@ class WebServerTests(unittest.TestCase):
             connection.close()
 
     def test_static_screen_and_head(self):
-        for path in ("/", "/styles.css", "/app.js", "/search.js"):
+        for path in ("/", "/styles.css", "/app.js", "/search.js", "/map.js"):
             with self.subTest(path=path):
                 status, headers, body = self.request(path)
                 self.assertEqual(status, 200)
@@ -53,6 +54,16 @@ class WebServerTests(unittest.TestCase):
             self.assertIn("application/json", headers["Content-Type"])
         with patch.object(serve_web.Path, "read_bytes", side_effect=FileNotFoundError):
             self.assertEqual(self.request("/data/latest_comparison.json")[0], 404)
+
+    def test_map_config_only_exposes_javascript_key(self):
+        with patch.dict(os.environ, {"KAKAO_JAVASCRIPT_KEY": "public-js", "KAKAO_REST_API_KEY": "private-rest", "GEMINI_API_KEY": "private-ai"}, clear=True):
+            status, _, body = self.request("/api/map-config")
+            self.assertEqual(status, 200)
+            self.assertEqual(json.loads(body), {"javascript_key": "public-js"})
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(json.loads(self.request("/api/map-config")[2]), {"javascript_key": ""})
+        with patch.dict(os.environ, {"KAKAO_JAVASCRIPT_KEY": "private", "KAKAO_REST_API_KEY": "private"}, clear=True):
+            self.assertEqual(json.loads(self.request("/api/map-config")[2]), {"javascript_key": ""})
 
     def post(self, payload, headers=None):
         return self.request("/api/recommendations", "POST", json.dumps(payload), headers or {"Content-Type": "application/json"})

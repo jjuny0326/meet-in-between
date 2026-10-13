@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#f8f7f3">
   <title>우리 사이 — 만날 곳 비교</title>
   <link rel="stylesheet" href="/styles.css">
+  <script src="/map.js" defer></script>
   <script src="/app.js" defer></script>
   <script src="/search.js" defer></script>
 </head>
@@ -44,6 +45,14 @@
         <div class="quick-comparison"><div class="quick-heading"><h3>가는 길, 한눈에 비교</h3><span>A 첫 번째 사람 · B 두 번째 사람</span></div><div id="comparison-table"></div><p>후보 번호는 원래 이동시간 순위예요. 역 이름을 누르면 상세 카드로 이동해요.</p></div>
         <div class="filter-row"><div id="category-filters" class="category-filters" role="group" aria-label="비교할 활동"></div><label class="sort-control" for="sort-order">정렬<select id="sort-order"><option value="rank">이동시간 순</option><option value="difference">시간 차이 적은 순</option><option value="transfers">환승 합계 적은 순</option></select></label></div>
         <p id="list-status" class="list-status" role="status" aria-live="polite"></p>
+        <section id="map-section" class="map-section" aria-labelledby="map-title">
+          <div class="map-heading"><div><p class="eyebrow">OUR MEETING MAP</p><h3 id="map-title">지도에서 함께 살펴봐요</h3><p>큰 번호는 후보 역, 작은 표시는 선택한 활동의 장소예요.</p></div><button id="map-load" class="text-button" type="button">지도 불러오기</button></div>
+          <div id="map-candidates" class="map-candidates" role="group" aria-label="지도에서 볼 후보"></div>
+          <p id="map-status" class="map-status" role="status" aria-live="polite">지도를 열면 후보 역과 주변 장소를 함께 볼 수 있어요.</p>
+          <div id="meeting-map" class="meeting-map" aria-label="만남 후보와 주변 장소 지도" hidden></div>
+          <div id="map-detail" class="map-detail" aria-live="polite"></div>
+          <p class="map-footnote">활동 버튼을 바꾸면 지도 속 장소도 바뀌어요. 위치 표시이며 실제 이동 경로를 그린 지도는 아니에요.</p>
+        </section>
         <div id="candidate-grid" class="candidate-grid"></div>
       </section>
       <aside id="reading-guide" class="reading-guide"><h2><span aria-hidden="true">ⓘ</span> 좋은 만남을 위한 작은 참고</h2><div><p><strong>장소를 고르는 기준</strong>주소가 한곳에 몰리지 않도록 선별했어요. 검색 건수가 인기나 품질을 뜻하지는 않아요.</p><p><strong>출입 안내는 확인의 출발점</strong>이름·주소에서 찾은 단서이며 실제 제한을 확인한 정보는 아니에요. 방문 전 영업 여부와 이용 조건을 확인해 주세요.</p><p><strong>저장된 시점의 비교예요</strong>이동시간은 저장 당시의 경로 조회 결과예요. 비교한 후보 안에서의 추천이며 수도권 전체의 최적 장소를 보장하지 않아요.</p></div></aside>

@@ -2,6 +2,34 @@
   --paper: #faf9f6; --ink: #263b36; --muted: #687972; --line: #e1e7e0;
   --coral: #cc5b42; --green: #3e6959; --white: #fff; --a: #c9644e; --b: #4f7c6c;
 }
+.map-section { margin: 12px 0 28px; padding: 26px; border: 1px solid var(--line); border-radius: 22px; background: #fff; scroll-margin-top: 140px; }
+.map-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.map-heading h3 { margin: 0; font-size: 23px; letter-spacing: -.6px; }
+.map-heading .eyebrow { margin: 0 0 6px; }
+.map-heading p:not(.eyebrow), .map-footnote { font-size: 13px; color: var(--muted); margin: 8px 0; }
+.map-candidates { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 12px; }
+.map-candidates button { padding: 9px 14px; border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 24px; }
+.map-candidates button[aria-pressed="true"] { background: #edf3ed; border-color: var(--green); font-weight: 700; }
+.map-candidates .rank-1 { border-left: 5px solid #346b59; }
+.map-candidates .rank-2 { border-left: 5px solid #ad4b38; }
+.map-candidates .rank-3 { border-left: 5px solid #5d56a1; }
+.map-status { font-size: 14px; color: var(--green); line-height: 1.8; }
+.meeting-map { height: 420px; width: 100%; border-radius: 14px; background: #edf0eb; position: relative; overflow: hidden; isolation: isolate; }
+.map-pin { background: #346b59; border: 2px solid #fff; color: #fff; border-radius: 10px; box-shadow: 0 2px 5px #0004; padding: 4px 7px; font-size: 12px; white-space: nowrap; cursor: pointer; }
+.map-pin.station { min-width: 36px; height: 42px; border-radius: 50% 50% 50% 5px; font-size: 19px; font-weight: 800; }
+.map-pin.rank-2 { background: #ad4b38; }
+.map-pin.rank-3 { background: #5d56a1; }
+.map-pin small { margin-left: 3px; font-size: 10px; }
+.map-pin:hover, .map-pin:focus-visible { outline: 3px solid #e9b962; outline-offset: 2px; }
+.map-detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.map-detail-item { margin-top: 14px; background: var(--paper); border-radius: 12px; padding: 16px; overflow-wrap: anywhere; }
+.map-detail-item strong { font-size: 16px; }
+.map-detail-item p { font-size: 13px; margin: 8px 0; }
+.map-detail-item a { font-size: 13px; margin-right: 12px; }
+.map-detail-item .map-access { color: #91422f; }
+.map-card-button { border: 0; background: #eef4ed; color: #34604f; border-radius: 8px; padding: 7px 10px; font-size: 12px; margin: 5px 0; }
+.candidate-card.map-selected { outline: 3px solid #6d927f; outline-offset: 3px; }
+@media (max-width: 760px) { .map-section { padding: 18px; } .map-heading { align-items: start; flex-direction: column; gap: 4px; } .meeting-map { height: 340px; } .map-candidates button { font-size: 12px; padding: 8px 11px; } }
 .search-panel { padding: 30px; margin: 10px 0 26px; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 10px 35px #263b3606; }
 .search-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 24px; }
 .search-heading h2 { margin: 0; font-size: 25px; letter-spacing: -1px; }

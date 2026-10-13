@@ -21,6 +21,7 @@ FILES = {
     "/styles.css": ("web/styles.css", "text/css; charset=utf-8"),
     "/app.js": ("web/app.js", "text/javascript; charset=utf-8"),
     "/search.js": ("web/search.js", "text/javascript; charset=utf-8"),
+    "/map.js": ("web/map.js", "text/javascript; charset=utf-8"),
     "/data/latest_comparison.json": ("data/latest_comparison.json", "application/json; charset=utf-8"),
 }
 
@@ -38,7 +39,13 @@ def get_api_key():
 
 class ComparisonHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        if urlsplit(self.path).path == "/api/stations":
+        if urlsplit(self.path).path == "/api/map-config":
+            # JavaScript 키는 브라우저용 공개 키입니다. 서버용 키는 절대 반환하지 않습니다.
+            key = os.getenv("KAKAO_JAVASCRIPT_KEY", "").strip()
+            if key and key in (os.getenv("KAKAO_REST_API_KEY"), os.getenv("GEMINI_API_KEY")):
+                key = ""
+            self.send_json(200, {"javascript_key": key})
+        elif urlsplit(self.path).path == "/api/stations":
             self.handle_api(self.station_search)
         else:
             self.send_file()
@@ -145,7 +152,7 @@ class ComparisonHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(content)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
+        self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self' https://dapi.kakao.com https://t1.daumcdn.net https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline'; connect-src 'self' https://dapi.kakao.com; img-src 'self' data: https://*.daumcdn.net https://*.kakaocdn.net; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; upgrade-insecure-requests")
         self.end_headers()
         if not head_only:
             self.wfile.write(content)

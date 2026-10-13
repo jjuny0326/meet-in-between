@@ -3,6 +3,7 @@
 import json
 import os
 import re
+import math
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -16,6 +17,17 @@ CATEGORIES = {
     "culture": {"label": "문화시설", "code": "CT1"},
 }
 MODEL = "gemini-3.5-flash-lite"
+
+
+def coordinate(value, limit):
+    """좌표가 없거나 잘못되면 null로 저장하고 기존 장소 정보는 유지합니다."""
+    if isinstance(value, bool) or value is None:
+        return None
+    try:
+        number = float(value)
+        return number if math.isfinite(number) and -limit <= number <= limit else None
+    except (ValueError, TypeError):
+        return None
 
 
 def building_key(place):
@@ -59,6 +71,7 @@ def select_diverse_places(documents):
             "category": place.get("category_name", ""),
             "address": place.get("road_address_name") or place.get("address_name", ""),
             "url": place.get("place_url", ""), "distance_m": place.get("distance", ""),
+            "x": coordinate(place.get("x"), 180), "y": coordinate(place.get("y"), 90),
             "building_key": key, "access_check_reasons": reasons,
         })
     # 뒤쪽에 있어 최종 목록에서 빠진 매장의 단서도 같은 주소에 반영합니다.

@@ -107,7 +107,14 @@ function safePlaceUrl(value) {
   return null;
 }
 
-function renderPlace(place) {
+function mapButton(rank, place = null) {
+  const button = element("button", "map-card-button", place ? "위치 보기 ↗" : "지도에서 보기 ↗");
+  button.type = "button";
+  button.addEventListener("click", () => MeetingMap.focus(rank, place));
+  return button;
+}
+
+function renderPlace(place, rank) {
   const li = element("li", "place");
   const title = element("div", "place-title");
   const url = safePlaceUrl(place.url);
@@ -124,6 +131,7 @@ function renderPlace(place) {
     title.append(element("span", "distance", `${Math.round(distance).toLocaleString("ko-KR")}m`));
   }
   li.append(title, element("p", "address", place.address || "주소 정보 없음"));
+  if (typeof MeetingMap !== "undefined" && MeetingMap.coordinates(place)) li.append(mapButton(rank, place));
   const reasons = place.access_check_reasons || [];
   if (place.access_check_required || reasons.length) {
     const note = element("details", "access-note");
@@ -150,6 +158,7 @@ function renderCard(item, maxTime) {
   const station = element("h3", "station-name", item.station.place_name);
   station.id = titleId;
   top.append(rank, station, element("p", "line-name", item.station.line_name));
+  if (typeof MeetingMap !== "undefined" && MeetingMap.coordinates(item.station)) top.append(mapButton(item.rank));
   const travel = element("div", "travel");
   for (const [key, label, letter] of [["a", "첫 번째 사람", "A"], ["b", "두 번째 사람", "B"]]) {
     const person = element("div");
@@ -179,13 +188,13 @@ function renderCard(item, maxTime) {
   else if (!group.items.length) places.append(element("p", "place-empty", "반경 1km 검색에서 찾은 장소가 없어요."));
   else {
     const list = element("ul", "place-list");
-    group.items.slice(0, 3).forEach((place) => list.append(renderPlace(place)));
+    group.items.slice(0, 3).forEach((place) => list.append(renderPlace(place, item.rank)));
     places.append(list);
     if (group.items.length > 3) {
       const more = element("details", "more-places");
       const summary = element("summary", "", `장소 ${group.items.length - 3}곳 더 보기`);
       const extra = element("ul", "place-list");
-      group.items.slice(3).forEach((place) => extra.append(renderPlace(place)));
+      group.items.slice(3).forEach((place) => extra.append(renderPlace(place, item.rank)));
       more.append(summary, extra);
       more.addEventListener("toggle", () => {
         summary.textContent = more.open ? "추가 장소 접기" : `장소 ${group.items.length - 3}곳 더 보기`;
@@ -271,6 +280,7 @@ function renderCards() {
   const sortLabel = {rank: "이동시간 순", difference: "시간 차이 적은 순", transfers: "환승 합계 적은 순"}[state.sort];
   $("list-status").textContent = `${categories[state.category]} 비교 · ${sortLabel} · 역 주변 1km에서 선별한 장소`;
   for (const button of $("category-filters").children) button.setAttribute("aria-pressed", String(button.dataset.category === state.category));
+  if (typeof MeetingMap !== "undefined") MeetingMap.update(state.report, state.category);
 }
 
 function showReport(report, source) {

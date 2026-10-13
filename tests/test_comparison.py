@@ -44,6 +44,16 @@ def report():
 
 
 class ComparisonTests(unittest.TestCase):
+    def test_place_coordinates_are_saved_and_invalid_values_are_null(self):
+        raw = place(1, "서울시 테스트로 10")
+        actual = c.select_diverse_places([{**raw, "x": "126.88", "y": "37.49"}])[0]
+        self.assertEqual((actual["x"], actual["y"]), (126.88, 37.49))
+        for bad in (None, "", "nan", "inf", True, 181):
+            actual = c.select_diverse_places([{**raw, "x": bad, "y": "91"}])[0]
+            self.assertIsNone(actual["x"])
+            self.assertIsNone(actual["y"])
+            self.assertEqual(actual["name"], raw["place_name"])
+
     def setUp(self):
         # 모든 테스트에서 네트워크를 막고 키와 사용량/저장 파일을 격리합니다.
         self.stack = ExitStack()
