@@ -1,0 +1,7022 @@
+[
+  {
+    "place_name": "신사",
+    "station_code": "D004",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.019760916726,
+    "y": 37.5161252633129
+  },
+  {
+    "place_name": "논현",
+    "station_code": "D005",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.021365807131,
+    "y": 37.5111153846379
+  },
+  {
+    "place_name": "신논현",
+    "station_code": "D006",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.024530640799,
+    "y": 37.504555429592
+  },
+  {
+    "place_name": "강남",
+    "station_code": "D007",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.02787893753,
+    "y": 37.4973854397871
+  },
+  {
+    "place_name": "양재(서초구청)",
+    "station_code": "D008",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.034099452522,
+    "y": 37.4844535239588
+  },
+  {
+    "place_name": "양재시민의숲(매헌)",
+    "station_code": "D009",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.038420263319,
+    "y": 37.4709638768813
+  },
+  {
+    "place_name": "청계산입구",
+    "station_code": "D010",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.054339616958,
+    "y": 37.4487148450701
+  },
+  {
+    "place_name": "판교",
+    "station_code": "D011",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.111210738619,
+    "y": 37.3957147534829
+  },
+  {
+    "place_name": "정자",
+    "station_code": "D012",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.108385905864,
+    "y": 37.3682101915529
+  },
+  {
+    "place_name": "미금",
+    "station_code": "D013",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.108902778591,
+    "y": 37.3511833209472
+  },
+  {
+    "place_name": "동천",
+    "station_code": "D014",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.102793673668,
+    "y": 37.3386841329961
+  },
+  {
+    "place_name": "수지구청",
+    "station_code": "D015",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.095581285703,
+    "y": 37.3230089609191
+  },
+  {
+    "place_name": "성복",
+    "station_code": "D016",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.080757826931,
+    "y": 37.3140425091456
+  },
+  {
+    "place_name": "상현",
+    "station_code": "D017",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.06957991138,
+    "y": 37.2986852587224
+  },
+  {
+    "place_name": "광교중앙(아주대)",
+    "station_code": "D018",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.052625032841,
+    "y": 37.2877375194967
+  },
+  {
+    "place_name": "광교(경기대)",
+    "station_code": "D019",
+    "line_code": "I11D1",
+    "line_name": "신분당선",
+    "operator": "경기도 신분당선",
+    "x": 127.044856131638,
+    "y": 37.3017347422146
+  },
+  {
+    "place_name": "기흥(백남준아트센터)",
+    "station_code": "Y110",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1170465,
+    "y": 37.27545288
+  },
+  {
+    "place_name": "강남대",
+    "station_code": "Y111",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1260669,
+    "y": 37.27017073
+  },
+  {
+    "place_name": "지석",
+    "station_code": "Y112",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1363256,
+    "y": 37.26973732
+  },
+  {
+    "place_name": "어정",
+    "station_code": "Y113",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1437499,
+    "y": 37.27495132
+  },
+  {
+    "place_name": "동백(용인세브란스)",
+    "station_code": "Y114",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1526906,
+    "y": 37.26910138
+  },
+  {
+    "place_name": "초당",
+    "station_code": "Y115",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1594692,
+    "y": 37.26080647
+  },
+  {
+    "place_name": "삼가",
+    "station_code": "Y116",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.16818,
+    "y": 37.24205993
+  },
+  {
+    "place_name": "시청·용인대",
+    "station_code": "Y117",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1788851,
+    "y": 37.23944203
+  },
+  {
+    "place_name": "명지대",
+    "station_code": "Y118",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1902913,
+    "y": 37.23807629
+  },
+  {
+    "place_name": "김량장",
+    "station_code": "Y119",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.1986109,
+    "y": 37.23732377
+  },
+  {
+    "place_name": "용인중앙시장(용인예술과학대)",
+    "station_code": "Y120",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.2090526,
+    "y": 37.2379113
+  },
+  {
+    "place_name": "고진",
+    "station_code": "Y121",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.2141836,
+    "y": 37.24463834
+  },
+  {
+    "place_name": "보평",
+    "station_code": "Y122",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.2184808,
+    "y": 37.25896427
+  },
+  {
+    "place_name": "둔전",
+    "station_code": "Y123",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.2136387,
+    "y": 37.26721222
+  },
+  {
+    "place_name": "전대·에버랜드",
+    "station_code": "Y124",
+    "line_code": "L41E1",
+    "line_name": "에버라인",
+    "operator": "경기도 용인경전철",
+    "x": 127.219509,
+    "y": 37.28541327
+  },
+  {
+    "place_name": "서울",
+    "station_code": "A01",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.9697643,
+    "y": 37.55301784
+  },
+  {
+    "place_name": "공덕",
+    "station_code": "A02",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.9516296,
+    "y": 37.5427105
+  },
+  {
+    "place_name": "홍대입구",
+    "station_code": "A03",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.9264939,
+    "y": 37.55774103
+  },
+  {
+    "place_name": "디지털미디어시티",
+    "station_code": "A04",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.898025,
+    "y": 37.577355
+  },
+  {
+    "place_name": "마곡나루",
+    "station_code": "A042",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.8276358,
+    "y": 37.56581914
+  },
+  {
+    "place_name": "김포공항",
+    "station_code": "A05",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.8015442,
+    "y": 37.56211652
+  },
+  {
+    "place_name": "계양",
+    "station_code": "A06",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.736319,
+    "y": 37.571769
+  },
+  {
+    "place_name": "검암",
+    "station_code": "A07",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.6735357,
+    "y": 37.56915547
+  },
+  {
+    "place_name": "청라국제도시",
+    "station_code": "A071",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.624725,
+    "y": 37.556509
+  },
+  {
+    "place_name": "영종",
+    "station_code": "A072",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.5242471,
+    "y": 37.51209814
+  },
+  {
+    "place_name": "운서",
+    "station_code": "A08",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.4936619,
+    "y": 37.49284463
+  },
+  {
+    "place_name": "공항화물청사",
+    "station_code": "A09",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.4774333,
+    "y": 37.45902611
+  },
+  {
+    "place_name": "인천공항1터미널",
+    "station_code": "A10",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.4523433,
+    "y": 37.44760672
+  },
+  {
+    "place_name": "인천공항2터미널",
+    "station_code": "A11",
+    "line_code": "I28A1",
+    "line_name": "인천국제공항선",
+    "operator": "공항철도주식회사",
+    "x": 126.433415,
+    "y": 37.46866
+  },
+  {
+    "place_name": "동구릉",
+    "station_code": "806",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "구리도시공사",
+    "x": 127.135056,
+    "y": 37.610556
+  },
+  {
+    "place_name": "구리(구리전통시장)",
+    "station_code": "807",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "구리도시공사",
+    "x": 127.14073,
+    "y": 37.60256
+  },
+  {
+    "place_name": "장자호수공원",
+    "station_code": "808",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "구리도시공사",
+    "x": 127.13793,
+    "y": 37.587222
+  },
+  {
+    "place_name": "양촌역",
+    "station_code": "G100",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.614694,
+    "y": 37.641639
+  },
+  {
+    "place_name": "구래역",
+    "station_code": "G101",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.6285,
+    "y": 37.645354
+  },
+  {
+    "place_name": "마산역",
+    "station_code": "G102",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.643944,
+    "y": 37.640606
+  },
+  {
+    "place_name": "장기역",
+    "station_code": "G103",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.669,
+    "y": 37.644028
+  },
+  {
+    "place_name": "운양역",
+    "station_code": "G104",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.683833,
+    "y": 37.653861
+  },
+  {
+    "place_name": "걸포북변역",
+    "station_code": "G105",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.70575,
+    "y": 37.631639
+  },
+  {
+    "place_name": "사우역",
+    "station_code": "G106",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.719722,
+    "y": 37.620361
+  },
+  {
+    "place_name": "풍무역",
+    "station_code": "G107",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.732583,
+    "y": 37.612333
+  },
+  {
+    "place_name": "고촌역",
+    "station_code": "G108",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.770361,
+    "y": 37.60125
+  },
+  {
+    "place_name": "김포공항역",
+    "station_code": "G109",
+    "line_code": "L41G1",
+    "line_name": "김포도시철도",
+    "operator": "김포골드라인에스알에스㈜",
+    "x": 126.801833,
+    "y": 37.562309
+  },
+  {
+    "place_name": "샛강",
+    "station_code": "S401",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.929403964,
+    "y": 37.517219937
+  },
+  {
+    "place_name": "대방",
+    "station_code": "S402",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.925316781,
+    "y": 37.512840166
+  },
+  {
+    "place_name": "서울지방병무청",
+    "station_code": "S403",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.922783404,
+    "y": 37.50604687
+  },
+  {
+    "place_name": "보라매",
+    "station_code": "S404",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.920485864,
+    "y": 37.500312709
+  },
+  {
+    "place_name": "보라매공원",
+    "station_code": "S405",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.918258811,
+    "y": 37.495225405
+  },
+  {
+    "place_name": "보라매병원",
+    "station_code": "S406",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.923886,
+    "y": 37.4929607
+  },
+  {
+    "place_name": "당곡",
+    "station_code": "S407",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.927568759,
+    "y": 37.490039105
+  },
+  {
+    "place_name": "신림",
+    "station_code": "S408",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.92960992,
+    "y": 37.484890755
+  },
+  {
+    "place_name": "서원",
+    "station_code": "S409",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.933228219,
+    "y": 37.47827336
+  },
+  {
+    "place_name": "서울대벤처타운",
+    "station_code": "S410",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.933976556,
+    "y": 37.47204068
+  },
+  {
+    "place_name": "관악산",
+    "station_code": "S411",
+    "line_code": "L11SL",
+    "line_name": "수도권 경량도시철도 신림선",
+    "operator": "남서울경전철 주식회사",
+    "x": 126.944954837,
+    "y": 37.46916896
+  },
+  {
+    "place_name": "진접역",
+    "station_code": "0405",
+    "line_code": "I4104",
+    "line_name": "진접선",
+    "operator": "남양주도시공사",
+    "x": 127.203167,
+    "y": 37.720472
+  },
+  {
+    "place_name": "오남역",
+    "station_code": "0406",
+    "line_code": "I4104",
+    "line_name": "진접선",
+    "operator": "남양주도시공사",
+    "x": 127.191644,
+    "y": 37.7054056
+  },
+  {
+    "place_name": "별내별가람역",
+    "station_code": "0408",
+    "line_code": "I4104",
+    "line_name": "진접선",
+    "operator": "남양주도시공사",
+    "x": 127.116167,
+    "y": 37.667833
+  },
+  {
+    "place_name": "별내역",
+    "station_code": "804",
+    "line_code": "S4108",
+    "line_name": "수도권 광역철도 8호선",
+    "operator": "남양주도시공사",
+    "x": 127.1273,
+    "y": 37.642517
+  },
+  {
+    "place_name": "다산역",
+    "station_code": "805",
+    "line_code": "S4108",
+    "line_name": "수도권 광역철도 8호선",
+    "operator": "남양주도시공사",
+    "x": 127.1498,
+    "y": 37.62437
+  },
+  {
+    "place_name": "청량리(서울시립대입구)",
+    "station_code": "0124",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 127.045063,
+    "y": 37.580148
+  },
+  {
+    "place_name": "제기동",
+    "station_code": "0125",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 127.034902,
+    "y": 37.578116
+  },
+  {
+    "place_name": "신설동",
+    "station_code": "0126",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 127.02471,
+    "y": 37.576117
+  },
+  {
+    "place_name": "동묘앞",
+    "station_code": "0127",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 127.016459,
+    "y": 37.573265
+  },
+  {
+    "place_name": "동대문",
+    "station_code": "0128",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 127.01069,
+    "y": 37.571646
+  },
+  {
+    "place_name": "종로5가",
+    "station_code": "0129",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 127.0019,
+    "y": 37.570971
+  },
+  {
+    "place_name": "종로3가",
+    "station_code": "0130",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 126.992095,
+    "y": 37.570429
+  },
+  {
+    "place_name": "종각",
+    "station_code": "0131",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 126.983116,
+    "y": 37.570203
+  },
+  {
+    "place_name": "시청",
+    "station_code": "0132",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 126.977207,
+    "y": 37.565211
+  },
+  {
+    "place_name": "서울역",
+    "station_code": "0133",
+    "line_code": "I4101",
+    "line_name": "1호선",
+    "operator": "서울교통공사",
+    "x": 126.972103,
+    "y": 37.55585
+  },
+  {
+    "place_name": "시청",
+    "station_code": "0201",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.975271,
+    "y": 37.563534
+  },
+  {
+    "place_name": "을지로입구",
+    "station_code": "0202",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.982569,
+    "y": 37.565998
+  },
+  {
+    "place_name": "을지로3가",
+    "station_code": "0203",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.990873,
+    "y": 37.566292
+  },
+  {
+    "place_name": "을지로4가",
+    "station_code": "0204",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.997622,
+    "y": 37.566611
+  },
+  {
+    "place_name": "동대문역사문화공원(DDP)",
+    "station_code": "0205",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.009083,
+    "y": 37.565609
+  },
+  {
+    "place_name": "신당",
+    "station_code": "0206",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.0194259,
+    "y": 37.565675
+  },
+  {
+    "place_name": "상왕십리",
+    "station_code": "0207",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.029322,
+    "y": 37.564444
+  },
+  {
+    "place_name": "왕십리(성동구청)",
+    "station_code": "0208",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.0370615,
+    "y": 37.561289
+  },
+  {
+    "place_name": "한양대",
+    "station_code": "0209",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.0436594,
+    "y": 37.555758
+  },
+  {
+    "place_name": "뚝섬",
+    "station_code": "0210",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.047413,
+    "y": 37.54718
+  },
+  {
+    "place_name": "성수",
+    "station_code": "0211",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.055983,
+    "y": 37.544628
+  },
+  {
+    "place_name": "건대입구",
+    "station_code": "0212",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.069231,
+    "y": 37.540408
+  },
+  {
+    "place_name": "구의(광진구청)",
+    "station_code": "0213",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.0862124,
+    "y": 37.537157
+  },
+  {
+    "place_name": "강변(동서울터미널)",
+    "station_code": "0214",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.094684,
+    "y": 37.535161
+  },
+  {
+    "place_name": "잠실나루",
+    "station_code": "0215",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.103836,
+    "y": 37.520688
+  },
+  {
+    "place_name": "잠실(송파구청)",
+    "station_code": "0216",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.100129,
+    "y": 37.513305
+  },
+  {
+    "place_name": "잠실새내",
+    "station_code": "0217",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.086224,
+    "y": 37.511653
+  },
+  {
+    "place_name": "종합운동장",
+    "station_code": "0218",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.073841,
+    "y": 37.511128
+  },
+  {
+    "place_name": "삼성(무역센터)",
+    "station_code": "0219",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.063203,
+    "y": 37.508827
+  },
+  {
+    "place_name": "선릉",
+    "station_code": "0220",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.048174,
+    "y": 37.504257
+  },
+  {
+    "place_name": "역삼",
+    "station_code": "0221",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.03643,
+    "y": 37.500658
+  },
+  {
+    "place_name": "강남",
+    "station_code": "0222",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.02795,
+    "y": 37.49805
+  },
+  {
+    "place_name": "교대(법원·검찰청)",
+    "station_code": "0223",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.014431,
+    "y": 37.493957
+  },
+  {
+    "place_name": "서초",
+    "station_code": "0224",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.007685,
+    "y": 37.49191
+  },
+  {
+    "place_name": "방배",
+    "station_code": "0225",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.997627,
+    "y": 37.481469
+  },
+  {
+    "place_name": "사당",
+    "station_code": "0226",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.981631,
+    "y": 37.476536
+  },
+  {
+    "place_name": "낙성대(강감찬)",
+    "station_code": "0227",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.963583,
+    "y": 37.47713
+  },
+  {
+    "place_name": "서울대입구(관악구청)",
+    "station_code": "0228",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.952745,
+    "y": 37.481233
+  },
+  {
+    "place_name": "봉천",
+    "station_code": "0229",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.941696,
+    "y": 37.482416
+  },
+  {
+    "place_name": "신림",
+    "station_code": "0230",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.929573,
+    "y": 37.484216
+  },
+  {
+    "place_name": "신대방",
+    "station_code": "0231",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.913479,
+    "y": 37.487604
+  },
+  {
+    "place_name": "구로디지털단지",
+    "station_code": "0232",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.901456,
+    "y": 37.4852931
+  },
+  {
+    "place_name": "대림(구로구청)",
+    "station_code": "0233",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.8949793,
+    "y": 37.4932826
+  },
+  {
+    "place_name": "신도림",
+    "station_code": "0234",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.891222,
+    "y": 37.508815
+  },
+  {
+    "place_name": "문래",
+    "station_code": "0235",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.894766,
+    "y": 37.517993
+  },
+  {
+    "place_name": "영등포구청",
+    "station_code": "0236",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.896627,
+    "y": 37.525766
+  },
+  {
+    "place_name": "당산",
+    "station_code": "0237",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.902611,
+    "y": 37.534807
+  },
+  {
+    "place_name": "합정",
+    "station_code": "0238",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.914557,
+    "y": 37.550025
+  },
+  {
+    "place_name": "홍대입구",
+    "station_code": "0239",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.923643,
+    "y": 37.556748
+  },
+  {
+    "place_name": "신촌(지하)",
+    "station_code": "0240",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.93689,
+    "y": 37.555153
+  },
+  {
+    "place_name": "이대",
+    "station_code": "0241",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.945897,
+    "y": 37.556734
+  },
+  {
+    "place_name": "아현",
+    "station_code": "0242",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.956079,
+    "y": 37.557407
+  },
+  {
+    "place_name": "충정로(경기대입구)",
+    "station_code": "0243",
+    "line_code": "S1102",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.964455,
+    "y": 37.559742
+  },
+  {
+    "place_name": "지축",
+    "station_code": "0319",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.913751,
+    "y": 37.648151
+  },
+  {
+    "place_name": "구파발",
+    "station_code": "0320",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.918827,
+    "y": 37.636612
+  },
+  {
+    "place_name": "연신내",
+    "station_code": "0321",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.920959,
+    "y": 37.619295
+  },
+  {
+    "place_name": "불광",
+    "station_code": "0322",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.930183,
+    "y": 37.610154
+  },
+  {
+    "place_name": "녹번",
+    "station_code": "0323",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.935758,
+    "y": 37.600882
+  },
+  {
+    "place_name": "홍제",
+    "station_code": "0324",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.944092,
+    "y": 37.588851
+  },
+  {
+    "place_name": "무악재",
+    "station_code": "0325",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.950131,
+    "y": 37.582658
+  },
+  {
+    "place_name": "독립문",
+    "station_code": "0326",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.957902,
+    "y": 37.574534
+  },
+  {
+    "place_name": "경복궁(정부서울청사)",
+    "station_code": "0327",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.973576,
+    "y": 37.575844
+  },
+  {
+    "place_name": "안국",
+    "station_code": "0328",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.98547,
+    "y": 37.576562
+  },
+  {
+    "place_name": "종로3가",
+    "station_code": "0329",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.991837,
+    "y": 37.571537
+  },
+  {
+    "place_name": "을지로3가",
+    "station_code": "0330",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.992616,
+    "y": 37.566299
+  },
+  {
+    "place_name": "충무로",
+    "station_code": "0331",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 126.994173,
+    "y": 37.561382
+  },
+  {
+    "place_name": "동대입구",
+    "station_code": "0332",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.005273,
+    "y": 37.55906
+  },
+  {
+    "place_name": "약수",
+    "station_code": "0333",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.010858,
+    "y": 37.554554
+  },
+  {
+    "place_name": "금호",
+    "station_code": "0334",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.015785,
+    "y": 37.548269
+  },
+  {
+    "place_name": "옥수",
+    "station_code": "0335",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.017303,
+    "y": 37.541653
+  },
+  {
+    "place_name": "압구정",
+    "station_code": "0336",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.028502,
+    "y": 37.526169
+  },
+  {
+    "place_name": "신사",
+    "station_code": "0337",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.020247,
+    "y": 37.516438
+  },
+  {
+    "place_name": "잠원",
+    "station_code": "0338",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.011613,
+    "y": 37.512989
+  },
+  {
+    "place_name": "고속터미널",
+    "station_code": "0339",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.004916,
+    "y": 37.504953
+  },
+  {
+    "place_name": "교대(법원·검찰청)",
+    "station_code": "0340",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.013796,
+    "y": 37.49306
+  },
+  {
+    "place_name": "남부터미널(예술의전당)",
+    "station_code": "0341",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.016289,
+    "y": 37.48494
+  },
+  {
+    "place_name": "양재(서초구청)",
+    "station_code": "0342",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.03423,
+    "y": 37.48458
+  },
+  {
+    "place_name": "매봉",
+    "station_code": "0343",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.046907,
+    "y": 37.487114
+  },
+  {
+    "place_name": "도곡",
+    "station_code": "0344",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.055694,
+    "y": 37.491129
+  },
+  {
+    "place_name": "대치",
+    "station_code": "0345",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.063449,
+    "y": 37.494601
+  },
+  {
+    "place_name": "학여울",
+    "station_code": "0346",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.0708601,
+    "y": 37.496787
+  },
+  {
+    "place_name": "대청",
+    "station_code": "0347",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.079526,
+    "y": 37.493607
+  },
+  {
+    "place_name": "일원",
+    "station_code": "0348",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.08416,
+    "y": 37.48389
+  },
+  {
+    "place_name": "수서",
+    "station_code": "0349",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.101924,
+    "y": 37.4875
+  },
+  {
+    "place_name": "가락시장",
+    "station_code": "0350",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.1177,
+    "y": 37.492318
+  },
+  {
+    "place_name": "경찰병원",
+    "station_code": "0351",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.124198,
+    "y": 37.495754
+  },
+  {
+    "place_name": "오금",
+    "station_code": "0352",
+    "line_code": "I1103",
+    "line_name": "3호선",
+    "operator": "서울교통공사",
+    "x": 127.128344,
+    "y": 37.502288
+  },
+  {
+    "place_name": "불암산",
+    "station_code": "0409",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.079004,
+    "y": 37.67009
+  },
+  {
+    "place_name": "상계",
+    "station_code": "0410",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.073199,
+    "y": 37.660576
+  },
+  {
+    "place_name": "노원",
+    "station_code": "0411",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.063183,
+    "y": 37.656274
+  },
+  {
+    "place_name": "창동",
+    "station_code": "0412",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.048304,
+    "y": 37.653315
+  },
+  {
+    "place_name": "쌍문",
+    "station_code": "0413",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.034381,
+    "y": 37.648274
+  },
+  {
+    "place_name": "수유(강북구청)",
+    "station_code": "0414",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.025371,
+    "y": 37.637727
+  },
+  {
+    "place_name": "미아(서울사이버대학)",
+    "station_code": "0415",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.026151,
+    "y": 37.626435
+  },
+  {
+    "place_name": "미아사거리",
+    "station_code": "0416",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.030083,
+    "y": 37.613276
+  },
+  {
+    "place_name": "길음",
+    "station_code": "0417",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.025053,
+    "y": 37.603387
+  },
+  {
+    "place_name": "성신여대입구(돈암)",
+    "station_code": "0418",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.016908,
+    "y": 37.592882
+  },
+  {
+    "place_name": "한성대입구(삼선교)",
+    "station_code": "0419",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.005951,
+    "y": 37.58838
+  },
+  {
+    "place_name": "혜화",
+    "station_code": "0420",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.001929,
+    "y": 37.582116
+  },
+  {
+    "place_name": "동대문",
+    "station_code": "0421",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.00925,
+    "y": 37.57099
+  },
+  {
+    "place_name": "동대문역사문화공원(DDP)",
+    "station_code": "0422",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 127.007808,
+    "y": 37.565141
+  },
+  {
+    "place_name": "충무로",
+    "station_code": "0423",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.994573,
+    "y": 37.561352
+  },
+  {
+    "place_name": "명동",
+    "station_code": "0424",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.986271,
+    "y": 37.560955
+  },
+  {
+    "place_name": "회현(남대문시장)",
+    "station_code": "0425",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.978346,
+    "y": 37.558698
+  },
+  {
+    "place_name": "서울역",
+    "station_code": "0426",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.972706,
+    "y": 37.553172
+  },
+  {
+    "place_name": "숙대입구(갈월)",
+    "station_code": "0427",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.9721,
+    "y": 37.5447834
+  },
+  {
+    "place_name": "삼각지(전쟁기념관)",
+    "station_code": "0428",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.972992,
+    "y": 37.534457
+  },
+  {
+    "place_name": "신용산",
+    "station_code": "0429",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.96788,
+    "y": 37.52909
+  },
+  {
+    "place_name": "이촌(국립중앙박물관)",
+    "station_code": "0430",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.9679818,
+    "y": 37.52919
+  },
+  {
+    "place_name": "동작(현충원)",
+    "station_code": "0431",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.980171,
+    "y": 37.503567
+  },
+  {
+    "place_name": "총신대입구(이수)",
+    "station_code": "0432",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.982309,
+    "y": 37.487521
+  },
+  {
+    "place_name": "사당",
+    "station_code": "0433",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.981636,
+    "y": 37.476263
+  },
+  {
+    "place_name": "남태령",
+    "station_code": "0434",
+    "line_code": "I1104",
+    "line_name": "4호선",
+    "operator": "서울교통공사",
+    "x": 126.989081,
+    "y": 37.464339
+  },
+  {
+    "place_name": "방화",
+    "station_code": "0510",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.812822,
+    "y": 37.577669
+  },
+  {
+    "place_name": "개화산",
+    "station_code": "0511",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.806838,
+    "y": 37.572458
+  },
+  {
+    "place_name": "김포공항",
+    "station_code": "0512",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.801273,
+    "y": 37.56217
+  },
+  {
+    "place_name": "송정",
+    "station_code": "0513",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.812052,
+    "y": 37.561201
+  },
+  {
+    "place_name": "마곡",
+    "station_code": "0514",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.837693,
+    "y": 37.55865
+  },
+  {
+    "place_name": "발산",
+    "station_code": "0515",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.837633,
+    "y": 37.558692
+  },
+  {
+    "place_name": "우장산",
+    "station_code": "0516",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.83633,
+    "y": 37.548864
+  },
+  {
+    "place_name": "화곡",
+    "station_code": "0517",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.840436,
+    "y": 37.541585
+  },
+  {
+    "place_name": "까치산",
+    "station_code": "0518",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.84645,
+    "y": 37.5322
+  },
+  {
+    "place_name": "신정(은행정)",
+    "station_code": "0519",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.856176,
+    "y": 37.525001
+  },
+  {
+    "place_name": "목동",
+    "station_code": "0520",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.864296,
+    "y": 37.526088
+  },
+  {
+    "place_name": "오목교(목동운동장앞)",
+    "station_code": "0521",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.875049,
+    "y": 37.524557
+  },
+  {
+    "place_name": "양평",
+    "station_code": "0522",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.886177,
+    "y": 37.525614
+  },
+  {
+    "place_name": "영등포구청",
+    "station_code": "0523",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.895022,
+    "y": 37.524209
+  },
+  {
+    "place_name": "영등포시장",
+    "station_code": "0524",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.905143,
+    "y": 37.52276
+  },
+  {
+    "place_name": "신길",
+    "station_code": "0525",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.914886,
+    "y": 37.51763
+  },
+  {
+    "place_name": "여의도",
+    "station_code": "0526",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.924318,
+    "y": 37.521678
+  },
+  {
+    "place_name": "여의나루",
+    "station_code": "0527",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.932807,
+    "y": 37.527045
+  },
+  {
+    "place_name": "마포",
+    "station_code": "0528",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.946043,
+    "y": 37.539718
+  },
+  {
+    "place_name": "공덕",
+    "station_code": "0529",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.951058,
+    "y": 37.544005
+  },
+  {
+    "place_name": "애오개",
+    "station_code": "0530",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.956733,
+    "y": 37.553592
+  },
+  {
+    "place_name": "충정로(경기대입구)",
+    "station_code": "0531",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.962783,
+    "y": 37.560061
+  },
+  {
+    "place_name": "서대문",
+    "station_code": "0532",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.966639,
+    "y": 37.565812
+  },
+  {
+    "place_name": "광화문(세종문화회관)",
+    "station_code": "0533",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.976568,
+    "y": 37.571645
+  },
+  {
+    "place_name": "종로3가(탑골공원)",
+    "station_code": "0534",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.990447,
+    "y": 37.572546
+  },
+  {
+    "place_name": "을지로4가",
+    "station_code": "0535",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 126.998127,
+    "y": 37.56728
+  },
+  {
+    "place_name": "동대문역사문화공원(DDP)",
+    "station_code": "0536",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.00533,
+    "y": 37.564682
+  },
+  {
+    "place_name": "청구",
+    "station_code": "0537",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.01379,
+    "y": 37.560237
+  },
+  {
+    "place_name": "신금호",
+    "station_code": "0538",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.020403,
+    "y": 37.554504
+  },
+  {
+    "place_name": "행당",
+    "station_code": "0539",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.029482,
+    "y": 37.557297
+  },
+  {
+    "place_name": "왕십리(성동구청)",
+    "station_code": "0540",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.037264,
+    "y": 37.56197
+  },
+  {
+    "place_name": "마장",
+    "station_code": "0541",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.042921,
+    "y": 37.566066
+  },
+  {
+    "place_name": "답십리",
+    "station_code": "0542",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.05266,
+    "y": 37.566833
+  },
+  {
+    "place_name": "장한평",
+    "station_code": "0543",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.064601,
+    "y": 37.561438
+  },
+  {
+    "place_name": "군자(능동)",
+    "station_code": "0544",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.079559,
+    "y": 37.557102
+  },
+  {
+    "place_name": "아차산(어린이대공원후문)",
+    "station_code": "0545",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.089609,
+    "y": 37.552005
+  },
+  {
+    "place_name": "광나루(장신대)",
+    "station_code": "0546",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.103478,
+    "y": 37.545301
+  },
+  {
+    "place_name": "천호(풍납토성)",
+    "station_code": "0547",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.123539,
+    "y": 37.538566
+  },
+  {
+    "place_name": "강동",
+    "station_code": "0548",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.13249,
+    "y": 37.53581
+  },
+  {
+    "place_name": "길동",
+    "station_code": "0549",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.140085,
+    "y": 37.538022
+  },
+  {
+    "place_name": "굽은다리(강동구민회관앞)",
+    "station_code": "0550",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.142844,
+    "y": 37.545442
+  },
+  {
+    "place_name": "명일",
+    "station_code": "0551",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.144002,
+    "y": 37.551317
+  },
+  {
+    "place_name": "고덕",
+    "station_code": "0552",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.154214,
+    "y": 37.555002
+  },
+  {
+    "place_name": "상일동",
+    "station_code": "0553",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.166381,
+    "y": 37.556714
+  },
+  {
+    "place_name": "강일",
+    "station_code": "0554",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.176018,
+    "y": 37.557521
+  },
+  {
+    "place_name": "미사",
+    "station_code": "0555",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.192954,
+    "y": 37.56309
+  },
+  {
+    "place_name": "하남풍산",
+    "station_code": "0556",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.203897,
+    "y": 37.552201
+  },
+  {
+    "place_name": "하남시청(덕풍∙신장)",
+    "station_code": "0557",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.206901,
+    "y": 37.541723
+  },
+  {
+    "place_name": "하남검단산",
+    "station_code": "0558",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.223427,
+    "y": 37.539729
+  },
+  {
+    "place_name": "응암",
+    "station_code": "0610",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.915583,
+    "y": 37.59859
+  },
+  {
+    "place_name": "역촌",
+    "station_code": "0611",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.922764,
+    "y": 37.60605
+  },
+  {
+    "place_name": "불광",
+    "station_code": "0612",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.929504,
+    "y": 37.610919
+  },
+  {
+    "place_name": "독바위",
+    "station_code": "0613",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.933035,
+    "y": 37.618413
+  },
+  {
+    "place_name": "연신내",
+    "station_code": "0614",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.920403,
+    "y": 37.618483
+  },
+  {
+    "place_name": "구산",
+    "station_code": "0615",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.9172519,
+    "y": 37.611196
+  },
+  {
+    "place_name": "새절(신사)",
+    "station_code": "0616",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.913613,
+    "y": 37.591148
+  },
+  {
+    "place_name": "증산(명지대앞)",
+    "station_code": "0617",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.909785,
+    "y": 37.583989
+  },
+  {
+    "place_name": "디지털미디어시티",
+    "station_code": "0618",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.901343,
+    "y": 37.5760805
+  },
+  {
+    "place_name": "월드컵경기장(성산)",
+    "station_code": "0619",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.899077,
+    "y": 37.569439
+  },
+  {
+    "place_name": "마포구청",
+    "station_code": "0620",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.903356,
+    "y": 37.563529
+  },
+  {
+    "place_name": "망원",
+    "station_code": "0621",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.910129,
+    "y": 37.556031
+  },
+  {
+    "place_name": "합정",
+    "station_code": "0622",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.913546,
+    "y": 37.549033
+  },
+  {
+    "place_name": "상수",
+    "station_code": "0623",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.92292,
+    "y": 37.547704
+  },
+  {
+    "place_name": "광흥창(서강)",
+    "station_code": "0624",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.931971,
+    "y": 37.547464
+  },
+  {
+    "place_name": "대흥(서강대앞)",
+    "station_code": "0625",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.942214,
+    "y": 37.547732
+  },
+  {
+    "place_name": "공덕",
+    "station_code": "0626",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.951664,
+    "y": 37.543592
+  },
+  {
+    "place_name": "효창공원앞",
+    "station_code": "0627",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.961348,
+    "y": 37.539279
+  },
+  {
+    "place_name": "삼각지(전쟁기념관)",
+    "station_code": "0628",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.973996,
+    "y": 37.535563
+  },
+  {
+    "place_name": "녹사평(용산구청)",
+    "station_code": "0629",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.98665,
+    "y": 37.53469
+  },
+  {
+    "place_name": "이태원",
+    "station_code": "0630",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 126.994369,
+    "y": 37.534485
+  },
+  {
+    "place_name": "한강진",
+    "station_code": "0631",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.001729,
+    "y": 37.53956
+  },
+  {
+    "place_name": "버티고개",
+    "station_code": "0632",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.006948,
+    "y": 37.547933
+  },
+  {
+    "place_name": "약수",
+    "station_code": "0633",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.010237,
+    "y": 37.554087
+  },
+  {
+    "place_name": "청구",
+    "station_code": "0634",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.013776,
+    "y": 37.560221
+  },
+  {
+    "place_name": "신당",
+    "station_code": "0635",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.016158,
+    "y": 37.566174
+  },
+  {
+    "place_name": "동묘앞",
+    "station_code": "0636",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.015666,
+    "y": 37.572275
+  },
+  {
+    "place_name": "창신",
+    "station_code": "0637",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.015246,
+    "y": 37.579772
+  },
+  {
+    "place_name": "보문",
+    "station_code": "0638",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.019722,
+    "y": 37.585426
+  },
+  {
+    "place_name": "안암(고대병원앞)",
+    "station_code": "0639",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.02903,
+    "y": 37.586261
+  },
+  {
+    "place_name": "고려대(종암)",
+    "station_code": "0640",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.03626,
+    "y": 37.59034
+  },
+  {
+    "place_name": "월곡(동덕여대)",
+    "station_code": "0641",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.041492,
+    "y": 37.60192
+  },
+  {
+    "place_name": "상월곡(한국과학기술연구원)",
+    "station_code": "0642",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.048509,
+    "y": 37.606392
+  },
+  {
+    "place_name": "돌곶이",
+    "station_code": "0643",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.056419,
+    "y": 37.610522
+  },
+  {
+    "place_name": "석계",
+    "station_code": "0644",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.065922,
+    "y": 37.614937
+  },
+  {
+    "place_name": "태릉입구",
+    "station_code": "0645",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.074741,
+    "y": 37.617319
+  },
+  {
+    "place_name": "화랑대(서울여대입구)",
+    "station_code": "0646",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.084106,
+    "y": 37.619875
+  },
+  {
+    "place_name": "봉화산(서울의료원)",
+    "station_code": "0647",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.0912326,
+    "y": 37.617429
+  },
+  {
+    "place_name": "신내",
+    "station_code": "0648",
+    "line_code": "S1106",
+    "line_name": "6호선",
+    "operator": "서울교통공사",
+    "x": 127.104326,
+    "y": 37.612571
+  },
+  {
+    "place_name": "장암",
+    "station_code": "0709",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.053126,
+    "y": 37.70015
+  },
+  {
+    "place_name": "도봉산",
+    "station_code": "0710",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.046548,
+    "y": 37.689131
+  },
+  {
+    "place_name": "수락산",
+    "station_code": "0711",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.055314,
+    "y": 37.677804
+  },
+  {
+    "place_name": "마들",
+    "station_code": "0712",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.057701,
+    "y": 37.664985
+  },
+  {
+    "place_name": "노원",
+    "station_code": "0713",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.060555,
+    "y": 37.654478
+  },
+  {
+    "place_name": "중계",
+    "station_code": "0714",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.064084,
+    "y": 37.645052
+  },
+  {
+    "place_name": "하계",
+    "station_code": "0715",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.067999,
+    "y": 37.636363
+  },
+  {
+    "place_name": "공릉(서울과학기술대)",
+    "station_code": "0716",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.072969,
+    "y": 37.625642
+  },
+  {
+    "place_name": "태릉입구",
+    "station_code": "0717",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.075361,
+    "y": 37.618519
+  },
+  {
+    "place_name": "먹골",
+    "station_code": "0718",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.077719,
+    "y": 37.610638
+  },
+  {
+    "place_name": "중화",
+    "station_code": "0719",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.079254,
+    "y": 37.602604
+  },
+  {
+    "place_name": "상봉",
+    "station_code": "0720",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.085708,
+    "y": 37.595673
+  },
+  {
+    "place_name": "면목",
+    "station_code": "0721",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.087503,
+    "y": 37.588671
+  },
+  {
+    "place_name": "사가정",
+    "station_code": "0722",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.088502,
+    "y": 37.580912
+  },
+  {
+    "place_name": "용마산(용마폭포공원)",
+    "station_code": "0723",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.086802,
+    "y": 37.573752
+  },
+  {
+    "place_name": "중곡",
+    "station_code": "0724",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.084291,
+    "y": 37.565877
+  },
+  {
+    "place_name": "군자(능동)",
+    "station_code": "0725",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.079484,
+    "y": 37.557151
+  },
+  {
+    "place_name": "어린이대공원(세종대)",
+    "station_code": "0726",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.07465,
+    "y": 37.547962
+  },
+  {
+    "place_name": "건대입구",
+    "station_code": "0727",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.071103,
+    "y": 37.540882
+  },
+  {
+    "place_name": "자양(뚝섬한강공원)",
+    "station_code": "0728",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.066714,
+    "y": 37.531558
+  },
+  {
+    "place_name": "청담",
+    "station_code": "0729",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.051851,
+    "y": 37.519097
+  },
+  {
+    "place_name": "강남구청",
+    "station_code": "0730",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.04122,
+    "y": 37.517185
+  },
+  {
+    "place_name": "학동",
+    "station_code": "0731",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.031738,
+    "y": 37.514262
+  },
+  {
+    "place_name": "논현",
+    "station_code": "0732",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.021385,
+    "y": 37.511108
+  },
+  {
+    "place_name": "반포",
+    "station_code": "0733",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.011717,
+    "y": 37.508171
+  },
+  {
+    "place_name": "고속터미널",
+    "station_code": "0734",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 127.005055,
+    "y": 37.503387
+  },
+  {
+    "place_name": "내방",
+    "station_code": "0735",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.993541,
+    "y": 37.48764
+  },
+  {
+    "place_name": "이수",
+    "station_code": "0736",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.981766,
+    "y": 37.485258
+  },
+  {
+    "place_name": "총신대입구(이수)",
+    "station_code": "0736",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.981766,
+    "y": 37.485258
+  },
+  {
+    "place_name": "남성",
+    "station_code": "0737",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.971108,
+    "y": 37.484688
+  },
+  {
+    "place_name": "숭실대입구(살피재)",
+    "station_code": "0738",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.953649,
+    "y": 37.496258
+  },
+  {
+    "place_name": "상도",
+    "station_code": "0739",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.947949,
+    "y": 37.50279
+  },
+  {
+    "place_name": "장승배기",
+    "station_code": "0740",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.939025,
+    "y": 37.504845
+  },
+  {
+    "place_name": "신대방삼거리",
+    "station_code": "0741",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.928218,
+    "y": 37.499717
+  },
+  {
+    "place_name": "보라매",
+    "station_code": "0742",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.920112,
+    "y": 37.499916
+  },
+  {
+    "place_name": "신풍",
+    "station_code": "0743",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.909806,
+    "y": 37.500107
+  },
+  {
+    "place_name": "대림(구로구청)",
+    "station_code": "0744",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.896997,
+    "y": 37.492984
+  },
+  {
+    "place_name": "남구로",
+    "station_code": "0745",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.887372,
+    "y": 37.486181
+  },
+  {
+    "place_name": "가산디지털단지",
+    "station_code": "0746",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.882704,
+    "y": 37.480376
+  },
+  {
+    "place_name": "철산",
+    "station_code": "0747",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.868217,
+    "y": 37.47616
+  },
+  {
+    "place_name": "광명사거리",
+    "station_code": "0748",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.854854,
+    "y": 37.47927
+  },
+  {
+    "place_name": "천왕",
+    "station_code": "0749",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.838684,
+    "y": 37.486699
+  },
+  {
+    "place_name": "온수(성공회대입구)",
+    "station_code": "0750",
+    "line_code": "S1107",
+    "line_name": "7호선",
+    "operator": "서울교통공사",
+    "x": 126.823294,
+    "y": 37.492059
+  },
+  {
+    "place_name": "암사역사공원",
+    "station_code": "0809",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.137556,
+    "y": 37.557167
+  },
+  {
+    "place_name": "암사",
+    "station_code": "0810",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.127521,
+    "y": 37.550127
+  },
+  {
+    "place_name": "천호(풍납토성)",
+    "station_code": "0811",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.123179,
+    "y": 37.53792
+  },
+  {
+    "place_name": "강동구청",
+    "station_code": "0812",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.120461,
+    "y": 37.530348
+  },
+  {
+    "place_name": "몽촌토성(평화의문)",
+    "station_code": "0813",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.11274,
+    "y": 37.517692
+  },
+  {
+    "place_name": "잠실(송파구청)",
+    "station_code": "0814",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.104267,
+    "y": 37.514649
+  },
+  {
+    "place_name": "석촌",
+    "station_code": "0815",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.106995,
+    "y": 37.505396
+  },
+  {
+    "place_name": "송파",
+    "station_code": "0816",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.11212,
+    "y": 37.49978
+  },
+  {
+    "place_name": "가락시장",
+    "station_code": "0817",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.118279,
+    "y": 37.493004
+  },
+  {
+    "place_name": "문정",
+    "station_code": "0818",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.122473,
+    "y": 37.485931
+  },
+  {
+    "place_name": "장지",
+    "station_code": "0819",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.126229,
+    "y": 37.478609
+  },
+  {
+    "place_name": "복정",
+    "station_code": "0820",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.126746,
+    "y": 37.471016
+  },
+  {
+    "place_name": "남위례",
+    "station_code": "0821",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.139047,
+    "y": 37.462839
+  },
+  {
+    "place_name": "산성",
+    "station_code": "0822",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.149927,
+    "y": 37.456886
+  },
+  {
+    "place_name": "남한산성입구(성남법원·검찰청)",
+    "station_code": "0823",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.159845,
+    "y": 37.451568
+  },
+  {
+    "place_name": "단대오거리",
+    "station_code": "0824",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.156735,
+    "y": 37.445057
+  },
+  {
+    "place_name": "신흥",
+    "station_code": "0825",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.14759,
+    "y": 37.440952
+  },
+  {
+    "place_name": "수진",
+    "station_code": "0826",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.140936,
+    "y": 37.437575
+  },
+  {
+    "place_name": "모란",
+    "station_code": "0827",
+    "line_code": "S1108",
+    "line_name": "8호선",
+    "operator": "서울교통공사",
+    "x": 127.129921,
+    "y": 37.433988
+  },
+  {
+    "place_name": "용답",
+    "station_code": "2111",
+    "line_code": "S1121",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.05087863,
+    "y": 37.562066
+  },
+  {
+    "place_name": "신답",
+    "station_code": "2112",
+    "line_code": "S1121",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.047048,
+    "y": 37.569847
+  },
+  {
+    "place_name": "용두(동대문구청)",
+    "station_code": "2113",
+    "line_code": "S1121",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.03811,
+    "y": 37.574012
+  },
+  {
+    "place_name": "신설동",
+    "station_code": "2114",
+    "line_code": "S1121",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 127.025158,
+    "y": 37.574653
+  },
+  {
+    "place_name": "도림천",
+    "station_code": "2341",
+    "line_code": "S1122",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.882586,
+    "y": 37.5145589
+  },
+  {
+    "place_name": "양천구청",
+    "station_code": "2342",
+    "line_code": "S1122",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.865593,
+    "y": 37.5123294
+  },
+  {
+    "place_name": "신정네거리",
+    "station_code": "2343",
+    "line_code": "S1122",
+    "line_name": "2호선",
+    "operator": "서울교통공사",
+    "x": 126.852849,
+    "y": 37.520218
+  },
+  {
+    "place_name": "둔촌동",
+    "station_code": "P549",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.136219,
+    "y": 37.527787
+  },
+  {
+    "place_name": "올림픽공원(한국체대)",
+    "station_code": "P550",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.130957,
+    "y": 37.516217
+  },
+  {
+    "place_name": "방이",
+    "station_code": "P551",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.126054,
+    "y": 37.508752
+  },
+  {
+    "place_name": "오금",
+    "station_code": "P552",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.127701,
+    "y": 37.502228
+  },
+  {
+    "place_name": "개롱",
+    "station_code": "P553",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.134817,
+    "y": 37.498097
+  },
+  {
+    "place_name": "거여",
+    "station_code": "P554",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.143983,
+    "y": 37.493208
+  },
+  {
+    "place_name": "마천",
+    "station_code": "P555",
+    "line_code": "S1105",
+    "line_name": "5호선",
+    "operator": "서울교통공사",
+    "x": 127.152784,
+    "y": 37.494972
+  },
+  {
+    "place_name": "언주",
+    "station_code": "4126",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.033868,
+    "y": 37.507287
+  },
+  {
+    "place_name": "선정릉",
+    "station_code": "4127",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.0437593,
+    "y": 37.51028
+  },
+  {
+    "place_name": "삼성중앙",
+    "station_code": "4128",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.053282,
+    "y": 37.513011
+  },
+  {
+    "place_name": "봉은사",
+    "station_code": "4129",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.060245,
+    "y": 37.514219
+  },
+  {
+    "place_name": "종합운동장",
+    "station_code": "4130",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.076917,
+    "y": 37.511156
+  },
+  {
+    "place_name": "삼전",
+    "station_code": "4131",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.087211,
+    "y": 37.504531
+  },
+  {
+    "place_name": "석촌고분",
+    "station_code": "4132",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.096611,
+    "y": 37.502439
+  },
+  {
+    "place_name": "석촌",
+    "station_code": "4133",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.106944,
+    "y": 37.505078
+  },
+  {
+    "place_name": "송파나루",
+    "station_code": "4134",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.112451,
+    "y": 37.51055
+  },
+  {
+    "place_name": "한성백제",
+    "station_code": "4135",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.116211,
+    "y": 37.516369
+  },
+  {
+    "place_name": "올림픽공원(한국체대)",
+    "station_code": "4136",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.130333,
+    "y": 37.516111
+  },
+  {
+    "place_name": "둔촌오륜",
+    "station_code": "4137",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.138619,
+    "y": 37.519339
+  },
+  {
+    "place_name": "중앙보훈병원",
+    "station_code": "4138",
+    "line_code": "S1109",
+    "line_name": "수도권  도시철도 9호선",
+    "operator": "서울시메트로9호선㈜",
+    "x": 127.148488,
+    "y": 37.528807
+  },
+  {
+    "place_name": "개화",
+    "station_code": "4101",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.797833,
+    "y": 37.578591
+  },
+  {
+    "place_name": "김포공항",
+    "station_code": "4102",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.801633,
+    "y": 37.562056
+  },
+  {
+    "place_name": "공항시장",
+    "station_code": "4103",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.810678,
+    "y": 37.563726
+  },
+  {
+    "place_name": "신방화",
+    "station_code": "4104",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.816667,
+    "y": 37.5675
+  },
+  {
+    "place_name": "마곡나루(서울식물원)",
+    "station_code": "4105",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.8276071,
+    "y": 37.566717
+  },
+  {
+    "place_name": "양천향교",
+    "station_code": "4106",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.841389,
+    "y": 37.568333
+  },
+  {
+    "place_name": "가양",
+    "station_code": "4107",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.855078,
+    "y": 37.561111
+  },
+  {
+    "place_name": "증미",
+    "station_code": "4108",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.861067,
+    "y": 37.55785
+  },
+  {
+    "place_name": "등촌",
+    "station_code": "4109",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.864722,
+    "y": 37.551111
+  },
+  {
+    "place_name": "염창",
+    "station_code": "4110",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.874722,
+    "y": 37.546944
+  },
+  {
+    "place_name": "신목동",
+    "station_code": "4111",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.883056,
+    "y": 37.544167
+  },
+  {
+    "place_name": "선유도",
+    "station_code": "4112",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.893889,
+    "y": 37.537778
+  },
+  {
+    "place_name": "당산",
+    "station_code": "4113",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.902222,
+    "y": 37.533844
+  },
+  {
+    "place_name": "국회의사당",
+    "station_code": "4114",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.917874,
+    "y": 37.528105
+  },
+  {
+    "place_name": "여의도",
+    "station_code": "4115",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.924167,
+    "y": 37.521744
+  },
+  {
+    "place_name": "샛강",
+    "station_code": "4116",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.9284,
+    "y": 37.5173
+  },
+  {
+    "place_name": "노량진",
+    "station_code": "4117",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.940917,
+    "y": 37.513667
+  },
+  {
+    "place_name": "노들",
+    "station_code": "4118",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.953096,
+    "y": 37.512726
+  },
+  {
+    "place_name": "흑석(중앙대입구)",
+    "station_code": "4119",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.963611,
+    "y": 37.508889
+  },
+  {
+    "place_name": "동작(현충원)",
+    "station_code": "4120",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.978278,
+    "y": 37.502878
+  },
+  {
+    "place_name": "구반포",
+    "station_code": "4121",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.987222,
+    "y": 37.501389
+  },
+  {
+    "place_name": "신반포",
+    "station_code": "4122",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 126.996044,
+    "y": 37.5035033
+  },
+  {
+    "place_name": "고속터미널",
+    "station_code": "4123",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 127.004044,
+    "y": 37.505933
+  },
+  {
+    "place_name": "사평",
+    "station_code": "4124",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 127.015219,
+    "y": 37.504161
+  },
+  {
+    "place_name": "신논현",
+    "station_code": "4125",
+    "line_code": "S1109",
+    "line_name": "서울 도시철도 9호선",
+    "operator": "서울특별시 서울시메트로9호선㈜",
+    "x": 127.024417,
+    "y": 37.504444
+  },
+  {
+    "place_name": "북한산우이",
+    "station_code": "S110",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01272,
+    "y": 37.66284
+  },
+  {
+    "place_name": "솔밭공원",
+    "station_code": "S111",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01326,
+    "y": 37.65607
+  },
+  {
+    "place_name": "4.19민주묘지",
+    "station_code": "S112",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01371,
+    "y": 37.64954
+  },
+  {
+    "place_name": "가오리",
+    "station_code": "S113",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01681,
+    "y": 37.64162
+  },
+  {
+    "place_name": "화계",
+    "station_code": "S114",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.0175,
+    "y": 37.63428
+  },
+  {
+    "place_name": "삼양",
+    "station_code": "S115",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01817,
+    "y": 37.62706
+  },
+  {
+    "place_name": "삼양사거리",
+    "station_code": "S116",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.02049,
+    "y": 37.62144
+  },
+  {
+    "place_name": "솔샘",
+    "station_code": "S117",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01357,
+    "y": 37.62037
+  },
+  {
+    "place_name": "북한산보국문",
+    "station_code": "S118",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.00816,
+    "y": 37.61233
+  },
+  {
+    "place_name": "정릉",
+    "station_code": "S119",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01345,
+    "y": 37.60278
+  },
+  {
+    "place_name": "성신여대입구",
+    "station_code": "S120",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01656,
+    "y": 37.59247
+  },
+  {
+    "place_name": "보문",
+    "station_code": "S121",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.01939,
+    "y": 37.58551
+  },
+  {
+    "place_name": "신설동",
+    "station_code": "S122",
+    "line_code": "L11UI",
+    "line_name": "우이신설선",
+    "operator": "우이신설경전철운영㈜",
+    "x": 127.023221,
+    "y": 37.57659
+  },
+  {
+    "place_name": "발곡",
+    "station_code": "U110",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.052889,
+    "y": 37.726983
+  },
+  {
+    "place_name": "회룡",
+    "station_code": "U111",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0467864,
+    "y": 37.72505255
+  },
+  {
+    "place_name": "범골",
+    "station_code": "U112",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0437202,
+    "y": 37.7287279
+  },
+  {
+    "place_name": "경전철의정부",
+    "station_code": "U113",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.043321,
+    "y": 37.73729974
+  },
+  {
+    "place_name": "의정부시청",
+    "station_code": "U114",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.034854,
+    "y": 37.73924874
+  },
+  {
+    "place_name": "흥선",
+    "station_code": "U115",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0371765,
+    "y": 37.74322487
+  },
+  {
+    "place_name": "의정부중앙",
+    "station_code": "U117",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0496332,
+    "y": 37.74371903
+  },
+  {
+    "place_name": "동오",
+    "station_code": "U118",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.05703,
+    "y": 37.74519123
+  },
+  {
+    "place_name": "새말",
+    "station_code": "U119",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.063869,
+    "y": 37.74889941
+  },
+  {
+    "place_name": "경기도청북부청사",
+    "station_code": "U120",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0714795,
+    "y": 37.75073213
+  },
+  {
+    "place_name": "효자",
+    "station_code": "U121",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0773155,
+    "y": 37.75398452
+  },
+  {
+    "place_name": "곤제",
+    "station_code": "U122",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0838651,
+    "y": 37.75054343
+  },
+  {
+    "place_name": "어룡",
+    "station_code": "U123",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0852045,
+    "y": 37.74272184
+  },
+  {
+    "place_name": "송산",
+    "station_code": "U124",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0872755,
+    "y": 37.7371698
+  },
+  {
+    "place_name": "탑석",
+    "station_code": "U125",
+    "line_code": "L41U1",
+    "line_name": "의정부",
+    "operator": "의정부경량전철㈜",
+    "x": 127.0889064,
+    "y": 37.73355362
+  },
+  {
+    "place_name": "인천국제공항역",
+    "station_code": "101",
+    "line_code": "S28M1",
+    "line_name": "자기부상철도",
+    "operator": "인천광역시 인천국제공항공사",
+    "x": 126.4525,
+    "y": 37.447222
+  },
+  {
+    "place_name": "장기주차장역",
+    "station_code": "102",
+    "line_code": "S28M1",
+    "line_name": "자기부상철도",
+    "operator": "인천광역시 인천국제공항공사",
+    "x": 126.455671,
+    "y": 37.44385
+  },
+  {
+    "place_name": "합동청사역",
+    "station_code": "103",
+    "line_code": "S28M1",
+    "line_name": "자기부상철도",
+    "operator": "인천광역시 인천국제공항공사",
+    "x": 126.458654,
+    "y": 37.440519
+  },
+  {
+    "place_name": "파라다이스시티역",
+    "station_code": "104",
+    "line_code": "S28M1",
+    "line_name": "자기부상철도",
+    "operator": "인천광역시 인천국제공항공사",
+    "x": 126.459858,
+    "y": 37.437217
+  },
+  {
+    "place_name": "워터파크역",
+    "station_code": "105",
+    "line_code": "S28M1",
+    "line_name": "자기부상철도",
+    "operator": "인천광역시 인천국제공항공사",
+    "x": 126.434183,
+    "y": 37.429227
+  },
+  {
+    "place_name": "용유역",
+    "station_code": "106",
+    "line_code": "S28M1",
+    "line_name": "자기부상철도",
+    "operator": "인천광역시 인천국제공항공사",
+    "x": 126.423637,
+    "y": 37.424805
+  },
+  {
+    "place_name": "검단호수공원",
+    "station_code": "3107",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.688056,
+    "y": 37.6025
+  },
+  {
+    "place_name": "신검단중앙",
+    "station_code": "3108",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.698611,
+    "y": 37.6026
+  },
+  {
+    "place_name": "아라(북부법원, 검찰청)",
+    "station_code": "3109",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.713333,
+    "y": 37.592222
+  },
+  {
+    "place_name": "계양",
+    "station_code": "3110",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.736319,
+    "y": 37.571539
+  },
+  {
+    "place_name": "귤현",
+    "station_code": "3111",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.742498,
+    "y": 37.566362
+  },
+  {
+    "place_name": "박촌",
+    "station_code": "3112",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.744946,
+    "y": 37.553525
+  },
+  {
+    "place_name": "임학",
+    "station_code": "3113",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.738642,
+    "y": 37.545058
+  },
+  {
+    "place_name": "계산",
+    "station_code": "3114",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.728436,
+    "y": 37.543243
+  },
+  {
+    "place_name": "경인교대입구",
+    "station_code": "3115",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.722603,
+    "y": 37.538272
+  },
+  {
+    "place_name": "작전",
+    "station_code": "3116",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.722548,
+    "y": 37.530271
+  },
+  {
+    "place_name": "갈산",
+    "station_code": "3117",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.721566,
+    "y": 37.517124
+  },
+  {
+    "place_name": "부평구청",
+    "station_code": "3118",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.720547,
+    "y": 37.508768
+  },
+  {
+    "place_name": "부평시장",
+    "station_code": "3119",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.722282,
+    "y": 37.498495
+  },
+  {
+    "place_name": "부평",
+    "station_code": "3120",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.723437,
+    "y": 37.490541
+  },
+  {
+    "place_name": "동수",
+    "station_code": "3121",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.718464,
+    "y": 37.485409
+  },
+  {
+    "place_name": "부평삼거리",
+    "station_code": "3122",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.710494,
+    "y": 37.478267
+  },
+  {
+    "place_name": "간석오거리",
+    "station_code": "3123",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.707861,
+    "y": 37.466921
+  },
+  {
+    "place_name": "인천시청",
+    "station_code": "3124",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.702216,
+    "y": 37.457615
+  },
+  {
+    "place_name": "예술회관",
+    "station_code": "3125",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.700991,
+    "y": 37.449334
+  },
+  {
+    "place_name": "인천터미널",
+    "station_code": "3126",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.699727,
+    "y": 37.441917
+  },
+  {
+    "place_name": "문학경기장",
+    "station_code": "3127",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.698373,
+    "y": 37.434964
+  },
+  {
+    "place_name": "선학",
+    "station_code": "3128",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.698872,
+    "y": 37.426985
+  },
+  {
+    "place_name": "신연수",
+    "station_code": "3129",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.693853,
+    "y": 37.418032
+  },
+  {
+    "place_name": "원인재",
+    "station_code": "3130",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.687893,
+    "y": 37.412364
+  },
+  {
+    "place_name": "동춘",
+    "station_code": "3131",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.680835,
+    "y": 37.404676
+  },
+  {
+    "place_name": "동막",
+    "station_code": "3132",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.673561,
+    "y": 37.398173
+  },
+  {
+    "place_name": "캠퍼스타운",
+    "station_code": "3133",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.661985,
+    "y": 37.388209
+  },
+  {
+    "place_name": "테크노파크",
+    "station_code": "3134",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.656355,
+    "y": 37.382311
+  },
+  {
+    "place_name": "지식정보단지",
+    "station_code": "3135",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.645412,
+    "y": 37.378021
+  },
+  {
+    "place_name": "인천대입구",
+    "station_code": "3136",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.639351,
+    "y": 37.386239
+  },
+  {
+    "place_name": "센트럴파크",
+    "station_code": "3137",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.635002,
+    "y": 37.392833
+  },
+  {
+    "place_name": "국제업무지구",
+    "station_code": "3138",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.630105,
+    "y": 37.400421
+  },
+  {
+    "place_name": "송도달빛축제공원",
+    "station_code": "3139",
+    "line_code": "S2801",
+    "line_name": "인천지하철 1호선",
+    "operator": "인천교통공사",
+    "x": 126.6260537,
+    "y": 37.40687495
+  },
+  {
+    "place_name": "검단오류",
+    "station_code": "3201",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.62801,
+    "y": 37.5950162
+  },
+  {
+    "place_name": "왕길",
+    "station_code": "3202",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.642284,
+    "y": 37.5950191
+  },
+  {
+    "place_name": "검단사거리",
+    "station_code": "3203",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.656545,
+    "y": 37.601693
+  },
+  {
+    "place_name": "마전",
+    "station_code": "3204",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.667195,
+    "y": 37.597756
+  },
+  {
+    "place_name": "완정",
+    "station_code": "3205",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.672961,
+    "y": 37.592867
+  },
+  {
+    "place_name": "독정",
+    "station_code": "3206",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.675981,
+    "y": 37.584927
+  },
+  {
+    "place_name": "검암",
+    "station_code": "3207",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.675682,
+    "y": 37.568611
+  },
+  {
+    "place_name": "검바위",
+    "station_code": "3208",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.677529,
+    "y": 37.561091
+  },
+  {
+    "place_name": "아시아드경기장",
+    "station_code": "3209",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.677075,
+    "y": 37.551373
+  },
+  {
+    "place_name": "서구청",
+    "station_code": "3210",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.676795,
+    "y": 37.543839
+  },
+  {
+    "place_name": "가정(루원시티)",
+    "station_code": "3211",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.675387,
+    "y": 37.524805
+  },
+  {
+    "place_name": "가정중앙시장",
+    "station_code": "3212",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.676784,
+    "y": 37.517511
+  },
+  {
+    "place_name": "석남(거북시장)",
+    "station_code": "3213",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.676304,
+    "y": 37.507211
+  },
+  {
+    "place_name": "서부여성회관",
+    "station_code": "3214",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.675875,
+    "y": 37.500298
+  },
+  {
+    "place_name": "인천가좌",
+    "station_code": "3215",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.675284,
+    "y": 37.489962
+  },
+  {
+    "place_name": "가재울",
+    "station_code": "3216",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.683883,
+    "y": 37.484152
+  },
+  {
+    "place_name": "주안국가산단",
+    "station_code": "3217",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.681102,
+    "y": 37.473599
+  },
+  {
+    "place_name": "주안",
+    "station_code": "3218",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.679041,
+    "y": 37.465234
+  },
+  {
+    "place_name": "시민공원",
+    "station_code": "3219",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.6810091,
+    "y": 37.458339
+  },
+  {
+    "place_name": "석바위시장",
+    "station_code": "3220",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.692387,
+    "y": 37.457659
+  },
+  {
+    "place_name": "인천시청",
+    "station_code": "3221",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.701523,
+    "y": 37.456904
+  },
+  {
+    "place_name": "석천사거리",
+    "station_code": "3222",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.710383,
+    "y": 37.4569323
+  },
+  {
+    "place_name": "모래내시장",
+    "station_code": "3223",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.719578,
+    "y": 37.455842
+  },
+  {
+    "place_name": "만수",
+    "station_code": "3224",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.731764,
+    "y": 37.454962
+  },
+  {
+    "place_name": "남동구청",
+    "station_code": "3225",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.736581,
+    "y": 37.448179
+  },
+  {
+    "place_name": "인천대공원",
+    "station_code": "3226",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.753051,
+    "y": 37.448475
+  },
+  {
+    "place_name": "운연",
+    "station_code": "3227",
+    "line_code": "S2802",
+    "line_name": "인천지하철 2호선",
+    "operator": "인천교통공사",
+    "x": 126.759609,
+    "y": 37.439533
+  },
+  {
+    "place_name": "까치울",
+    "station_code": "3753",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.81095,
+    "y": 37.506236
+  },
+  {
+    "place_name": "부천종합운동장",
+    "station_code": "3754",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.79735,
+    "y": 37.505381
+  },
+  {
+    "place_name": "춘의",
+    "station_code": "3755",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.787069,
+    "y": 37.50365
+  },
+  {
+    "place_name": "신중동",
+    "station_code": "3756",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.776161,
+    "y": 37.503081
+  },
+  {
+    "place_name": "부천시청",
+    "station_code": "3757",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.763561,
+    "y": 37.504611
+  },
+  {
+    "place_name": "상동",
+    "station_code": "3758",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.753081,
+    "y": 37.505769
+  },
+  {
+    "place_name": "삼산체육관",
+    "station_code": "3759",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.742081,
+    "y": 37.506431
+  },
+  {
+    "place_name": "굴포천",
+    "station_code": "3760",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.731481,
+    "y": 37.50695
+  },
+  {
+    "place_name": "부평구청",
+    "station_code": "3761",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.721356,
+    "y": 37.507523
+  },
+  {
+    "place_name": "산곡",
+    "station_code": "3762",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.70351,
+    "y": 37.508547
+  },
+  {
+    "place_name": "석남(거북시장)",
+    "station_code": "3763",
+    "line_code": "S1107",
+    "line_name": "도시철도 7호선",
+    "operator": "인천교통공사",
+    "x": 126.676213,
+    "y": 37.506208
+  },
+  {
+    "place_name": "남영역",
+    "station_code": "1002",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.971171,
+    "y": 37.540597
+  },
+  {
+    "place_name": "용산역",
+    "station_code": "1003",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.964775,
+    "y": 37.52989
+  },
+  {
+    "place_name": "용산역",
+    "station_code": "1003",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 126.964775,
+    "y": 37.52989
+  },
+  {
+    "place_name": "노량진역",
+    "station_code": "1004",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.941671,
+    "y": 37.514072
+  },
+  {
+    "place_name": "대방역",
+    "station_code": "1005",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.926407,
+    "y": 37.513392
+  },
+  {
+    "place_name": "영등포역",
+    "station_code": "1006",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.907411,
+    "y": 37.515756
+  },
+  {
+    "place_name": "신도림역",
+    "station_code": "1007",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.891513,
+    "y": 37.508983
+  },
+  {
+    "place_name": "이촌역",
+    "station_code": "1008",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 126.973816,
+    "y": 37.522476
+  },
+  {
+    "place_name": "서빙고역",
+    "station_code": "1009",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 126.988358,
+    "y": 37.51961
+  },
+  {
+    "place_name": "한남역",
+    "station_code": "1010",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.008984,
+    "y": 37.529361
+  },
+  {
+    "place_name": "옥수역",
+    "station_code": "1011",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.018698,
+    "y": 37.540514
+  },
+  {
+    "place_name": "응봉역",
+    "station_code": "1012",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.034824,
+    "y": 37.550433
+  },
+  {
+    "place_name": "왕십리역",
+    "station_code": "1013",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.038405,
+    "y": 37.561728
+  },
+  {
+    "place_name": "왕십리역",
+    "station_code": "1013",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.038705,
+    "y": 37.5610128
+  },
+  {
+    "place_name": "청량리역",
+    "station_code": "1014",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.048077,
+    "y": 37.580543
+  },
+  {
+    "place_name": "청량리역",
+    "station_code": "1014",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.047588,
+    "y": 37.580043
+  },
+  {
+    "place_name": "회기역",
+    "station_code": "1015",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.057936,
+    "y": 37.589602
+  },
+  {
+    "place_name": "회기역",
+    "station_code": "1015",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.057936,
+    "y": 37.589802
+  },
+  {
+    "place_name": "외대앞역",
+    "station_code": "1016",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.063572,
+    "y": 37.596157
+  },
+  {
+    "place_name": "신이문역",
+    "station_code": "1017",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.067347,
+    "y": 37.601829
+  },
+  {
+    "place_name": "석계역",
+    "station_code": "1018",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.065594,
+    "y": 37.615206
+  },
+  {
+    "place_name": "광운대역",
+    "station_code": "1019",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.06181,
+    "y": 37.62357
+  },
+  {
+    "place_name": "광운대역",
+    "station_code": "1019",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.062,
+    "y": 37.6239
+  },
+  {
+    "place_name": "광운대역",
+    "station_code": "1019",
+    "line_code": "I4108",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.061975,
+    "y": 37.623635
+  },
+  {
+    "place_name": "월계역",
+    "station_code": "1020",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.058835,
+    "y": 37.633114
+  },
+  {
+    "place_name": "녹천역",
+    "station_code": "1021",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.051406,
+    "y": 37.644599
+  },
+  {
+    "place_name": "창동역",
+    "station_code": "1022",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.047663,
+    "y": 37.653181
+  },
+  {
+    "place_name": "선릉역",
+    "station_code": "1023",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.048941,
+    "y": 37.504479
+  },
+  {
+    "place_name": "한티역",
+    "station_code": "1024",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.052883,
+    "y": 37.496208
+  },
+  {
+    "place_name": "도곡역",
+    "station_code": "1025",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.055393,
+    "y": 37.490914
+  },
+  {
+    "place_name": "구룡역",
+    "station_code": "1026",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.059496,
+    "y": 37.486985
+  },
+  {
+    "place_name": "개포동역",
+    "station_code": "1027",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.066027,
+    "y": 37.489112
+  },
+  {
+    "place_name": "대모산입구역",
+    "station_code": "1028",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.072702,
+    "y": 37.491347
+  },
+  {
+    "place_name": "수서역",
+    "station_code": "1030",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.101118,
+    "y": 37.487633
+  },
+  {
+    "place_name": "복정역",
+    "station_code": "1031",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.126627,
+    "y": 37.469753
+  },
+  {
+    "place_name": "신길역",
+    "station_code": "1032",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.917743,
+    "y": 37.517018
+  },
+  {
+    "place_name": "중랑역",
+    "station_code": "1201",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.076152,
+    "y": 37.594948
+  },
+  {
+    "place_name": "중랑역",
+    "station_code": "1201",
+    "line_code": "I4108",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.076152,
+    "y": 37.594948
+  },
+  {
+    "place_name": "상봉역",
+    "station_code": "1202",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.085553,
+    "y": 37.596754
+  },
+  {
+    "place_name": "상봉역",
+    "station_code": "1202",
+    "line_code": "I4108",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.085853,
+    "y": 37.595254
+  },
+  {
+    "place_name": "망우역",
+    "station_code": "1203",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.092318,
+    "y": 37.599288
+  },
+  {
+    "place_name": "망우역",
+    "station_code": "1203",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.092031,
+    "y": 37.599988
+  },
+  {
+    "place_name": "양원역",
+    "station_code": "1204",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 129.091321,
+    "y": 36.963729
+  },
+  {
+    "place_name": "구리역",
+    "station_code": "1205",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.143373,
+    "y": 37.60326
+  },
+  {
+    "place_name": "도농역",
+    "station_code": "1206",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.161105,
+    "y": 37.608756
+  },
+  {
+    "place_name": "양정역",
+    "station_code": "1207",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.194602,
+    "y": 37.604269
+  },
+  {
+    "place_name": "덕소역",
+    "station_code": "1208",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.208835,
+    "y": 37.586892
+  },
+  {
+    "place_name": "도심역",
+    "station_code": "1209",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.222798,
+    "y": 37.579628
+  },
+  {
+    "place_name": "팔당역",
+    "station_code": "1210",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.243896,
+    "y": 37.547321
+  },
+  {
+    "place_name": "운길산역",
+    "station_code": "1211",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.310089,
+    "y": 37.554659
+  },
+  {
+    "place_name": "양수역",
+    "station_code": "1212",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.328948,
+    "y": 37.545998
+  },
+  {
+    "place_name": "신원역",
+    "station_code": "1213",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.372745,
+    "y": 37.525921
+  },
+  {
+    "place_name": "국수역",
+    "station_code": "1214",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.399402,
+    "y": 37.516171
+  },
+  {
+    "place_name": "아신역",
+    "station_code": "1215",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.443238,
+    "y": 37.513954
+  },
+  {
+    "place_name": "오빈역",
+    "station_code": "1216",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.474053,
+    "y": 37.506061
+  },
+  {
+    "place_name": "양평역",
+    "station_code": "1217",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.491858,
+    "y": 37.492674
+  },
+  {
+    "place_name": "원덕역",
+    "station_code": "1218",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.547468,
+    "y": 37.468585
+  },
+  {
+    "place_name": "용문역",
+    "station_code": "1219",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.594251,
+    "y": 37.482085
+  },
+  {
+    "place_name": "지평역",
+    "station_code": "1220",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 127.629681,
+    "y": 37.476496
+  },
+  {
+    "place_name": "서울역(경의선)",
+    "station_code": "1251",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.97138700000001,
+    "y": 37.556713
+  },
+  {
+    "place_name": "신촌역",
+    "station_code": "1252",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.942308,
+    "y": 37.559768
+  },
+  {
+    "place_name": "효창공원앞역",
+    "station_code": "1261",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.962339,
+    "y": 37.538789
+  },
+  {
+    "place_name": "공덕역",
+    "station_code": "1262",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.952134,
+    "y": 37.542711
+  },
+  {
+    "place_name": "서강대역",
+    "station_code": "1263",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.935389,
+    "y": 37.552132
+  },
+  {
+    "place_name": "홍대입구역",
+    "station_code": "1264",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.926833,
+    "y": 37.55758
+  },
+  {
+    "place_name": "가좌역",
+    "station_code": "1265",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.914841,
+    "y": 37.568611
+  },
+  {
+    "place_name": "디지털미디어시티역",
+    "station_code": "1266",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.900421,
+    "y": 37.577964
+  },
+  {
+    "place_name": "수색역",
+    "station_code": "1267",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.895681,
+    "y": 37.580855
+  },
+  {
+    "place_name": "한국항공대",
+    "station_code": "1268",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.868291,
+    "y": 37.603102
+  },
+  {
+    "place_name": "강매역",
+    "station_code": "1269",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.844537,
+    "y": 37.612396
+  },
+  {
+    "place_name": "행신역",
+    "station_code": "1270",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.834063,
+    "y": 37.612125
+  },
+  {
+    "place_name": "능곡역",
+    "station_code": "1271",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.82089,
+    "y": 37.618741
+  },
+  {
+    "place_name": "능곡역",
+    "station_code": "1271",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.8206,
+    "y": 37.618741
+  },
+  {
+    "place_name": "곡산역",
+    "station_code": "1272",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.801877,
+    "y": 37.645729
+  },
+  {
+    "place_name": "곡산역",
+    "station_code": "1272",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.801877,
+    "y": 37.645729
+  },
+  {
+    "place_name": "백마역",
+    "station_code": "1273",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.794401,
+    "y": 37.658346
+  },
+  {
+    "place_name": "백마역",
+    "station_code": "1273",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.794401,
+    "y": 37.658346
+  },
+  {
+    "place_name": "풍산역",
+    "station_code": "1274",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.786355,
+    "y": 37.672173
+  },
+  {
+    "place_name": "풍산역",
+    "station_code": "1274",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.786355,
+    "y": 37.672173
+  },
+  {
+    "place_name": "일산역",
+    "station_code": "1275",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.769521,
+    "y": 37.682231
+  },
+  {
+    "place_name": "일산역",
+    "station_code": "1275",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.769521,
+    "y": 37.682231
+  },
+  {
+    "place_name": "탄현역",
+    "station_code": "1276",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.761075,
+    "y": 37.694114
+  },
+  {
+    "place_name": "야당역",
+    "station_code": "1277",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.761535,
+    "y": 37.712749
+  },
+  {
+    "place_name": "운정역",
+    "station_code": "1278",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.767076,
+    "y": 37.725441000000004
+  },
+  {
+    "place_name": "금릉역",
+    "station_code": "1279",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.765401,
+    "y": 37.751295
+  },
+  {
+    "place_name": "금촌역",
+    "station_code": "1280",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.774515,
+    "y": 37.766106
+  },
+  {
+    "place_name": "월롱역",
+    "station_code": "1282",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.792574,
+    "y": 37.796201
+  },
+  {
+    "place_name": "파주역",
+    "station_code": "1283",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.792426,
+    "y": 37.815391
+  },
+  {
+    "place_name": "문산역",
+    "station_code": "1284",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.787531,
+    "y": 37.854565
+  },
+  {
+    "place_name": "임진강역",
+    "station_code": "1285",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.746777,
+    "y": 37.888364
+  },
+  {
+    "place_name": "운천역",
+    "station_code": "1286",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.769713,
+    "y": 37.880008
+  },
+  {
+    "place_name": "신내역",
+    "station_code": "1311",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.103277,
+    "y": 37.612855
+  },
+  {
+    "place_name": "갈매역",
+    "station_code": "1312",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.114803,
+    "y": 37.634135
+  },
+  {
+    "place_name": "별내역",
+    "station_code": "1313",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.127208,
+    "y": 37.642221
+  },
+  {
+    "place_name": "퇴계원역",
+    "station_code": "1314",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.143858,
+    "y": 37.648316
+  },
+  {
+    "place_name": "사릉역",
+    "station_code": "1315",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.176839,
+    "y": 37.651145
+  },
+  {
+    "place_name": "금곡역",
+    "station_code": "1316",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.207931,
+    "y": 37.637414
+  },
+  {
+    "place_name": "평내호평역",
+    "station_code": "1317",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.244452,
+    "y": 37.653229
+  },
+  {
+    "place_name": "천마산역",
+    "station_code": "1318",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.285731,
+    "y": 37.658995
+  },
+  {
+    "place_name": "마석역",
+    "station_code": "1319",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.311713,
+    "y": 37.652328
+  },
+  {
+    "place_name": "대성리역",
+    "station_code": "1320",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.379165,
+    "y": 37.683909
+  },
+  {
+    "place_name": "청평역",
+    "station_code": "1321",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.426541,
+    "y": 37.735484
+  },
+  {
+    "place_name": "상천역",
+    "station_code": "1322",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.4542,
+    "y": 37.770305
+  },
+  {
+    "place_name": "가평역",
+    "station_code": "1323",
+    "line_code": "I41K2",
+    "line_name": "경춘선",
+    "operator": "한국철도공사",
+    "x": 127.510693,
+    "y": 37.814515
+  },
+  {
+    "place_name": "선바위역",
+    "station_code": "1450",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 127.002164,
+    "y": 37.451854
+  },
+  {
+    "place_name": "경마공원역",
+    "station_code": "1451",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 127.007899,
+    "y": 37.443987
+  },
+  {
+    "place_name": "대공원역",
+    "station_code": "1452",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 127.006474,
+    "y": 37.435724
+  },
+  {
+    "place_name": "과천역",
+    "station_code": "1453",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.996404,
+    "y": 37.432805
+  },
+  {
+    "place_name": "정부과천청사역",
+    "station_code": "1454",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.989802,
+    "y": 37.426445
+  },
+  {
+    "place_name": "인덕원역",
+    "station_code": "1455",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.976718,
+    "y": 37.401901
+  },
+  {
+    "place_name": "평촌역",
+    "station_code": "1456",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.963881,
+    "y": 37.394346
+  },
+  {
+    "place_name": "범계역",
+    "station_code": "1457",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.950752,
+    "y": 37.389783
+  },
+  {
+    "place_name": "판교역",
+    "station_code": "1501",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.111135,
+    "y": 37.394798
+  },
+  {
+    "place_name": "이매역",
+    "station_code": "1502",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.127048,
+    "y": 37.394736
+  },
+  {
+    "place_name": "삼동역",
+    "station_code": "1503",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.203447,
+    "y": 37.408731
+  },
+  {
+    "place_name": "경기광주역",
+    "station_code": "1504",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.253201,
+    "y": 37.398974
+  },
+  {
+    "place_name": "초월역",
+    "station_code": "1505",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.299996,
+    "y": 37.373389
+  },
+  {
+    "place_name": "곤지암역",
+    "station_code": "1506",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.346186,
+    "y": 37.350525
+  },
+  {
+    "place_name": "신둔도예촌역",
+    "station_code": "1507",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.405251,
+    "y": 37.315499
+  },
+  {
+    "place_name": "이천역",
+    "station_code": "1508",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.442135,
+    "y": 37.264222
+  },
+  {
+    "place_name": "부발역",
+    "station_code": "1509",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.490303,
+    "y": 37.260411
+  },
+  {
+    "place_name": "세종대왕릉역",
+    "station_code": "1510",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.570764,
+    "y": 37.293636
+  },
+  {
+    "place_name": "여주역",
+    "station_code": "1511",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.628571,
+    "y": 37.282881
+  },
+  {
+    "place_name": "성남역",
+    "station_code": "1512",
+    "line_code": "I41K5",
+    "line_name": "경강선",
+    "operator": "한국철도공사",
+    "x": 127.11949,
+    "y": 37.394709
+  },
+  {
+    "place_name": "구로역",
+    "station_code": "1701",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.882037,
+    "y": 37.503178
+  },
+  {
+    "place_name": "가산디지털단지역",
+    "station_code": "1702",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.882628,
+    "y": 37.481568
+  },
+  {
+    "place_name": "금천구청역",
+    "station_code": "1703",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.894344,
+    "y": 37.45576
+  },
+  {
+    "place_name": "석수역",
+    "station_code": "1704",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.902233,
+    "y": 37.435161
+  },
+  {
+    "place_name": "관악역",
+    "station_code": "1705",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.908476,
+    "y": 37.419578
+  },
+  {
+    "place_name": "안양역",
+    "station_code": "1706",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.922647,
+    "y": 37.401929
+  },
+  {
+    "place_name": "명학역",
+    "station_code": "1707",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.935579,
+    "y": 37.384435
+  },
+  {
+    "place_name": "금정역",
+    "station_code": "1708",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.943411,
+    "y": 37.371957
+  },
+  {
+    "place_name": "금정역",
+    "station_code": "1708",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.943611,
+    "y": 37.371957
+  },
+  {
+    "place_name": "군포역",
+    "station_code": "1709",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.948517,
+    "y": 37.353732
+  },
+  {
+    "place_name": "의왕역",
+    "station_code": "1710",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.948099,
+    "y": 37.320648
+  },
+  {
+    "place_name": "성균관대역",
+    "station_code": "1711",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.970861,
+    "y": 37.300344
+  },
+  {
+    "place_name": "화서역",
+    "station_code": "1712",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.989581,
+    "y": 37.28399
+  },
+  {
+    "place_name": "수원역",
+    "station_code": "1713",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.999821,
+    "y": 37.266162
+  },
+  {
+    "place_name": "독산역",
+    "station_code": "1714",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.889508,
+    "y": 37.465994
+  },
+  {
+    "place_name": "세류역",
+    "station_code": "1715",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.013772,
+    "y": 37.244102
+  },
+  {
+    "place_name": "병점역",
+    "station_code": "1716",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.033268,
+    "y": 37.206821
+  },
+  {
+    "place_name": "세마역",
+    "station_code": "1717",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.043279,
+    "y": 37.187288
+  },
+  {
+    "place_name": "오산대역",
+    "station_code": "1718",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.063081,
+    "y": 37.169401
+  },
+  {
+    "place_name": "오산역",
+    "station_code": "1719",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.066708,
+    "y": 37.145472
+  },
+  {
+    "place_name": "진위역",
+    "station_code": "1720",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.062342,
+    "y": 37.109771
+  },
+  {
+    "place_name": "송탄역",
+    "station_code": "1721",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.054397,
+    "y": 37.075376
+  },
+  {
+    "place_name": "서정리역",
+    "station_code": "1722",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.052844,
+    "y": 37.056459
+  },
+  {
+    "place_name": "평택지제역",
+    "station_code": "1723",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.070269,
+    "y": 37.018822
+  },
+  {
+    "place_name": "평택역",
+    "station_code": "1724",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.085496,
+    "y": 36.990559
+  },
+  {
+    "place_name": "당정역",
+    "station_code": "1729",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.948388,
+    "y": 37.34338
+  },
+  {
+    "place_name": "서동탄역",
+    "station_code": "1749",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 127.051893,
+    "y": 37.195675
+  },
+  {
+    "place_name": "광명역",
+    "station_code": "1750",
+    "line_code": "I4101",
+    "line_name": "경부선",
+    "operator": "한국철도공사",
+    "x": 126.884523,
+    "y": 37.415995
+  },
+  {
+    "place_name": "산본역",
+    "station_code": "1751",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.932969,
+    "y": 37.358019
+  },
+  {
+    "place_name": "대야미역",
+    "station_code": "1752",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.917161,
+    "y": 37.328304
+  },
+  {
+    "place_name": "반월역",
+    "station_code": "1753",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.903684,
+    "y": 37.312244
+  },
+  {
+    "place_name": "상록수역",
+    "station_code": "1754",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.866533,
+    "y": 37.302845
+  },
+  {
+    "place_name": "한대앞역",
+    "station_code": "1755",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.853506,
+    "y": 37.309985
+  },
+  {
+    "place_name": "한대앞역",
+    "station_code": "1755",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.853656,
+    "y": 37.309685
+  },
+  {
+    "place_name": "중앙역",
+    "station_code": "1756",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.838532,
+    "y": 37.316055
+  },
+  {
+    "place_name": "중앙역",
+    "station_code": "1756",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.838532,
+    "y": 37.316055
+  },
+  {
+    "place_name": "고잔역",
+    "station_code": "1757",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.823094,
+    "y": 37.316821
+  },
+  {
+    "place_name": "고잔역",
+    "station_code": "1757",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.823094,
+    "y": 37.316821
+  },
+  {
+    "place_name": "초지역",
+    "station_code": "1758",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.806151,
+    "y": 37.320583
+  },
+  {
+    "place_name": "초지역",
+    "station_code": "1758",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.806151,
+    "y": 37.320583
+  },
+  {
+    "place_name": "안산역",
+    "station_code": "1759",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.788748,
+    "y": 37.327006
+  },
+  {
+    "place_name": "안산역",
+    "station_code": "1759",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.788748,
+    "y": 37.327006
+  },
+  {
+    "place_name": "능길역",
+    "station_code": "1760",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.767306,
+    "y": 37.337488
+  },
+  {
+    "place_name": "능길역",
+    "station_code": "1760",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.767306,
+    "y": 37.337488
+  },
+  {
+    "place_name": "정왕역",
+    "station_code": "1761",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.742844,
+    "y": 37.351816
+  },
+  {
+    "place_name": "정왕역",
+    "station_code": "1761",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.742844,
+    "y": 37.351816
+  },
+  {
+    "place_name": "오이도역",
+    "station_code": "1762",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.738437,
+    "y": 37.361773
+  },
+  {
+    "place_name": "오이도역",
+    "station_code": "1762",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.738437,
+    "y": 37.361773
+  },
+  {
+    "place_name": "수리산역",
+    "station_code": "1763",
+    "line_code": "I4103",
+    "line_name": "안산과천선",
+    "operator": "한국철도공사",
+    "x": 126.925537,
+    "y": 37.350297
+  },
+  {
+    "place_name": "개봉역",
+    "station_code": "1801",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.858504,
+    "y": 37.494698
+  },
+  {
+    "place_name": "오류동역",
+    "station_code": "1802",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.844551,
+    "y": 37.4944
+  },
+  {
+    "place_name": "역곡역",
+    "station_code": "1803",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.811622,
+    "y": 37.48514
+  },
+  {
+    "place_name": "부천역",
+    "station_code": "1804",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.782779,
+    "y": 37.484066
+  },
+  {
+    "place_name": "송내역",
+    "station_code": "1805",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.753045,
+    "y": 37.487626
+  },
+  {
+    "place_name": "부평역",
+    "station_code": "1806",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.724584,
+    "y": 37.489457
+  },
+  {
+    "place_name": "백운역",
+    "station_code": "1807",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.707179,
+    "y": 37.483301
+  },
+  {
+    "place_name": "동암역",
+    "station_code": "1808",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.703016,
+    "y": 37.470835
+  },
+  {
+    "place_name": "주안역",
+    "station_code": "1809",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.680702,
+    "y": 37.465041
+  },
+  {
+    "place_name": "주안역",
+    "station_code": "1809",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.680702,
+    "y": 37.465041
+  },
+  {
+    "place_name": "제물포역",
+    "station_code": "1810",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.657165,
+    "y": 37.466809
+  },
+  {
+    "place_name": "동인천역",
+    "station_code": "1811",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.632598,
+    "y": 37.475414
+  },
+  {
+    "place_name": "인천역",
+    "station_code": "1812",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.616936,
+    "y": 37.476364
+  },
+  {
+    "place_name": "구일역",
+    "station_code": "1813",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.869201,
+    "y": 37.495973
+  },
+  {
+    "place_name": "부개역",
+    "station_code": "1815",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.740549,
+    "y": 37.488479
+  },
+  {
+    "place_name": "간석역",
+    "station_code": "1816",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.693408,
+    "y": 37.464689
+  },
+  {
+    "place_name": "도원역",
+    "station_code": "1817",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.642824,
+    "y": 37.468604
+  },
+  {
+    "place_name": "온수역",
+    "station_code": "1821",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.823399,
+    "y": 37.492267
+  },
+  {
+    "place_name": "중동역",
+    "station_code": "1822",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.764474,
+    "y": 37.486664
+  },
+  {
+    "place_name": "도화역",
+    "station_code": "1823",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.66846,
+    "y": 37.466154
+  },
+  {
+    "place_name": "수원역(분당)",
+    "station_code": "1846",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.000082,
+    "y": 37.266162
+  },
+  {
+    "place_name": "서울숲역",
+    "station_code": "1847",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.044686,
+    "y": 37.543647
+  },
+  {
+    "place_name": "압구정로데오역",
+    "station_code": "1848",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.040555,
+    "y": 37.527385
+  },
+  {
+    "place_name": "강남구청역",
+    "station_code": "1849",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.041575,
+    "y": 37.516572
+  },
+  {
+    "place_name": "선정릉역",
+    "station_code": "1850",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.043717,
+    "y": 37.510775
+  },
+  {
+    "place_name": "가천대역",
+    "station_code": "1851",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.126677,
+    "y": 37.448784
+  },
+  {
+    "place_name": "태평역",
+    "station_code": "1852",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.127746,
+    "y": 37.439842
+  },
+  {
+    "place_name": "모란역",
+    "station_code": "1853",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.129064,
+    "y": 37.432124
+  },
+  {
+    "place_name": "야탑역",
+    "station_code": "1854",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.128661,
+    "y": 37.41132
+  },
+  {
+    "place_name": "서현역",
+    "station_code": "1855",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.123249,
+    "y": 37.384931
+  },
+  {
+    "place_name": "수내역",
+    "station_code": "1856",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.114216,
+    "y": 37.378435
+  },
+  {
+    "place_name": "정자역",
+    "station_code": "1857",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.108091,
+    "y": 37.366037
+  },
+  {
+    "place_name": "미금역",
+    "station_code": "1858",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.108952,
+    "y": 37.350078
+  },
+  {
+    "place_name": "오리역",
+    "station_code": "1859",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.108985,
+    "y": 37.339832
+  },
+  {
+    "place_name": "이매역",
+    "station_code": "1860",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.128272,
+    "y": 37.395846
+  },
+  {
+    "place_name": "보정역",
+    "station_code": "1861",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.108219,
+    "y": 37.31274
+  },
+  {
+    "place_name": "죽전역",
+    "station_code": "1862",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.107385,
+    "y": 37.324575
+  },
+  {
+    "place_name": "구성역",
+    "station_code": "1863",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.105664,
+    "y": 37.299013
+  },
+  {
+    "place_name": "신갈역",
+    "station_code": "1864",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.111311,
+    "y": 37.286127
+  },
+  {
+    "place_name": "기흥역",
+    "station_code": "1865",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.115944,
+    "y": 37.275657
+  },
+  {
+    "place_name": "상갈역",
+    "station_code": "1866",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.108718,
+    "y": 37.261797
+  },
+  {
+    "place_name": "청명역",
+    "station_code": "1867",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.078945,
+    "y": 37.259485
+  },
+  {
+    "place_name": "영통역",
+    "station_code": "1868",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.071341,
+    "y": 37.251521
+  },
+  {
+    "place_name": "망포역",
+    "station_code": "1869",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.057367,
+    "y": 37.245793
+  },
+  {
+    "place_name": "매탄권선역",
+    "station_code": "1870",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.040824,
+    "y": 37.252458
+  },
+  {
+    "place_name": "수원시청역",
+    "station_code": "1871",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.030736,
+    "y": 37.261941
+  },
+  {
+    "place_name": "매교역",
+    "station_code": "1872",
+    "line_code": "I4105",
+    "line_name": "분당선",
+    "operator": "한국철도공사",
+    "x": 127.015657,
+    "y": 37.265502
+  },
+  {
+    "place_name": "고색역",
+    "station_code": "1873",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.9805899,
+    "y": 37.249829
+  },
+  {
+    "place_name": "오목천역",
+    "station_code": "1874",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.9636354,
+    "y": 37.243011
+  },
+  {
+    "place_name": "어천역",
+    "station_code": "1875",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.908805,
+    "y": 37.250076
+  },
+  {
+    "place_name": "야목역",
+    "station_code": "1876",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.884029,
+    "y": 37.261211
+  },
+  {
+    "place_name": "사리역",
+    "station_code": "1877",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.857172,
+    "y": 37.290809
+  },
+  {
+    "place_name": "달월역",
+    "station_code": "1878",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.745431,
+    "y": 37.379993
+  },
+  {
+    "place_name": "월곶역",
+    "station_code": "1879",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.742741,
+    "y": 37.39189
+  },
+  {
+    "place_name": "소래포구역",
+    "station_code": "1880",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.733533,
+    "y": 37.400963
+  },
+  {
+    "place_name": "인천논현역",
+    "station_code": "1881",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.722495,
+    "y": 37.400641
+  },
+  {
+    "place_name": "호구포역",
+    "station_code": "1882",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.708682,
+    "y": 37.401622
+  },
+  {
+    "place_name": "남동인더스파크역",
+    "station_code": "1883",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.695613,
+    "y": 37.407668
+  },
+  {
+    "place_name": "원인재역",
+    "station_code": "1884",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.686952,
+    "y": 37.412921
+  },
+  {
+    "place_name": "연수역",
+    "station_code": "1885",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.678991,
+    "y": 37.417769
+  },
+  {
+    "place_name": "송도역",
+    "station_code": "1886",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.654486,
+    "y": 37.429714
+  },
+  {
+    "place_name": "인하대역",
+    "station_code": "1888",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.649832,
+    "y": 37.448191
+  },
+  {
+    "place_name": "숭의역",
+    "station_code": "1889",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.638035,
+    "y": 37.460891
+  },
+  {
+    "place_name": "신포역",
+    "station_code": "1890",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.624509,
+    "y": 37.468442
+  },
+  {
+    "place_name": "인천역",
+    "station_code": "1891",
+    "line_code": "I28K1",
+    "line_name": "수인선",
+    "operator": "한국철도공사",
+    "x": 126.6174236,
+    "y": 37.476364
+  },
+  {
+    "place_name": "방학역",
+    "station_code": "1901",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.044295,
+    "y": 37.667471
+  },
+  {
+    "place_name": "도봉역",
+    "station_code": "1902",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.045521,
+    "y": 37.679441
+  },
+  {
+    "place_name": "도봉산역",
+    "station_code": "1903",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.046047,
+    "y": 37.689603
+  },
+  {
+    "place_name": "망월사역",
+    "station_code": "1904",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.047361,
+    "y": 37.710499
+  },
+  {
+    "place_name": "회룡역",
+    "station_code": "1905",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.047319,
+    "y": 37.724037
+  },
+  {
+    "place_name": "의정부역",
+    "station_code": "1906",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.045891,
+    "y": 37.73873
+  },
+  {
+    "place_name": "가능역",
+    "station_code": "1907",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.044251,
+    "y": 37.748362
+  },
+  {
+    "place_name": "녹양역",
+    "station_code": "1908",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.042272,
+    "y": 37.759416
+  },
+  {
+    "place_name": "양주역",
+    "station_code": "1909",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.044719,
+    "y": 37.774281
+  },
+  {
+    "place_name": "덕계역",
+    "station_code": "1910",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.056676,
+    "y": 37.818761
+  },
+  {
+    "place_name": "덕정역",
+    "station_code": "1911",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.061511,
+    "y": 37.843216
+  },
+  {
+    "place_name": "지행역",
+    "station_code": "1912",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.055734,
+    "y": 37.892361
+  },
+  {
+    "place_name": "동두천중앙역",
+    "station_code": "1913",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.056528,
+    "y": 37.901818
+  },
+  {
+    "place_name": "보산역",
+    "station_code": "1914",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.057134,
+    "y": 37.914268
+  },
+  {
+    "place_name": "동두천역",
+    "station_code": "1915",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.054825,
+    "y": 37.927569
+  },
+  {
+    "place_name": "소요산역",
+    "station_code": "1916",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.061007,
+    "y": 37.948608
+  },
+  {
+    "place_name": "청산역",
+    "station_code": "1917",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.074097,
+    "y": 37.995138
+  },
+  {
+    "place_name": "전곡역",
+    "station_code": "1918",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.071913,
+    "y": 38.024041
+  },
+  {
+    "place_name": "연천역",
+    "station_code": "1919",
+    "line_code": "I4102",
+    "line_name": "경원선",
+    "operator": "한국철도공사",
+    "x": 127.07368,
+    "y": 38.100485
+  },
+  {
+    "place_name": "원흥역",
+    "station_code": "1948",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.873239,
+    "y": 37.650709
+  },
+  {
+    "place_name": "지축역",
+    "station_code": "1949",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.913746,
+    "y": 37.648114
+  },
+  {
+    "place_name": "삼송역",
+    "station_code": "1950",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.895559,
+    "y": 37.653096
+  },
+  {
+    "place_name": "원당역",
+    "station_code": "1951",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.842891,
+    "y": 37.653103
+  },
+  {
+    "place_name": "화정역",
+    "station_code": "1952",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.832503,
+    "y": 37.634708
+  },
+  {
+    "place_name": "대곡역",
+    "station_code": "1953",
+    "line_code": "I4108",
+    "line_name": "경의중앙선",
+    "operator": "한국철도공사",
+    "x": 126.810225,
+    "y": 37.631629
+  },
+  {
+    "place_name": "대곡역",
+    "station_code": "1953",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.809802,
+    "y": 37.631629
+  },
+  {
+    "place_name": "대곡역",
+    "station_code": "1953",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.811025,
+    "y": 37.631629
+  },
+  {
+    "place_name": "백석역",
+    "station_code": "1954",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.788109,
+    "y": 37.642973
+  },
+  {
+    "place_name": "마두역",
+    "station_code": "1955",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.777641,
+    "y": 37.652185
+  },
+  {
+    "place_name": "정발산역",
+    "station_code": "1956",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.773254,
+    "y": 37.659709
+  },
+  {
+    "place_name": "주엽역",
+    "station_code": "1957",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.761232,
+    "y": 37.670138
+  },
+  {
+    "place_name": "대화역",
+    "station_code": "1958",
+    "line_code": "I4106",
+    "line_name": "일산선",
+    "operator": "한국철도공사",
+    "x": 126.747756,
+    "y": 37.675883
+  },
+  {
+    "place_name": "김포공항역",
+    "station_code": "1980",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.804056,
+    "y": 37.5621179
+  },
+  {
+    "place_name": "원종역",
+    "station_code": "1981",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.8048386,
+    "y": 37.5240628
+  },
+  {
+    "place_name": "부천종합운동장역",
+    "station_code": "1982",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.797498,
+    "y": 37.505852
+  },
+  {
+    "place_name": "소사역",
+    "station_code": "4804",
+    "line_code": "I1101",
+    "line_name": "경인선",
+    "operator": "한국철도공사",
+    "x": 126.795654,
+    "y": 37.482755
+  },
+  {
+    "place_name": "소사역",
+    "station_code": "4804",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.7950654,
+    "y": 37.482755
+  },
+  {
+    "place_name": "소새울역",
+    "station_code": "4805",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.797228,
+    "y": 37.4685046
+  },
+  {
+    "place_name": "시흥대야역",
+    "station_code": "4806",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.793142,
+    "y": 37.4504787
+  },
+  {
+    "place_name": "신천역",
+    "station_code": "4807",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.786835,
+    "y": 37.4391147
+  },
+  {
+    "place_name": "신현역",
+    "station_code": "4808",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.78788,
+    "y": 37.4091399
+  },
+  {
+    "place_name": "시흥시청역",
+    "station_code": "4809",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.805946,
+    "y": 37.3814109
+  },
+  {
+    "place_name": "시흥능곡역",
+    "station_code": "4810",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.808594,
+    "y": 37.3699903
+  },
+  {
+    "place_name": "달미역",
+    "station_code": "4811",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.809318,
+    "y": 37.3490003
+  },
+  {
+    "place_name": "선부역",
+    "station_code": "4812",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.81,
+    "y": 37.33459
+  },
+  {
+    "place_name": "초지역",
+    "station_code": "4813",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.808051,
+    "y": 37.320083
+  },
+  {
+    "place_name": "시우역",
+    "station_code": "4814",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.795503,
+    "y": 37.3130967
+  },
+  {
+    "place_name": "원시역",
+    "station_code": "4815",
+    "line_code": "I41WS",
+    "line_name": "서해선",
+    "operator": "한국철도공사",
+    "x": 126.7867897,
+    "y": 37.302654
+  }
+]

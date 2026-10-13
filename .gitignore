@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.route_usage.json
+.ai_usage.json
+.ai_usage.tmp
+data/latest_comparison.json
+data/latest_comparison.tmp
+
+# 초기 학습 안내와 이전 화면 이미지
+docs/01-station-search.md
+docs/comparison-preview.png
+docs/comparison-preview-v2.png
+
+data/전체_도시철도역사정보_20260630.xlsx
