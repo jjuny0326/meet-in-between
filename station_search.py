@@ -8,19 +8,25 @@ from dotenv import load_dotenv
 import json
 from datetime import datetime, timedelta, timezone
 
-from math import radians, sin, cos, asin, sqrt
+from math import radians, sin, cos, asin, sqrt, isfinite
 
 from comparison import (
     KOREA_TIME, select_preferences, enrich_recommendations,
     analyze_recommendations, print_report, save_report, load_report,
 )
 
-# 역 찾기
-def select_station(person_name, api_key):
-    station_name = input(f"{person_name}의 출발역 이름을 입력하세요: ").strip()
+BASE_DIR = Path(__file__).resolve().parent
 
-    if not station_name:
-        raise SystemExit("역 이름을 입력해야 합니다.")
+
+class RouteLimitError(RuntimeError):
+    """자체 경로 조회 한도가 부족할 때 발생합니다."""
+
+
+def search_stations(station_name, api_key):
+    """입력/출력 없이 역 검색 결과를 반환하므로 웹에서도 사용합니다."""
+    if not isinstance(station_name, str) or not 1 <= len(station_name.strip()) <= 80:
+        raise ValueError("역 이름을 1~80자로 입력하세요.")
+    station_name = station_name.strip()
 
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
     headers = {"Authorization": f"KakaoAK {api_key}"}
@@ -38,15 +44,27 @@ def select_station(person_name, api_key):
             timeout=10,
         )
     except requests.RequestException:
-        raise SystemExit("서버 연결에 실패했습니다. 연결 상태를 확인하세요.")
-
-    print("응답 상태:", response.status_code)
+        raise RuntimeError("역 검색 서버에 연결하지 못했습니다.") from None
 
     if response.status_code != 200:
-        raise SystemExit("요청에 실패했습니다. 상태 코드를 확인하세요.")
+        raise RuntimeError("역 검색에 실패했습니다. 키 설정과 사용량을 확인하세요.")
+    try:
+        stations = response.json()["documents"]
+        if not isinstance(stations, list):
+            raise ValueError()
+        for station in stations:
+            if not isinstance(station["place_name"], str) or not station["place_name"]:
+                raise ValueError()
+            if not (-180 <= float(station["x"]) <= 180 and -90 <= float(station["y"]) <= 90):
+                raise ValueError()
+        return stations
+    except (ValueError, KeyError, TypeError):
+        raise RuntimeError("역 검색 응답 형식이 올바르지 않습니다.") from None
 
-    data = response.json()
-    stations = data.get("documents", [])
+
+def select_station(person_name, api_key):
+    station_name = input(f"{person_name}의 출발역 이름을 입력하세요: ").strip()
+    stations = search_stations(station_name, api_key)
 
     if not stations:
         raise SystemExit("검색된 역이 없습니다.")
@@ -72,8 +90,8 @@ def select_station(person_name, api_key):
     return selected_station
 
 # 하루 경로 조회 횟수 제한
-def reserve_route_call():
-    usage_path = Path(__file__).resolve().parent / ".route_usage.json"
+def read_route_usage():
+    usage_path = BASE_DIR / ".route_usage.json"
     korea_time = timezone(timedelta(hours=9))
     today = datetime.now(korea_time).date().isoformat()
 
@@ -92,23 +110,36 @@ def reserve_route_call():
         else:
             usage = {"date": today, "count": 0}
 
+        recorded_day = datetime.strptime(usage["date"], "%Y-%m-%d").date()
+        if recorded_day > datetime.now(korea_time).date():
+            raise ValueError("미래 날짜의 호출 기록")
         if usage["date"] != today:
             usage = {"date": today, "count": 0}
+        return usage
+    except (OSError, ValueError):
+        raise RuntimeError("호출 기록을 읽지 못해 요청을 중단합니다.") from None
 
-        if usage["count"] >= 20:
-            raise SystemExit("오늘의 경로 조회 한도 20회를 사용했습니다.")
 
-        usage["count"] += 1
+def ensure_route_capacity(required):
+    remaining = max(0, 20 - read_route_usage()["count"])
+    if remaining < required:
+        raise RouteLimitError(f"경로 조회가 {required}회 필요하지만 오늘 남은 횟수는 {remaining}회입니다. 저장 결과를 보거나 내일 다시 시도하세요.")
 
-        usage_path.write_text(
+
+def reserve_route_call():
+    ensure_route_capacity(1)
+    usage = read_route_usage()
+    usage["count"] += 1
+    try:
+        temporary = BASE_DIR / ".route_usage.tmp"
+        temporary.write_text(
             json.dumps(usage, ensure_ascii=False, indent=2),
             encoding="utf-8",
         )
-
+        temporary.replace(BASE_DIR / ".route_usage.json")
     except (OSError, ValueError):
-        raise SystemExit("호출 기록을 읽거나 저장하지 못해 요청을 중단합니다.")
+        raise RuntimeError("호출 기록을 저장하지 못해 요청을 중단합니다.") from None
 
-    print(f"오늘 경로 조회 사용량: {usage['count']}/20")
 
 
 # 선택한 역 사이의 대중교통 이동시간 조회
@@ -133,24 +164,29 @@ def get_transit_routes(start_station, end_station, api_key):
             timeout=10,
         )
     except requests.RequestException:
-        raise SystemExit("경로 조회 중 통신 오류가 발생했습니다.")
+        raise RuntimeError("경로 조회 중 통신 오류가 발생했습니다.") from None
 
-    print("경로 조회 응답 상태:", response.status_code)
 
     if response.status_code != 200:
-        raise SystemExit("경로 요청에 실패했습니다. 상태 코드를 확인하세요.")
+        raise RuntimeError("경로 요청에 실패했습니다. 키 설정과 사용량을 확인하세요.")
 
-    data = response.json()
-
-    if data.get("status") != "OK":
-        raise SystemExit(f"경로를 찾지 못했습니다: {data.get('status')}")
-
-    routes = data.get("routes", [])
-
-    if not routes:
-        raise SystemExit("조회된 경로가 없습니다.")
-
-    return routes
+    try:
+        data = response.json()
+        if data.get("status") != "OK":
+            raise ValueError()
+        routes = data["routes"]
+        if not isinstance(routes, list) or not routes:
+            raise ValueError()
+        for route in routes:
+            properties = route["properties"]
+            duration, transfers = properties["totalTime"], properties["transfers"]
+            if type(duration) not in (int, float) or not isfinite(duration) or duration < 0:
+                raise ValueError()
+            if type(transfers) is not int or transfers < 0:
+                raise ValueError()
+        return routes
+    except (ValueError, KeyError, TypeError, AttributeError):
+        raise RuntimeError("사용할 수 있는 경로가 없습니다. 출발역을 확인하세요.") from None
 
 # 두 좌표 사이의 직선거리를 km로 계산
 def distance_km(station_a, station_b):
@@ -254,25 +290,32 @@ def main(argv=None):
     print("첫 번째 출발역:", station_a["place_name"])
     print("두 번째 출발역:", station_b["place_name"])
 
+    return show_and_save_report(build_recommendation(station_a, station_b, preferences, api_key, progress=print))
+
+
+def build_recommendation(station_a, station_b, preferences, api_key, progress=None):
+    """두 출발역과 활동으로 결과를 계산합니다. 입력과 파일 저장은 호출자가 담당합니다."""
     candidates = find_meeting_candidates(station_a, station_b)
 
-    print("\n자동으로 선정한 만남 후보 (직선거리 기준)")
+    notify = progress or (lambda message: None)
+    notify("\n자동으로 선정한 만남 후보 (직선거리 기준)")
 
     if not candidates:
-        print("선정할 수 있는 후보역이 없습니다.")
-        return
+        raise RuntimeError("선정할 수 있는 후보역이 없습니다.")
 
     for index, station in enumerate(candidates, start=1):
-        print(
+        notify(
             f"{index}. {station['place_name']} "
             f"({station['line_name']})"
         )
+
+    ensure_route_capacity(len(candidates) * 2)
 
     # 후보별 이동시간을 비교해서 상위 3곳을 출력
     results = []
 
     for candidate in candidates:
-        print(f"\n이동시간 확인 중: {candidate['place_name']}")
+        notify(f"\n이동시간 확인 중: {candidate['place_name']}")
 
         routes_a = get_transit_routes(station_a, candidate, api_key)
         routes_b = get_transit_routes(station_b, candidate, api_key)
@@ -304,16 +347,20 @@ def main(argv=None):
         key=lambda result: (result["longest"], result["total"])
     )
 
-    # 같은 구조를 콘솔 출력, 저장 파일, 향후 웹 화면에서 함께 사용합니다.
+    # 같은 구조를 콘솔 출력, 저장 파일, 웹 화면에서 함께 사용합니다.
     recommendations = enrich_recommendations(results, preferences, api_key)
     report = {
         "schema_version": 1,
+        "origins": [station_a["place_name"], station_b["place_name"]],
         "collected_at": datetime.now(KOREA_TIME).isoformat(),
         "preferences": preferences,
         "recommendations": recommendations,
         "analysis": analyze_recommendations(recommendations, preferences),
     }
-    return show_and_save_report(report)
+    return report
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (RuntimeError, ValueError) as error:
+        raise SystemExit(str(error)) from None

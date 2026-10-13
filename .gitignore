@@ -6,6 +6,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .route_usage.json
+.route_usage.tmp
 .ai_usage.json
 .ai_usage.tmp
 data/latest_comparison.json

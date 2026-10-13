@@ -7,6 +7,7 @@
   <title>우리 사이 — 만날 곳 비교</title>
   <link rel="stylesheet" href="/styles.css">
   <script src="/app.js" defer></script>
+  <script src="/search.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -15,12 +16,27 @@
   </header>
   <main>
     <section class="intro" aria-labelledby="page-title">
-      <div><p class="eyebrow"><span></span> OUR LITTLE RENDEZVOUS</p><h1 id="page-title">둘의 하루가<br><span class="coral">만나는 곳.</span></h1><p class="intro-copy">가는 길은 공평하게, 함께할 시간은 다정하게.<br>두 사람에게 잘 맞는 오늘의 만남을 찾아보세요.</p><a class="intro-link" href="#comparison-title">만남 후보 살펴보기 <span aria-hidden="true">↗</span></a></div>
+      <div><p class="eyebrow"><span></span> OUR LITTLE RENDEZVOUS</p><h1 id="page-title">둘의 하루가<br><span class="coral">만나는 곳.</span></h1><p class="intro-copy">가는 길은 공평하게, 함께할 시간은 다정하게.<br>두 사람에게 잘 맞는 오늘의 만남을 찾아보세요.</p><a class="intro-link" href="#find-meeting">출발역부터 골라볼까요? <span aria-hidden="true">↗</span></a></div>
       <div class="journey" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="journey-person">A<small>나의 출발</small></span><div class="meeting-pin">♡</div><span class="journey-person person-b">B<small>너의 출발</small></span><div class="journey-ticket"><span>OUR MEETING POINT</span><strong>우리, 중간에서 만나요.</strong><i>두 개의 출발점, 하나의 좋은 시간</i></div><span class="art-spark">✳</span></div>
+    </section>
+    <section class="search-panel" id="find-meeting" aria-labelledby="search-title">
+      <div class="search-heading"><div><p class="eyebrow">START WITH TWO STATIONS</p><h2 id="search-title">어디에서 출발하나요?</h2></div><p>역을 검색한 뒤, 이용할 노선을 선택해 주세요.</p></div>
+      <form id="meeting-form">
+        <fieldset id="search-controls">
+          <legend class="sr-only">출발역과 활동 선택</legend>
+          <div class="station-inputs">
+            <div class="station-field"><label for="station-a-query"><span class="person-dot">A</span> 첫 번째 사람</label><div class="station-search"><input id="station-a-query" placeholder="예: 청량리역" maxlength="80" autocomplete="off"><button id="station-a-search" type="button">역 검색</button></div><p id="station-a-status" class="station-status" role="status">검색 결과에서 역을 선택해 주세요.</p><div id="station-a-options" class="station-options" role="group" aria-label="첫 번째 출발역 검색 결과"></div></div>
+            <div class="station-field"><label for="station-b-query"><span class="person-dot person-dot-b">B</span> 두 번째 사람</label><div class="station-search"><input id="station-b-query" placeholder="예: 원인재역" maxlength="80" autocomplete="off"><button id="station-b-search" type="button">역 검색</button></div><p id="station-b-status" class="station-status" role="status">검색 결과에서 역을 선택해 주세요.</p><div id="station-b-options" class="station-options" role="group" aria-label="두 번째 출발역 검색 결과"></div></div>
+          </div>
+          <div class="search-bottom"><fieldset class="activity-picker"><legend>함께 무엇을 할까요?</legend><label><input type="checkbox" name="activity" value="cafe" checked> 카페</label><label><input type="checkbox" name="activity" value="food"> 식사</label><label><input type="checkbox" name="activity" value="culture"> 문화시설</label></fieldset><button class="find-button" id="find-button" type="submit" disabled>만남 후보 찾기 <span aria-hidden="true">↗</span></button></div>
+        </fieldset>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">두 출발역과 활동을 선택하면 후보 최대 3곳을 비교할 수 있어요.</p>
+        <p class="search-note">새 추천은 경로 조회를 최대 10회 사용해요. 자체 한도는 하루 20회이며, 저장된 결과는 추가 조회 없이 볼 수 있어요.</p>
+      </form>
     </section>
     <div class="data-toolbar"><p id="timestamp">저장된 결과를 불러오는 중…</p><div class="data-actions"><button id="reload" class="text-button" type="button">↻ 결과 다시 읽기</button><label class="file-button" for="report-file">결과 파일 열기</label><input id="report-file" type="file" accept=".json,application/json"></div></div>
     <div id="feedback" role="status" aria-live="polite"></div>
-    <section id="empty-state" class="empty-state" hidden><span class="empty-icon" aria-hidden="true">↗</span><h2>비교할 결과를 가져와 주세요</h2><p>먼저 역 검색 프로그램으로 결과를 저장하거나,<br>‘결과 파일 열기’에서 latest_comparison.json을 선택하세요.</p></section>
+    <section id="empty-state" class="empty-state" hidden><span class="empty-icon" aria-hidden="true">↗</span><h2>우리의 첫 만남 후보를 찾아볼까요?</h2><p>위에서 두 출발역을 선택하고 ‘만남 후보 찾기’를 눌러 주세요.<br>저장한 JSON이 있다면 ‘결과 파일 열기’로 볼 수 있어요.</p></section>
     <div id="results" hidden>
       <section class="recommendation" aria-labelledby="summary-title"><div class="recommendation-label"><span class="sparkle" aria-hidden="true">✳</span><span id="summary-type"></span></div><div class="recommendation-copy"><h2 id="summary-title"></h2><p id="summary-text"></p><p id="summary-status" class="small"></p></div><a id="recommendation-link" class="summary-link" href="#comparison-title">후보 비교하기 <span aria-hidden="true">↓</span></a></section>
       <section class="comparison" aria-labelledby="comparison-title">
@@ -33,6 +49,6 @@
       <aside id="reading-guide" class="reading-guide"><h2><span aria-hidden="true">ⓘ</span> 좋은 만남을 위한 작은 참고</h2><div><p><strong>장소를 고르는 기준</strong>주소가 한곳에 몰리지 않도록 선별했어요. 검색 건수가 인기나 품질을 뜻하지는 않아요.</p><p><strong>출입 안내는 확인의 출발점</strong>이름·주소에서 찾은 단서이며 실제 제한을 확인한 정보는 아니에요. 방문 전 영업 여부와 이용 조건을 확인해 주세요.</p><p><strong>저장된 시점의 비교예요</strong>이동시간은 저장 당시의 경로 조회 결과예요. 비교한 후보 안에서의 추천이며 수도권 전체의 최적 장소를 보장하지 않아요.</p></div></aside>
     </div>
   </main>
-  <footer><span class="footer-brand">우리 사이</span><span>만나는 과정도 좋은 시간으로.</span><span>저장 결과 보기 · 새 경로 조회 없음</span></footer>
+  <footer><span class="footer-brand">우리 사이</span><span>만나는 과정도 좋은 시간으로.</span><span>두 출발점에서 찾는 오늘의 만남</span></footer>
 </body>
 </html>

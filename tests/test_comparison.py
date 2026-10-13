@@ -264,6 +264,7 @@ class ComparisonTests(unittest.TestCase):
         routes = [[{"properties": {"totalTime": minutes * 60, "transfers": 1}}]
                   for minutes in (60, 60, 40, 42, 45, 43, 70, 72, 90, 95)]
         with patch.object(app, "select_preferences", return_value=["cafe", "culture"]), \
+                patch.object(app, "ensure_route_capacity"), \
                 patch.object(app, "select_station", return_value=candidates[0]), \
                 patch.object(app, "find_meeting_candidates", return_value=candidates), \
                 patch.object(app, "get_transit_routes", side_effect=routes) as transit, \

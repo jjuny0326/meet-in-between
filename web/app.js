@@ -285,7 +285,8 @@ function showReport(report, source) {
   $("recommendation-link").href = recommendation ? `#candidate-${recommendation.rank}` : "#comparison-title";
   $("recommendation-link").textContent = recommendation ? "추천 후보 자세히 ↓" : "후보 비교하기 ↓";
   const date = new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", dateStyle: "medium", timeStyle: "short" }).format(new Date(report.collected_at));
-  $("timestamp").textContent = `${source} · 조회 ${date} (한국 시간)`;
+  const origins = Array.isArray(report.origins) && report.origins.length === 2 && report.origins.every(value => typeof value === "string") ? `A ${report.origins[0]} · B ${report.origins[1]} · ` : "";
+  $("timestamp").textContent = `${origins}${source} · 조회 ${date} (한국 시간)`;
   $("candidate-count").textContent = String(report.recommendations.length);
   $("category-filters").replaceChildren(...[...new Set(report.preferences)].map((key) => {
     const button = element("button", "", categories[key]);
