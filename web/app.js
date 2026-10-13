@@ -1,6 +1,7 @@
 /* 저장 결과를 화면에 그립니다. 지도/AI API는 호출하지 않습니다. */
 "use strict";
 const categories = { cafe: "카페", food: "식사", culture: "문화시설" };
+const recommendationModes = {burden: "이동 부담 줄이기", fair: "공평하게 만나기", transfers: "환승 적게 하기"};
 const state = { report: null, category: null, sort: "rank", requestId: 0 };
 const $ = (id) => document.getElementById(id);
 
@@ -60,6 +61,9 @@ function element(tag, className, text) {
 }
 
 function validateReport(report) {
+  if (report && (report.recommendation_mode !== undefined && (typeof report.recommendation_mode !== "string" || !Object.hasOwn(recommendationModes, report.recommendation_mode)) || report.recommendation_note !== undefined && typeof report.recommendation_note !== "string")) {
+    throw new Error("추천 기준 형식을 확인해 주세요.");
+  }
   const isNumber = (value) => typeof value === "number" && Number.isFinite(value) && value >= 0;
   const strings = (list) => Array.isArray(list) && list.every((value) => typeof value === "string");
   if (!report || report.schema_version !== 1 || !Array.isArray(report.recommendations) ||
@@ -277,7 +281,7 @@ function renderCards() {
     else animateEntry(card);
   }
   renderComparisonTable(items);
-  const sortLabel = {rank: "이동시간 순", difference: "시간 차이 적은 순", transfers: "환승 합계 적은 순"}[state.sort];
+  const sortLabel = {rank: "선택 기준 순", difference: "시간 차이 적은 순", transfers: "환승 합계 적은 순"}[state.sort];
   $("list-status").textContent = `${categories[state.category]} 비교 · ${sortLabel} · 역 주변 1km에서 선별한 장소`;
   for (const button of $("category-filters").children) button.setAttribute("aria-pressed", String(button.dataset.category === state.category));
   if (typeof MeetingMap !== "undefined") MeetingMap.update(state.report, state.category);
@@ -285,6 +289,10 @@ function renderCards() {
 
 function showReport(report, source) {
   state.report = validateReport(report);
+  state.sort = "rank";
+  $("sort-order").value = "rank";
+  const mode = report.recommendation_mode || "burden";
+  $("result-criterion").textContent = `이 결과의 추천 기준: ${recommendationModes[mode]} · 최대 3곳` + (report.recommendation_note ? ` — ${report.recommendation_note}` : "");
   if (!report.preferences.includes(state.category)) state.category = report.preferences[0];
   const analysis = report.analysis;
   const recommendation = analysis.source === "gemini" ? report.recommendations.find((item) => item.rank === analysis.recommended_rank) : null;

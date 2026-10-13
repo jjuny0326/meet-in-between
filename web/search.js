@@ -69,9 +69,19 @@ for (const person of ["a", "b"]) {
   });
 }
 activityInputs.forEach(input => input.addEventListener("change", updateSearchButton));
+const modeHelp = {
+  burden: "두 사람 중 더 오래 걸리는 시간을 먼저 줄여요. 같으면 이동시간 합계를 비교해요.",
+  fair: "가장 부담이 적은 후보보다 더 긴 이동시간이 15분 이내로 늘어나는 후보 중, 두 사람의 시간 차이를 줄여요. 조건에 따라 후보가 3곳보다 적을 수 있어요.",
+  transfers: "각자 환승이 가장 적은 경로를 선택하고 두 사람의 환승 합계를 줄여요. 같으면 이동시간을 비교해요. 가장 빠른 경로보다 오래 걸릴 수 있어요.",
+};
+$("recommendation-mode").addEventListener("change", () => {
+  $("mode-help").textContent = modeHelp[$("recommendation-mode").value];
+  $("search-status").textContent = "추천 기준을 바꿨어요. ‘만남 후보 찾기’를 누르면 새 기준으로 검색해요.";
+});
 $("meeting-form").addEventListener("submit", async event => {
   event.preventDefault();
   const preferences = selectedActivities();
+  const recommendation_mode = $("recommendation-mode").value || "burden";
   if (!canRecommend(searchState.selected, preferences, searchState.busy || searchState.searching)) return;
   searchState.busy = true;
   ++state.requestId; // 이전 저장 파일 읽기가 늦게 도착해 새 결과를 덮지 않게 합니다.
@@ -85,7 +95,7 @@ $("meeting-form").addEventListener("submit", async event => {
   try {
     const data = await requestJson("/api/recommendations", {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ station_a: searchState.selected.a, station_b: searchState.selected.b, preferences }),
+      body: JSON.stringify({ station_a: searchState.selected.a, station_b: searchState.selected.b, preferences, recommendation_mode }),
     });
     showReport(data.report, "새 검색 결과");
     $("search-status").textContent = data.warning || "비교를 마쳤어요. 아래에서 후보별 이동시간과 장소를 살펴보세요.";

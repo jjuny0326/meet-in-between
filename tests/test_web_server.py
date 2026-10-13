@@ -81,7 +81,7 @@ class WebServerTests(unittest.TestCase):
             status, _, body = self.post({"station_a": result["token"], "station_b": result["token"], "preferences": ["cafe"]})
             self.assertEqual(status, 200)
             self.assertNotIn(b"never-expose-this", body)
-            build.assert_called_once_with(station, station, ["cafe"], "never-expose-this")
+            build.assert_called_once_with(station, station, ["cafe"], "never-expose-this", mode="burden")
             save.assert_called_once()
 
     def test_invalid_or_expired_selection_never_starts_recommendation(self):
@@ -89,6 +89,20 @@ class WebServerTests(unittest.TestCase):
         with patch.object(serve_web, "build_recommendation") as build:
             for token, prefs in (("unknown", ["cafe"]), ("expired", ["cafe"]), ("expired", []), ("expired", ["bad"])):
                 self.assertEqual(self.post({"station_a": token, "station_b": token, "preferences": prefs})[0], 400)
+            build.assert_not_called()
+
+    def test_recommendation_mode_is_validated_and_passed_to_calculation(self):
+        serve_web.STATIONS["valid"] = (time.monotonic(), {})
+        with patch.object(serve_web, "get_api_key", return_value="dummy"), \
+                patch.object(serve_web, "build_recommendation", return_value={}) as build, \
+                patch.object(serve_web, "save_report"):
+            for mode in ("fair", "transfers"):
+                status, _, _ = self.post({"station_a":"valid", "station_b":"valid", "preferences":["cafe"], "recommendation_mode":mode})
+                self.assertEqual(status, 200)
+                self.assertEqual(build.call_args.kwargs["mode"], mode)
+            build.reset_mock()
+            for mode in ("unknown", None, ["fair"]):
+                self.assertEqual(self.post({"recommendation_mode":mode})[0], 400)
             build.assert_not_called()
 
     def test_foreign_origin_and_concurrent_request_rejected_before_api(self):

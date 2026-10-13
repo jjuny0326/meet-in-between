@@ -41,7 +41,7 @@ if __name__ == "__main__":
             patch.object(station_search, "ensure_route_capacity"), \
             patch.object(station_search, "get_transit_routes", side_effect=routes), \
             patch.object(comparison, "search_nearby_places", return_value=[]), \
-            patch.object(station_search, "analyze_recommendations", side_effect=lambda items, prefs: comparison.basic_analysis(items, prefs, "오프라인 테스트: 실제 추천 정보가 아닙니다.")), \
+            patch.object(station_search, "analyze_recommendations", side_effect=lambda items, prefs, mode="burden": comparison.basic_analysis(items, prefs, "오프라인 테스트: 실제 추천 정보가 아닙니다.", mode)), \
             patch.object(comparison.requests, "get", side_effect=AssertionError("외부 호출 금지")), \
             patch.object(comparison.requests, "post", side_effect=AssertionError("외부 호출 금지")):
         server = serve_web.ThreadingHTTPServer(("127.0.0.1", 8002), PreviewHandler)

@@ -4,6 +4,7 @@ import json
 import os
 import re
 import math
+from recommendation_policy import MODES, mode_description, validate_mode
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -160,7 +161,7 @@ def enrich_recommendations(results, preferences, api_key):
     return recommendations
 
 
-def basic_analysis(recommendations, preferences, reason):
+def basic_analysis(recommendations, preferences, reason, mode="burden"):
     """AI가 아닌 계산된 사실 설명. 조회 실패와 검색 결과 없음을 구분합니다."""
     comparisons = []
     for item in recommendations:
@@ -184,7 +185,7 @@ def basic_analysis(recommendations, preferences, reason):
         comparisons.append({"rank": item["rank"], "strengths": strengths, "limitations": limitations})
     return {
         "source": "rules", "status": reason, "recommended_rank": None,
-        "summary": "이동시간 순위와 선택한 활동의 검색 결과를 비교하세요. 검색 건수는 인기나 품질 점수가 아닙니다.",
+        "summary": f"‘{MODES[mode]}’ 기준의 순위와 선택한 활동의 검색 결과를 비교하세요. 검색 건수는 인기나 품질 점수가 아닙니다.",
         "comparisons": comparisons,
     }
 
@@ -247,11 +248,12 @@ def validate_analysis(data, ranks):
             "comparisons": sorted(comparisons, key=lambda item: item["rank"])}
 
 
-def analyze_recommendations(recommendations, preferences):
+def analyze_recommendations(recommendations, preferences, mode="burden"):
+    validate_mode(mode)
     key = os.getenv("GEMINI_API_KEY", "").strip()
     confirmed = os.getenv("GEMINI_FREE_TIER_CONFIRMED", "false").lower() == "true"
     if not key or not confirmed:
-        return basic_analysis(recommendations, preferences, "Gemini 키 또는 무료 등급 확인 설정이 없어 기본 설명을 표시합니다.")
+        return basic_analysis(recommendations, preferences, "Gemini 키 또는 무료 등급 확인 설정이 없어 기본 설명을 표시합니다.", mode)
     # 정밀 좌표·주소·출발지·키는 모델에 전달하지 않습니다.
     evidence = [{
         "rank": item["rank"], "station": item["station"]["place_name"],
@@ -275,7 +277,8 @@ def analyze_recommendations(recommendations, preferences):
         "access_check_reasons는 이름 또는 같은 주소에서 찾은 단서입니다. 해당 후보의 한계에 반영하되 "
         "출입 제한이나 입장권 필요가 확정됐다고 말하지 마세요. 표시가 없어도 자유 출입이 확인된 것은 아닙니다. "
         "문화시설 분류는 현재 진행 중인 전시나 공연을 보장하지 않습니다. "
-        "조회 실패와 결과 없음을 구별하고, 이동시간은 비교한 후보의 최단시간 경로 추정치입니다. "
+        "조회 실패와 결과 없음을 구별하고, 이동시간은 선택한 추천 기준으로 고른 경로의 추정치입니다. "
+        "recommendation_mode와 recommendation_note를 따르고 환승 기준의 시간을 최단시간이라고 설명하지 마세요. "
         "상위 3개는 교통 기준으로 먼저 선별되었으므로 수도권 전체 최적 추천이라 말하지 마세요. "
         "선택한 활동을 고려해 한 후보를 추천하되 기존 rank 번호를 유지하고 모든 후보의 장단점을 설명하세요. "
         "장소 URL은 생성하지 마세요. JSON만 반환: "
@@ -292,6 +295,7 @@ def analyze_recommendations(recommendations, preferences):
                 "systemInstruction": {"parts": [{"text": instruction}]},
                 "contents": [{"role": "user", "parts": [{"text": json.dumps({
                     "preferences": [CATEGORIES[p]["label"] for p in preferences],
+                    "recommendation_mode": MODES[mode], "recommendation_note": mode_description(mode),
                     "evidence": evidence,
                 }, ensure_ascii=False)}]}],
                 "generationConfig": {"responseMimeType": "application/json", "maxOutputTokens": 2048},
@@ -313,13 +317,14 @@ def analyze_recommendations(recommendations, preferences):
         reason = str(error)
     except (ValueError, KeyError, IndexError, TypeError, AttributeError):
         reason = "AI 응답 형식이 올바르지 않아 기본 설명을 표시합니다."
-    return basic_analysis(recommendations, preferences, reason)
+    return basic_analysis(recommendations, preferences, reason, mode)
 
 
 def print_report(report):
     print("\n선택한 활동:", ", ".join(CATEGORIES[p]["label"] for p in report["preferences"]))
     print("조회 시각:", report["collected_at"])
-    print("\n만남 후보 비교 (후보 번호는 이동시간 순위)")
+    print("\n만남 후보 비교 (후보 번호는 선택한 추천 기준의 순위)")
+    print("추천 기준:", MODES[report.get("recommendation_mode", "burden")])
     print("출입 안내는 이름·주소의 단서에 기반합니다. 표시가 없는 장소도 자유 출입이 확인된 것은 아닙니다.")
     analysis = report["analysis"]
     comments = {item["rank"]: item for item in analysis["comparisons"]}

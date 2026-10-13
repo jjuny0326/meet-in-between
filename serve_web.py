@@ -12,6 +12,7 @@ from urllib.parse import urlsplit, parse_qs
 from dotenv import load_dotenv
 from station_search import search_stations, build_recommendation, RouteLimitError
 from comparison import save_report
+from recommendation_policy import validate_mode
 
 BASE_DIR = Path(__file__).resolve().parent
 # 프로젝트 전체를 공개하지 않고 지정한 파일만 제공합니다.
@@ -113,6 +114,7 @@ class ComparisonHandler(BaseHTTPRequestHandler):
         if not 1 <= length <= 8192:
             raise ValueError()
         payload = json.loads(self.rfile.read(length))
+        mode = validate_mode(payload.get("recommendation_mode", "burden"))
         preferences = payload["preferences"]
         if not isinstance(preferences, list) or not 1 <= len(preferences) <= 3 or any(p not in ("cafe", "food", "culture") for p in preferences):
             raise ValueError()
@@ -122,7 +124,7 @@ class ComparisonHandler(BaseHTTPRequestHandler):
             if time.monotonic() - created > 3600:
                 raise ValueError()
             stations.append(station)
-        report = build_recommendation(*stations, list(dict.fromkeys(preferences)), get_api_key())
+        report = build_recommendation(*stations, list(dict.fromkeys(preferences)), get_api_key(), mode=mode)
         warning = None
         try:
             save_report(report)

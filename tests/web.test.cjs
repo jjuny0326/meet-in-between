@@ -83,3 +83,14 @@ test('모션을 끄면 진행 중 애니메이션을 취소하고 CSS 모션도 
 test('애니메이션 API가 없는 환경에서도 기본 화면 처리를 계속함', () => {
   assert.doesNotThrow(() => context.playMotion({}, [], {}));
 });
+
+test('기준 없는 과거 파일과 세 기준은 허용하고 알 수 없는 기준은 거부', () => {
+  for (const mode of [undefined,'burden','fair','transfers']) {
+    const report=fixture(); report.recommendation_mode=mode;
+    assert.equal(context.validateReport(report),report);
+  }
+  for (const mode of ['unknown',null,['fair']]) {
+    const report=fixture();report.recommendation_mode=mode;
+    assert.throws(()=>context.validateReport(report));
+  }
+});

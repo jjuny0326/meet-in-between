@@ -60,3 +60,15 @@ test('한도 오류는 이전 결과를 보존하고 버튼을 복구', async ()
   assert.match(get('search-status').textContent,/한도 부족.*기존 결과/);
   assert.equal(get('find-button').disabled,false);
 });
+
+test('추천 기준 변경만으로는 호출하지 않고 제출할 때 선택값 전송', async () => {
+  const requests=[];
+  const {context,get}=setup(async(url,options)=>{requests.push(JSON.parse(options.body));return {ok:true,json:async()=>({report:{}})};});
+  vm.runInContext('searchState.selected={a:"a",b:"b"}',context);
+  get('recommendation-mode').value='transfers';
+  get('recommendation-mode').events.change();
+  assert.equal(requests.length,0);
+  assert.match(get('mode-help').textContent,/환승/);
+  await get('meeting-form').events.submit({preventDefault(){}});
+  assert.equal(requests[0].recommendation_mode,'transfers');
+});

@@ -14,6 +14,7 @@ from comparison import (
     KOREA_TIME, select_preferences, enrich_recommendations,
     analyze_recommendations, print_report, save_report, load_report,
 )
+from recommendation_policy import MODES, validate_mode, select_route, rank_candidates, mode_description
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -260,6 +261,7 @@ def main(argv=None):
     modes = parser.add_mutually_exclusive_group()
     modes.add_argument("--saved", action="store_true", help="API 호출 없이 저장 결과 보기")
     modes.add_argument("--explain-saved", action="store_true", help="저장 결과의 AI 설명만 다시 작성")
+    parser.add_argument("--mode", choices=MODES, default="burden", help="추천 기준: burden(이동 부담), fair(공평), transfers(환승)")
     args = parser.parse_args(argv)
     BASE_DIR = Path(__file__).resolve().parent
     load_dotenv(BASE_DIR / ".env")
@@ -269,7 +271,7 @@ def main(argv=None):
             report = load_report()
             if args.explain_saved:
                 report["analysis"] = analyze_recommendations(
-                    report["recommendations"], report["preferences"]
+                    report["recommendations"], report["preferences"], report.get("recommendation_mode", "burden")
                 )
                 return show_and_save_report(report)
             print_report(report)
@@ -290,11 +292,12 @@ def main(argv=None):
     print("첫 번째 출발역:", station_a["place_name"])
     print("두 번째 출발역:", station_b["place_name"])
 
-    return show_and_save_report(build_recommendation(station_a, station_b, preferences, api_key, progress=print))
+    return show_and_save_report(build_recommendation(station_a, station_b, preferences, api_key, progress=print, mode=args.mode))
 
 
-def build_recommendation(station_a, station_b, preferences, api_key, progress=None):
+def build_recommendation(station_a, station_b, preferences, api_key, progress=None, mode="burden"):
     """두 출발역과 활동으로 결과를 계산합니다. 입력과 파일 저장은 호출자가 담당합니다."""
+    validate_mode(mode)
     candidates = find_meeting_candidates(station_a, station_b)
 
     notify = progress or (lambda message: None)
@@ -320,42 +323,36 @@ def build_recommendation(station_a, station_b, preferences, api_key, progress=No
         routes_a = get_transit_routes(station_a, candidate, api_key)
         routes_b = get_transit_routes(station_b, candidate, api_key)
 
-        fastest_a = min(
-            routes_a,
-            key=lambda route: route["properties"]["totalTime"]
-        )
-        fastest_b = min(
-            routes_b,
-            key=lambda route: route["properties"]["totalTime"]
-        )
+        selected_a = select_route(routes_a, mode)
+        selected_b = select_route(routes_b, mode)
 
-        minutes_a = fastest_a["properties"]["totalTime"] / 60
-        minutes_b = fastest_b["properties"]["totalTime"] / 60
+        minutes_a = selected_a["properties"]["totalTime"] / 60
+        minutes_b = selected_b["properties"]["totalTime"] / 60
 
         results.append({
             "station": candidate,
             "minutes_a": minutes_a,
             "minutes_b": minutes_b,
-            "transfers_a": fastest_a["properties"]["transfers"],
-            "transfers_b": fastest_b["properties"]["transfers"],
+            "transfers_a": selected_a["properties"]["transfers"],
+            "transfers_b": selected_b["properties"]["transfers"],
             "total": minutes_a + minutes_b,
             "difference": abs(minutes_a - minutes_b),
             "longest": max(minutes_a, minutes_b),
         })
 
-    results.sort(
-        key=lambda result: (result["longest"], result["total"])
-    )
+    results = rank_candidates(results, mode)
 
     # 같은 구조를 콘솔 출력, 저장 파일, 웹 화면에서 함께 사용합니다.
     recommendations = enrich_recommendations(results, preferences, api_key)
     report = {
         "schema_version": 1,
+        "recommendation_mode": mode,
+        "recommendation_note": mode_description(mode),
         "origins": [station_a["place_name"], station_b["place_name"]],
         "collected_at": datetime.now(KOREA_TIME).isoformat(),
         "preferences": preferences,
         "recommendations": recommendations,
-        "analysis": analyze_recommendations(recommendations, preferences),
+        "analysis": analyze_recommendations(recommendations, preferences, mode),
     }
     return report
 
