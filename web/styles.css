@@ -541,3 +541,63 @@ html[data-motion="off"] .meeting-story:before { transform: none; }
   .date-postcard { transform: rotate(3deg); }
   .meeting-story:before { transform: none; }
 }
+
+/* 새 검색 후 결론 상자로 이동할 때 위쪽 여백 */
+.recommendation { scroll-margin-top: 24px; }
+#summary-title:focus { outline: none; }
+
+/* 결과 기준은 한 줄로, 계산 규칙·경로 기록은 접힘 메뉴로 */
+.result-criterion { border-left: 0; background: none; padding: 0; margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--green); }
+.calc-details { margin: 0 0 18px; font-size: 13px; color: var(--muted); }
+.calc-details > summary { display: inline-block; min-height: 32px; line-height: 32px; text-decoration: underline; text-underline-offset: 3px; list-style: none; }
+.calc-details > summary::-webkit-details-marker { display: none; }
+.calc-details > summary::after { content: " ▾"; }
+.calc-details[open] > summary::after { content: " ▴"; }
+.calc-details > p { margin: 8px 0 0; padding: 12px 16px; background: #f5f3ec; border-radius: 10px; line-height: 1.8; color: var(--ink); overflow-wrap: anywhere; }
+.search-note.calc-details { margin: 6px 0 0; }
+
+/* 시간 차이: 5분 미만 초록 · 15분 이상 빨강 · 그 사이는 기본색. 글자 표시를 함께 둡니다. */
+.quick-comparison tbody tr:last-child td { color: var(--ink); }
+.gap-value.gap-even { color: #3f6b45; }
+.gap-value.gap-normal { color: var(--ink); }
+.gap-value.gap-large { color: #b0463a; }
+.gap-badge { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; font-size: 12px; font-weight: 600; line-height: 1.6; vertical-align: middle; white-space: nowrap; }
+.gap-badge.gap-even { background: #e3efdf; color: #3f6b45; }
+.gap-badge.gap-normal { background: #efede6; color: #5d5a52; }
+.gap-badge.gap-large { background: #f8deda; color: #9c3d32; }
+.quick-comparison .gap-badge { display: block; width: fit-content; margin: 4px auto 0; }
+
+/* 지도를 후보 카드 뒤로 옮긴 배치 */
+.candidate-grid + .map-section { margin-top: 32px; }
+
+/* 카드의 장단점 접힘 메뉴. 데스크톱에서는 펼쳐 둔 채 제목 줄을 숨기고, 모바일에서만 누를 수 있게 보여줍니다. */
+.card-analysis > summary.analysis-toggle { display: none; }
+@media (max-width: 760px) {
+  .card-analysis > summary.analysis-toggle { display: flex; align-items: center; justify-content: space-between; min-height: 44px; font-size: 14px; font-weight: 600; color: var(--green); list-style: none; }
+  .card-analysis > summary.analysis-toggle::-webkit-details-marker { display: none; }
+  .card-analysis > summary.analysis-toggle::after { content: "＋"; }
+  .card-analysis[open] > summary.analysis-toggle::after { content: "−"; }
+  .card-analysis[open] > summary.analysis-toggle { margin-bottom: 10px; }
+  .card-analysis:not([open]) { padding-top: 8px; padding-bottom: 8px; }
+}
+/* 접힘 제목(summary)이 첫 요소가 되어도 '좋은 점'은 초록 ＋ 스타일을 유지합니다. */
+.card-analysis h4:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; color: var(--green); }
+.card-analysis h4:first-of-type:before { content: "+"; color: #70936d; }
+
+/* ===== 접근성 보정: 글자 크기와 터치 영역 =====
+   정보를 담은 글자는 최소 12px, 영문 장식 문구는 11px.
+   누르는 요소는 최소 24px(WCAG 2.5.8), 모바일의 주요 조작은 44px를 목표로 합니다. */
+.eyebrow, .brand-caption, .intro .eyebrow, .section-heading .eyebrow { font-size: 11px; }
+.intro-footnote, .distance, .list-status, .motion-toggle { font-size: 12px; }
+.quick-heading span, .quick-comparison > p { font-size: 12px; }
+.activity-picker input { width: 18px; height: 18px; margin: 0; }
+.activity-picker label { min-height: 44px; }
+.site-header nav a { display: inline-flex; align-items: center; min-height: 32px; padding: 0 4px; }
+.quick-comparison thead th a { display: inline-block; padding: 4px 0; }
+@media (max-width: 760px) {
+  .quick-comparison th:first-child, .quick-heading span, .table-transfer, .table-time small { font-size: 12px; }
+  .site-header nav a, .motion-toggle { min-height: 44px; }
+  .calc-details > summary { min-height: 44px; line-height: 44px; }
+  .access-note summary { min-height: 44px; display: flex; align-items: center; }
+  .map-card-button { min-height: 44px; }
+}

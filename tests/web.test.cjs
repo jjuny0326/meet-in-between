@@ -106,3 +106,12 @@ test('경로 재사용 표시에는 원래 조회 시각과 새 호출 수를 �
     assert.throws(()=>context.validateReport(invalid));
   }
 });
+
+test('시간 차이 구간: 5분 미만 거의 같음, 15분 이상 차이 큼', () => {
+  assert.equal(context.differenceLevel(0).key, 'even');
+  assert.equal(context.differenceLevel(4.9).key, 'even');
+  assert.equal(context.differenceLevel(5).key, 'normal');
+  assert.equal(context.differenceLevel(14.9).key, 'normal');
+  assert.equal(context.differenceLevel(15).key, 'large');
+  assert.equal(context.differenceLevel(25).label, '차이 큼');
+});

@@ -72,7 +72,7 @@
         </fieldset>
         <div class="search-journey" aria-hidden="true"><span class="loading-person">A</span><span class="loading-path"><i></i><b>♡</b><i></i></span><span class="loading-person">B</span></div>
         <p id="search-status" class="search-status" role="status" aria-live="polite">두 출발역과 활동을 선택하면 후보 최대 3곳을 비교할 수 있어요.</p>
-        <p class="search-note">같은 구간의 경로는 서버에서 10분간 재사용해요. 없는 구간만 새로 조회하며 최대 10회, 하루 20회로 제한해요. 주변 장소·AI 조회는 별도예요.</p>
+        <details class="search-note calc-details"><summary>조회 횟수 안내</summary><p>같은 구간의 경로는 서버에서 10분간 재사용해요. 없는 구간만 새로 조회하며 최대 10회, 하루 20회로 제한해요. 주변 장소·AI 조회는 별도예요.</p></details>
       </form>
     </section>
     <div class="data-toolbar"><p id="timestamp">저장된 결과를 불러오는 중…</p><div class="data-actions"><button id="reload" class="text-button" type="button">↻ 결과 다시 읽기</button><label class="file-button" for="report-file">결과 파일 열기</label><input id="report-file" type="file" accept=".json,application/json"></div></div>
@@ -83,10 +83,12 @@
       <section class="comparison" aria-labelledby="comparison-title">
         <div class="section-heading"><div><p class="eyebrow">A GOOD PLACE FOR BOTH</p><h2 id="comparison-title">우리의 만남 후보 <span id="candidate-count"></span></h2></div><p>이동 부담부터 함께할 장소까지 비교해요.</p></div>
         <p id="result-criterion" class="result-criterion"></p>
-        <p id="route-usage" class="route-usage" role="status"></p>
+        <details class="calc-details"><summary>계산 방식 자세히</summary><p id="result-criterion-note"></p><p id="route-usage" class="route-usage"></p></details>
         <div class="quick-comparison"><div class="quick-heading"><h3>가는 길, 한눈에 비교</h3><span>A 첫 번째 사람 · B 두 번째 사람</span></div><div id="comparison-table"></div><p>후보 번호는 검색할 때 선택한 추천 기준의 순위예요. 아래 정렬은 선정된 후보의 표시 순서만 바꿔요.</p></div>
         <div class="filter-row"><div id="category-filters" class="category-filters" role="group" aria-label="비교할 활동"></div><label class="sort-control" for="sort-order">정렬<select id="sort-order"><option value="rank">선택 기준 순</option><option value="difference">시간 차이 적은 순</option><option value="transfers">환승 합계 적은 순</option></select></label></div>
         <p id="list-status" class="list-status" role="status" aria-live="polite"></p>
+        <div id="candidate-grid" class="candidate-grid"></div>
+        <!-- 지도는 카드 뒤에 둡니다. 상단 고정 활동 탭이 지도를 볼 때도 함께 보입니다. -->
         <section id="map-section" class="map-section" aria-labelledby="map-title">
           <div class="map-heading"><div><p class="eyebrow">OUR MEETING MAP</p><h3 id="map-title">지도에서 함께 살펴봐요</h3><p>큰 번호는 후보 역, 작은 표시는 선택한 활동의 장소예요.</p></div><button id="map-load" class="text-button" type="button">지도 불러오기</button></div>
           <div id="map-candidates" class="map-candidates" role="group" aria-label="지도에서 볼 후보"></div>
@@ -95,7 +97,6 @@
           <div id="map-detail" class="map-detail" aria-live="polite"></div>
           <p class="map-footnote">활동 버튼을 바꾸면 지도 속 장소도 바뀌어요. 위치 표시이며 실제 이동 경로를 그린 지도는 아니에요.</p>
         </section>
-        <div id="candidate-grid" class="candidate-grid"></div>
       </section>
       <aside id="reading-guide" class="reading-guide"><h2><span aria-hidden="true">ⓘ</span> 좋은 만남을 위한 작은 참고</h2><div><p><strong>장소를 고르는 기준</strong>주소가 한곳에 몰리지 않도록 선별했어요. 검색 건수가 인기나 품질을 뜻하지는 않아요.</p><p><strong>출입 안내는 확인의 출발점</strong>이름·주소에서 찾은 단서이며 실제 제한을 확인한 정보는 아니에요. 방문 전 영업 여부와 이용 조건을 확인해 주세요.</p><p><strong>조회 시점의 비교예요</strong>이동시간은 표시된 경로 조회 시각 기준이며 현재와 다를 수 있어요. 비교한 후보 안에서의 추천이며 수도권 전체의 최적 장소를 보장하지 않아요.</p></div></aside>
     </div>

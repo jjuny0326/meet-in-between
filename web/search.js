@@ -99,9 +99,10 @@ $("meeting-form").addEventListener("submit", async event => {
     });
     showReport(data.report, "새 검색 결과");
     $("search-status").textContent = data.warning || "비교를 마쳤어요. 아래에서 후보별 이동시간과 장소를 살펴보세요.";
-    $("comparison-title").setAttribute("tabindex", "-1");
-    $("comparison-title").focus({ preventScroll: true });
-    $("comparison-title").scrollIntoView({ behavior: motionEnabled() ? "smooth" : "instant", block: "start" });
+    // 가장 먼저 읽을 결론(추천 요약)으로 이동합니다. 포커스는 화면 낭독기가 제목부터 읽게 합니다.
+    $("summary-title").setAttribute("tabindex", "-1");
+    $("summary-title").focus({ preventScroll: true });
+    document.querySelector(".recommendation").scrollIntoView({ behavior: motionEnabled() ? "smooth" : "instant", block: "start" });
   } catch (error) {
     $("search-status").textContent = connectionMessage(error) + (state.report ? " 아래의 기존 결과는 유지했어요." : "");
   } finally {

@@ -7,6 +7,9 @@ const $ = (id) => document.getElementById(id);
 
 // 시스템 설정과 사용자의 선택을 모두 존중합니다. 숫자 자체는 애니메이션하지 않습니다.
 const motionPreference = typeof matchMedia === "function" ? matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+// 모바일 폭에서는 카드가 세로로 쌓여 길어지므로 처음 보이는 장소를 줄이고 장단점을 접어 둡니다.
+const compactLayout = typeof matchMedia === "function" ? matchMedia("(max-width: 760px)") : { matches: false };
+const visiblePlaceCount = () => compactLayout.matches ? 2 : 3;
 let motionDisabled = false;
 try { motionDisabled = localStorage.getItem("date-meet-reduce-motion") === "true"; } catch { /* 저장 불가 환경에서도 사용 가능 */ }
 const activeAnimations = new Set();
@@ -102,6 +105,25 @@ function initPageMotion() {
 }
 
 // 외부 데이터는 HTML 문자열로 삽입하지 않고 textContent로 표시합니다.
+// 두 사람의 시간 차이를 세 구간으로 나눕니다. 15분은 '공평하게 만나기'의 FAIR_EXTRA_MINUTES와 같은 값입니다.
+const DIFFERENCE_EVEN_MINUTES = 5;
+const DIFFERENCE_LARGE_MINUTES = 15;
+
+function differenceLevel(minutes) {
+  if (minutes < DIFFERENCE_EVEN_MINUTES) return { key: "even", label: "거의 같음" };
+  if (minutes < DIFFERENCE_LARGE_MINUTES) return { key: "normal", label: "보통" };
+  return { key: "large", label: "차이 큼" };
+}
+
+// 색만으로 뜻을 전하지 않도록 숫자와 글자 표시를 함께 만듭니다.
+function differenceNodes(minutes) {
+  const level = differenceLevel(minutes);
+  return [
+    element("strong", `gap-value gap-${level.key}`, `${minutes.toFixed(1)}분`),
+    element("span", `gap-badge gap-${level.key}`, level.label),
+  ];
+}
+
 function element(tag, className, text) {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -247,8 +269,8 @@ function renderCard(item, maxTime) {
     travel.append(person);
   }
   const difference = element("div", "time-difference");
-  const gap = element("span", "", "시간 차이 ");
-  gap.append(element("strong", "", `${item.difference.toFixed(1)}분`));
+  const gap = element("span", "gap-line", "시간 차이 ");
+  gap.append(...differenceNodes(item.difference));
   difference.append(gap, element("span", "", `합계 ${item.total.toFixed(1)}분`));
   top.append(travel, difference);
   const places = element("section", "places-section");
@@ -260,16 +282,17 @@ function renderCard(item, maxTime) {
   else if (!group.items.length) places.append(element("p", "place-empty", "반경 1km 검색에서 찾은 장소가 없어요."));
   else {
     const list = element("ul", "place-list");
-    group.items.slice(0, 3).forEach((place) => list.append(renderPlace(place, item.rank)));
+    const shown = visiblePlaceCount();
+    group.items.slice(0, shown).forEach((place) => list.append(renderPlace(place, item.rank)));
     places.append(list);
-    if (group.items.length > 3) {
+    if (group.items.length > shown) {
       const more = element("details", "more-places");
-      const summary = element("summary", "", `장소 ${group.items.length - 3}곳 더 보기`);
+      const summary = element("summary", "", `장소 ${group.items.length - shown}곳 더 보기`);
       const extra = element("ul", "place-list");
-      group.items.slice(3).forEach((place) => extra.append(renderPlace(place, item.rank)));
+      group.items.slice(shown).forEach((place) => extra.append(renderPlace(place, item.rank)));
       more.append(summary, extra);
       more.addEventListener("toggle", () => {
-        summary.textContent = more.open ? "추가 장소 접기" : `장소 ${group.items.length - 3}곳 더 보기`;
+        summary.textContent = more.open ? "추가 장소 접기" : `장소 ${group.items.length - shown}곳 더 보기`;
         if (more.open) animateEntry(extra);
       });
       places.append(more);
@@ -278,7 +301,10 @@ function renderCard(item, maxTime) {
     if (flagged) heading.append(element("span", "warning-count", `출입 확인 ${flagged}`));
   }
   const comment = report.analysis.comparisons.find((entry) => entry.rank === item.rank);
-  const analysis = element("div", "card-analysis");
+  // 데스크톱은 펼친 상태, 모바일은 접힌 상태로 시작합니다.
+  const analysis = element("details", "card-analysis");
+  analysis.open = !compactLayout.matches;
+  analysis.append(element("summary", "analysis-toggle", "좋은 점 · 생각해 볼 점"));
   for (const [key, label] of [["strengths", "좋은 점"], ["limitations", "생각해 볼 점"]]) {
     const list = element("ul", key);
     comment[key].forEach((text) => list.append(element("li", "", text)));
@@ -314,7 +340,7 @@ function renderComparisonTable(items) {
   for (const [label, format] of [
     ["A 이동", (r) => [r.minutes_a.toFixed(1), `환승 ${r.transfers_a}회`]],
     ["B 이동", (r) => [r.minutes_b.toFixed(1), `환승 ${r.transfers_b}회`]],
-    ["시간 차이", (r) => `${r.difference.toFixed(1)}분`],
+    ["시간 차이", (r) => ({ difference: r.difference })],
   ]) {
     const row = element("tr");
     const th = element("th", "", label);
@@ -327,6 +353,8 @@ function renderComparisonTable(items) {
         const time = element("strong", "table-time", value[0]);
         time.append(element("small", "", "분"));
         cell.append(time, element("span", "table-transfer", value[1]));
+      } else if (value && typeof value === "object") {
+        cell.append(...differenceNodes(value.difference));
       } else cell.textContent = value;
       row.append(cell);
     });
@@ -335,6 +363,9 @@ function renderComparisonTable(items) {
   table.append(caption, head, body);
   $("comparison-table").replaceChildren(table);
 }
+
+// 화면 폭이 모바일/데스크톱 경계를 넘으면 카드를 다시 그려 장소 수와 접힘 상태를 맞춥니다.
+compactLayout.addEventListener?.("change", () => { if (state.report) renderCards(); });
 
 function renderCards() {
   revealObserver?.disconnect();
@@ -360,7 +391,10 @@ function showReport(report, source) {
   state.sort = "rank";
   $("sort-order").value = "rank";
   const mode = report.recommendation_mode || "burden";
-  $("result-criterion").textContent = `이 결과의 추천 기준: ${recommendationModes[mode]} · 최대 3곳` + (report.recommendation_note ? ` — ${report.recommendation_note}` : "");
+  // 기준 이름만 한 줄로 보이고, 계산 규칙과 경로 재사용 기록은 '계산 방식 자세히'에 접어 둡니다.
+  $("result-criterion").textContent = `추천 기준: ${recommendationModes[mode]} · 최대 3곳`;
+  $("result-criterion-note").textContent = report.recommendation_note || "";
+  $("result-criterion-note").hidden = !report.recommendation_note;
   $("route-usage").textContent = routeUsageText(report.route_usage);
   if (!report.preferences.includes(state.category)) state.category = report.preferences[0];
   const analysis = report.analysis;
