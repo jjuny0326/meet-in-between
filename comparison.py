@@ -80,7 +80,7 @@ def select_diverse_places(documents):
         clue = building_clues.get(place["building_key"])
         if clue and not place["access_check_reasons"]:
             place["access_check_reasons"] = [
-                f"같은 주소의 '{clue}'에 출입 조건 관련 단서가 있습니다. "
+                f"같은 주소의 '{clue}'에 출입 조건 관련 단서가 있어요. "
                 "별도 출입구 등 이용 조건이 다를 수 있으니 이 매장에 직접 확인하세요."
             ]
         place["access_check_required"] = bool(place["access_check_reasons"])
@@ -166,26 +166,26 @@ def basic_analysis(recommendations, preferences, reason, mode="burden"):
     comparisons = []
     for item in recommendations:
         strengths = [
-            f"두 사람의 예상 이동시간은 {item['minutes_a']:.1f}분, {item['minutes_b']:.1f}분입니다.",
-            f"이동시간 차이는 {item['difference']:.1f}분입니다.",
+            f"두 사람의 예상 이동시간은 {item['minutes_a']:.1f}분, {item['minutes_b']:.1f}분이에요.",
+            f"이동시간 차이는 {item['difference']:.1f}분이에요.",
         ]
         limitations = []
         for category in preferences:
             group = item["places"][category]
             if group["error"]:
-                limitations.append(f"{group['label']}는 조회에 실패해 비교할 정보가 없습니다.")
+                limitations.append(f"{group['label']}는 조회에 실패해 비교할 정보가 없어요.")
             elif not group["items"]:
-                limitations.append(f"반경 1km 검색에서 {group['label']} 결과를 찾지 못했습니다.")
+                limitations.append(f"반경 1km 검색에서 {group['label']} 결과를 찾지 못했어요.")
             else:
-                strengths.append(f"주변 {group['label']} 검색 결과 {len(group['items'])}곳을 확인했습니다.")
+                strengths.append(f"주변 {group['label']} 검색 결과 {len(group['items'])}곳을 확인했어요.")
                 flagged = sum(bool(p.get("access_check_required")) for p in group["items"])
                 if flagged:
-                    limitations.append(f"표시된 {group['label']} {flagged}곳은 출입 조건 확인이 필요합니다(제한 확정 아님).")
-        limitations.append("가격·영업 여부·분위기·행사 일정은 확인되지 않았습니다.")
+                    limitations.append(f"표시된 {group['label']} {flagged}곳은 출입 조건 확인이 필요해요(제한 확정 아님).")
+        limitations.append("가격·영업 여부·분위기·행사 일정은 확인하지 않았어요.")
         comparisons.append({"rank": item["rank"], "strengths": strengths, "limitations": limitations})
     return {
         "source": "rules", "status": reason, "recommended_rank": None,
-        "summary": f"‘{MODES[mode]}’ 기준의 순위와 선택한 활동의 검색 결과를 비교하세요. 검색 건수는 인기나 품질 점수가 아닙니다.",
+        "summary": f"‘{MODES[mode]}’ 기준의 순위와 선택한 활동의 검색 결과를 비교하세요. 검색 건수는 인기나 품질 점수가 아니에요.",
         "comparisons": comparisons,
     }
 
@@ -253,7 +253,7 @@ def analyze_recommendations(recommendations, preferences, mode="burden"):
     key = os.getenv("GEMINI_API_KEY", "").strip()
     confirmed = os.getenv("GEMINI_FREE_TIER_CONFIRMED", "false").lower() == "true"
     if not key or not confirmed:
-        return basic_analysis(recommendations, preferences, "Gemini 키 또는 무료 등급 확인 설정이 없어 기본 설명을 표시합니다.", mode)
+        return basic_analysis(recommendations, preferences, "Gemini 키 또는 무료 등급 확인 설정이 없어 기본 설명을 보여드려요.", mode)
     # 정밀 좌표·주소·출발지·키는 모델에 전달하지 않습니다.
     evidence = [{
         "rank": item["rank"], "station": item["station"]["place_name"],
@@ -281,7 +281,12 @@ def analyze_recommendations(recommendations, preferences, mode="burden"):
         "recommendation_mode와 recommendation_note를 따르고 환승 기준의 시간을 최단시간이라고 설명하지 마세요. "
         "상위 3개는 교통 기준으로 먼저 선별되었으므로 수도권 전체 최적 추천이라 말하지 마세요. "
         "선택한 활동을 고려해 한 후보를 추천하되 기존 rank 번호를 유지하고 모든 후보의 장단점을 설명하세요. "
-        "장소 URL은 생성하지 마세요. JSON만 반환: "
+        "장소 URL은 생성하지 마세요. "
+        # 화면의 다른 문구와 말투를 맞춥니다.
+        "모든 문장은 친근한 해요체(예: '~해요', '~예요')로 쓰고 '~합니다' 체는 쓰지 마세요. "
+        "summary는 2문장 이내, strengths와 limitations의 각 항목은 짧은 한 문장으로 쓰세요. "
+        "'제공된 후보', 'evidence', 'rank' 같은 내부 용어 대신 역 이름으로 말하세요. "
+        "JSON만 반환: "
         '{"summary":"간단한 비교와 추천 이유", "recommended_rank":1, '
         '"comparisons":[{"rank":1,"strengths":["장점"],"limitations":["한계"]}]}. '
         "comparisons는 주어진 모든 후보를 정확히 한 번씩 포함하고 각 배열은 1~5문장입니다."
@@ -303,20 +308,20 @@ def analyze_recommendations(recommendations, preferences, mode="burden"):
             timeout=45,
         )
         if response.status_code != 200:
-            raise RuntimeError(f"AI 응답 오류 HTTP {response.status_code}; 재시도하지 않았습니다.")
+            raise RuntimeError(f"AI 응답 오류(HTTP {response.status_code})로 기본 설명을 보여드려요. 재시도하지 않았어요.")
         candidate = response.json()["candidates"][0]
         if candidate.get("finishReason") != "STOP":
-            raise RuntimeError("AI 답변이 완료되지 않아 기본 설명을 표시합니다.")
+            raise RuntimeError("AI 답변이 완료되지 않아 기본 설명을 보여드려요.")
         parts = candidate["content"]["parts"]
         text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
         result = validate_analysis(json.loads(text), [r["rank"] for r in recommendations])
-        return {**result, "source": "gemini", "model": MODEL, "status": "AI가 조회 결과를 바탕으로 작성한 설명입니다."}
+        return {**result, "source": "gemini", "model": MODEL, "status": "AI가 조회 결과를 바탕으로 작성한 설명이에요."}
     except requests.RequestException:
-        reason = "AI 통신 오류로 기본 설명을 표시합니다. 재시도하지 않았습니다."
+        reason = "AI 통신 오류로 기본 설명을 보여드려요. 재시도하지 않았어요."
     except RuntimeError as error:
         reason = str(error)
     except (ValueError, KeyError, IndexError, TypeError, AttributeError):
-        reason = "AI 응답 형식이 올바르지 않아 기본 설명을 표시합니다."
+        reason = "AI 응답 형식이 올바르지 않아 기본 설명을 보여드려요."
     return basic_analysis(recommendations, preferences, reason, mode)
 
 
