@@ -5,6 +5,7 @@ const MeetingMap = (() => {
   const labels = {cafe: "카페", food: "식사", culture: "문화시설"};
   let report = null, category = null, selectedRank = null;
   let map = null, overlays = [], sdkPromise = null, loading = false, focusVersion = 0;
+  let openPromise = null, autoOpened = false;
 
   function coordinates(item) {
     const number = value => (typeof value === "number" || typeof value === "string" && value.trim()) ? Number(value) : NaN;
@@ -71,7 +72,7 @@ const MeetingMap = (() => {
       }
       const card = node("button", "text-button", `${point.rank}번 후보 카드 보기 ↓`);
       card.type = "button";
-      card.addEventListener("click", () => { highlight(point.rank); scrollTo(`candidate-${point.rank}`); get(`candidate-${point.rank}`)?.focus({preventScroll:true}); });
+      card.addEventListener("click", () => { if (typeof showTab === "function") showTab("results", {scroll: false}); highlight(point.rank); scrollTo(`candidate-${point.rank}`); get(`candidate-${point.rank}`)?.focus({preventScroll:true}); });
       box.append(card); content.push(box);
     }
     get("map-detail").replaceChildren(...content);
@@ -138,8 +139,14 @@ const MeetingMap = (() => {
     }).catch(error => { sdkPromise = null; throw error; });
     return sdkPromise;
   }
-  async function open() {
-    if (loading || !report) return;
+  // 동시에 여러 번 불려도(탭 자동 열기 + '위치 보기') 같은 작업을 함께 기다립니다.
+  function open() {
+    if (openPromise) return openPromise;
+    openPromise = openOnce().finally(() => { openPromise = null; });
+    return openPromise;
+  }
+  async function openOnce() {
+    if (!report) return;
     if (map) { draw(); return; }
     loading = true; get("map-load").disabled = true;
     get("map-status").textContent = "지도를 불러오는 중…";
@@ -163,6 +170,8 @@ const MeetingMap = (() => {
     } finally { loading = false; get("map-load").disabled = false; }
   }
   async function focus(rank, place = null) {
+    // 모바일 탭에서는 지도가 숨겨져 있을 수 있으므로 지도를 만들기 전에 지도 탭을 엽니다.
+    if (typeof showTab === "function") showTab("map", {scroll: false});
     const version = ++focusVersion;
     const requestedReport = report, requestedCategory = category;
     selectedRank = rank; controls();
@@ -181,5 +190,11 @@ const MeetingMap = (() => {
     controls(); if (map) draw(changed);
   }
   get("map-load")?.addEventListener("click", () => { focusVersion++; selectedRank = null; controls(); open(); });
-  return {update, focus, coordinates, pointsFor, groupPoints};
+  // 지도 화면이 보이게 될 때 호출합니다. 이미 열린 지도는 크기·범위를 다시 맞추고,
+  // 아직 안 열었다면 결과가 있을 때 한 번만 자동으로 엽니다(실패하면 버튼으로 다시 시도).
+  function refresh() {
+    if (map && report) draw(true);
+    else if (report && !autoOpened) { autoOpened = true; open(); }
+  }
+  return {update, focus, refresh, coordinates, pointsFor, groupPoints};
 })();

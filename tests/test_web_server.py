@@ -32,7 +32,7 @@ class WebServerTests(unittest.TestCase):
             connection.close()
 
     def test_static_screen_and_head(self):
-        for path in ("/", "/styles.css", "/app.js", "/search.js", "/map.js"):
+        for path in ("/", "/styles.css", "/app.js", "/search.js", "/map.js", "/theme.js", "/tabs.js"):
             with self.subTest(path=path):
                 status, headers, body = self.request(path)
                 self.assertEqual(status, 200)
@@ -68,6 +68,23 @@ class WebServerTests(unittest.TestCase):
     def post(self, payload, headers=None):
         return self.request("/api/recommendations", "POST", json.dumps(payload), headers or {"Content-Type": "application/json"})
 
+    def start_job(self, payload):
+        status, _, body = self.post(payload)
+        self.assertEqual(status, 202)
+        return json.loads(body)
+
+    def wait_job(self, job_id, timeout=3):
+        """작업이 끝날 때까지 상태 API를 조회합니다(화면의 폴링과 같은 방식)."""
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            status, _, body = self.request(f"/api/recommendations/{job_id}")
+            self.assertEqual(status, 200)
+            job = json.loads(body)
+            if job["status"] != "running":
+                return job
+            time.sleep(0.02)
+        self.fail("작업이 제시간에 끝나지 않았습니다.")
+
     def test_station_tokens_hide_key_and_coordinates_and_recommend_uses_server_values(self):
         station = {"place_name": "테스트역", "address_name": "주소", "x": "127", "y": "37"}
         with patch.object(serve_web, "get_api_key", return_value="never-expose-this"), \
@@ -78,10 +95,15 @@ class WebServerTests(unittest.TestCase):
             self.assertEqual(status, 200)
             result = json.loads(body)["stations"][0]
             self.assertEqual(set(result), {"token", "name", "address"})
-            status, _, body = self.post({"station_a": result["token"], "station_b": result["token"], "preferences": ["cafe"]})
-            self.assertEqual(status, 200)
-            self.assertNotIn(b"never-expose-this", body)
-            build.assert_called_once_with(station, station, ["cafe"], "never-expose-this", mode="burden")
+            started = self.start_job({"station_a": result["token"], "station_b": result["token"], "preferences": ["cafe"]})
+            job = self.wait_job(started["job_id"])
+            self.assertEqual(job["status"], "done")
+            self.assertEqual(job["report"], {"example": True})
+            self.assertNotIn("never-expose-this", json.dumps(job, ensure_ascii=False))
+            build.assert_called_once()
+            self.assertEqual(build.call_args.args, (station, station, ["cafe"], "never-expose-this"))
+            self.assertEqual(build.call_args.kwargs["mode"], "burden")
+            self.assertTrue(callable(build.call_args.kwargs["on_stage"]))
             save.assert_called_once()
 
     def test_invalid_or_expired_selection_never_starts_recommendation(self):
@@ -97,8 +119,8 @@ class WebServerTests(unittest.TestCase):
                 patch.object(serve_web, "build_recommendation", return_value={}) as build, \
                 patch.object(serve_web, "save_report"):
             for mode in ("fair", "transfers"):
-                status, _, _ = self.post({"station_a":"valid", "station_b":"valid", "preferences":["cafe"], "recommendation_mode":mode})
-                self.assertEqual(status, 200)
+                started = self.start_job({"station_a":"valid", "station_b":"valid", "preferences":["cafe"], "recommendation_mode":mode})
+                self.assertEqual(self.wait_job(started["job_id"])["status"], "done")
                 self.assertEqual(build.call_args.kwargs["mode"], mode)
             build.reset_mock()
             for mode in ("unknown", None, ["fair"]):
@@ -117,7 +139,9 @@ class WebServerTests(unittest.TestCase):
         with patch.object(serve_web, "get_api_key", return_value="dummy"), \
                 patch.object(serve_web, "build_recommendation", side_effect=serve_web.RouteLimitError("한도 부족")), \
                 patch.object(serve_web, "save_report") as save:
-            self.assertEqual(self.post({"station_a": "valid", "station_b": "valid", "preferences": ["cafe"]})[0], 429)
+            job = self.wait_job(self.start_job({"station_a": "valid", "station_b": "valid", "preferences": ["cafe"]})["job_id"])
+            self.assertEqual((job["status"], job["error_status"], job["error"]), ("error", 429, "한도 부족"))
+            self.assertNotIn("report", job)
             save.assert_not_called()
             self.assertFalse(serve_web.API_LOCK.locked())
 
@@ -126,9 +150,69 @@ class WebServerTests(unittest.TestCase):
         with patch.object(serve_web, "get_api_key", return_value="dummy"), \
                 patch.object(serve_web, "build_recommendation", return_value={"example": True}), \
                 patch.object(serve_web, "save_report", side_effect=OSError):
-            status, _, body = self.post({"station_a": "valid", "station_b": "valid", "preferences": ["cafe"]})
+            job = self.wait_job(self.start_job({"station_a": "valid", "station_b": "valid", "preferences": ["cafe"]})["job_id"])
+            self.assertEqual(job["status"], "done")
+            self.assertTrue(job["warning"])
+
+    def test_job_reports_real_stage_and_blocks_other_requests_until_done(self):
+        serve_web.STATIONS["valid"] = (time.monotonic(), {})
+        reached, release = threading.Event(), threading.Event()
+
+        def slow_build(*args, on_stage, **kwargs):
+            on_stage("routes", "경로를 새로 조회하고 있어요 · 1번째")
+            reached.set()
+            release.wait(3)
+            return {"example": True}
+
+        with patch.object(serve_web, "get_api_key", return_value="dummy"), \
+                patch.object(serve_web, "build_recommendation", side_effect=slow_build), \
+                patch.object(serve_web, "save_report"), \
+                patch.object(serve_web, "search_stations") as search:
+            started = self.start_job({"station_a": "valid", "station_b": "valid", "preferences": ["cafe"]})
+            self.assertTrue(reached.wait(3))
+            status, _, body = self.request(f"/api/recommendations/{started['job_id']}")
+            running = json.loads(body)
+            self.assertEqual((status, running["status"], running["stage"], running["stage_index"]), (200, "running", "routes", 1))
+            self.assertIn("1번째", running["message"])
+            self.assertNotIn("report", running)
+            # 작업 중에는 새 추천과 역 검색을 거부합니다.
+            self.assertEqual(self.post({"station_a": "valid", "station_b": "valid", "preferences": ["cafe"]})[0], 409)
+            self.assertEqual(self.request("/api/stations?query=x")[0], 409)
+            search.assert_not_called()
+            release.set()
+            self.assertEqual(self.wait_job(started["job_id"])["status"], "done")
+            self.assertFalse(serve_web.API_LOCK.locked())
+
+    def test_local_suggestions_never_call_kakao_and_hide_coordinates(self):
+        with patch.object(serve_web, "search_stations") as search, patch.object(serve_web, "get_api_key") as key:
+            status, _, body = self.request("/api/station-suggestions?query=%EA%B0%95%EB%82%A8")  # 강남
             self.assertEqual(status, 200)
-            self.assertTrue(json.loads(body)["warning"])
+            stations = json.loads(body)["stations"]
+            self.assertTrue(stations)
+            self.assertEqual(stations[0]["name"], "강남역")
+            self.assertTrue(all(set(item) == {"token", "name", "line"} for item in stations))
+            self.assertEqual(json.loads(self.request("/api/station-suggestions?query=")[2])["stations"], [])
+            self.assertEqual(self.request("/api/station-suggestions?query=x", headers={"Origin": "https://example.com"})[0], 403)
+            search.assert_not_called()
+            key.assert_not_called()
+
+    def test_recommend_accepts_local_station_tokens(self):
+        with patch.object(serve_web, "get_api_key", return_value="dummy"), \
+                patch.object(serve_web, "build_recommendation", return_value={"example": True}) as build, \
+                patch.object(serve_web, "save_report"):
+            job = self.wait_job(self.start_job({"station_a": "local-0", "station_b": "local-0", "preferences": ["cafe"]})["job_id"])
+            self.assertEqual(job["status"], "done")
+            station = build.call_args.args[0]
+            self.assertEqual(station["place_name"], "신사역 신분당선")
+            self.assertIsInstance(station["x"], float)
+            build.reset_mock()
+            for token in ("local-999999", "local-", "local-abc"):
+                self.assertEqual(self.post({"station_a": token, "station_b": "local-0", "preferences": ["cafe"]})[0], 400)
+            build.assert_not_called()
+
+    def test_unknown_job_and_foreign_origin_on_status(self):
+        self.assertEqual(self.request("/api/recommendations/unknown")[0], 404)
+        self.assertEqual(self.request("/api/recommendations/unknown", headers={"Origin": "https://example.com"})[0], 403)
 
 
 if __name__ == "__main__":

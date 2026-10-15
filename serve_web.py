@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 from station_search import search_stations, build_recommendation, RouteLimitError
 from comparison import save_report
 from recommendation_policy import validate_mode
+from station_catalog import suggest as suggest_stations, resolve as resolve_local_station
 
 BASE_DIR = Path(__file__).resolve().parent
 # 프로젝트 전체를 공개하지 않고 지정한 파일만 제공합니다.
@@ -23,12 +24,77 @@ FILES = {
     "/app.js": ("web/app.js", "text/javascript; charset=utf-8"),
     "/search.js": ("web/search.js", "text/javascript; charset=utf-8"),
     "/map.js": ("web/map.js", "text/javascript; charset=utf-8"),
+    "/theme.js": ("web/theme.js", "text/javascript; charset=utf-8"),
+    "/tabs.js": ("web/tabs.js", "text/javascript; charset=utf-8"),
     "/data/latest_comparison.json": ("data/latest_comparison.json", "application/json; charset=utf-8"),
 }
 
 # 웹 요청은 순서대로 처리해 호출 기록과 마지막 결과의 충돌을 막습니다.
 API_LOCK = threading.Lock()
 STATIONS = {}
+
+# 추천 작업 상태. 화면은 작업 번호로 진행 단계와 결과를 조회합니다(폴링).
+JOBS = {}
+JOBS_LOCK = threading.Lock()
+JOB_STAGES = ("candidates", "routes", "places", "ai")
+JOB_KEEP_SECONDS = 3600
+JOB_MAX_KEPT = 20
+
+
+def update_job(job, **changes):
+    with JOBS_LOCK:
+        job.update(changes)
+        job["updated"] = time.monotonic()
+
+
+def public_job(job):
+    """화면에 보낼 항목만 고릅니다. 내부 시각이나 예외 정보는 보내지 않습니다."""
+    with JOBS_LOCK:
+        data = {key: job[key] for key in ("job_id", "status", "stage", "message")}
+        data["stage_index"] = JOB_STAGES.index(job["stage"]) if job["stage"] in JOB_STAGES else None
+        data["stage_count"] = len(JOB_STAGES)
+        if job["status"] == "done":
+            data.update(report=job["report"], warning=job["warning"])
+        elif job["status"] == "error":
+            data.update(error=job["error"], error_status=job["error_status"])
+        return data
+
+
+def forget_old_jobs():
+    now = time.monotonic()
+    with JOBS_LOCK:
+        for job_id, job in list(JOBS.items()):
+            if job["status"] != "running" and now - job["updated"] > JOB_KEEP_SECONDS:
+                del JOBS[job_id]
+        finished = [job_id for job_id, job in JOBS.items() if job["status"] != "running"]
+        while len(JOBS) > JOB_MAX_KEPT and finished:
+            del JOBS[finished.pop(0)]
+
+
+def run_job(job, stations, preferences, api_key, mode):
+    """백그라운드 스레드에서 추천을 계산합니다. 끝나면 요청 스레드가 넘겨준 API_LOCK을 풉니다."""
+    try:
+        report = build_recommendation(
+            *stations, preferences, api_key, mode=mode,
+            on_stage=lambda stage, message: update_job(job, stage=stage, message=message),
+        )
+        warning = None
+        try:
+            save_report(report)
+        except (OSError, ValueError):
+            warning = "비교는 완료했지만 파일을 저장하지 못했습니다. 현재 화면에서 결과를 확인하세요."
+        update_job(job, status="done", stage="done", message="비교를 마쳤어요.", report=report, warning=warning)
+    except RouteLimitError as error:
+        update_job(job, status="error", error=str(error), error_status=429)
+    except (ValueError, KeyError, TypeError):
+        update_job(job, status="error", error="추천 계산에 필요한 정보를 처리하지 못했습니다. 출발역을 다시 선택해 주세요.", error_status=400)
+    except RuntimeError as error:
+        update_job(job, status="error", error=str(error), error_status=503)
+    except Exception:
+        # 내부 오류에 포함될 수 있는 인증 정보나 경로는 응답에 넣지 않습니다.
+        update_job(job, status="error", error="추천 처리 중 오류가 발생했습니다. 기존 결과는 유지됩니다.", error_status=500)
+    finally:
+        API_LOCK.release()
 
 
 def get_api_key():
@@ -48,6 +114,10 @@ class ComparisonHandler(BaseHTTPRequestHandler):
             self.send_json(200, {"javascript_key": key})
         elif urlsplit(self.path).path == "/api/stations":
             self.handle_api(self.station_search)
+        elif urlsplit(self.path).path == "/api/station-suggestions":
+            self.station_suggestions()
+        elif urlsplit(self.path).path.startswith("/api/recommendations/"):
+            self.job_status()
         else:
             self.send_file()
 
@@ -67,16 +137,23 @@ class ComparisonHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(content)
 
-    def handle_api(self, action):
+    def is_local_request(self):
         host = self.headers.get("Host", "")
         allowed = {f"127.0.0.1:{self.server.server_port}", f"localhost:{self.server.server_port}"}
         origin = self.headers.get("Origin")
         if host not in allowed or (origin and origin != f"http://{host}") or self.headers.get("Sec-Fetch-Site") == "cross-site":
             self.send_json(403, {"error": "로컬 화면에서 요청하세요."})
+            return False
+        return True
+
+    def handle_api(self, action):
+        if not self.is_local_request():
             return
         if not API_LOCK.acquire(blocking=False):
             self.send_json(409, {"error": "다른 검색을 처리 중입니다. 완료 후 다시 시도하세요."})
             return
+        # 작업 스레드가 시작되면 락은 그 스레드가 풉니다(self.lock_handed_over).
+        self.lock_handed_over = False
         try:
             action()
         except RouteLimitError as error:
@@ -89,7 +166,26 @@ class ComparisonHandler(BaseHTTPRequestHandler):
             # 내부 오류에 포함될 수 있는 인증 정보나 경로는 응답에 넣지 않습니다.
             self.send_json(500, {"error": "추천 처리 중 오류가 발생했습니다. 기존 결과는 유지됩니다."})
         finally:
-            API_LOCK.release()
+            if not self.lock_handed_over:
+                API_LOCK.release()
+
+    def job_status(self):
+        if not self.is_local_request():
+            return
+        job_id = urlsplit(self.path).path.rsplit("/", 1)[-1]
+        with JOBS_LOCK:
+            job = JOBS.get(job_id)
+        if job is None:
+            self.send_json(404, {"error": "추천 작업을 찾을 수 없어요. 서버가 재시작됐다면 ‘결과 다시 읽기’로 마지막 결과를 확인하세요."})
+            return
+        self.send_json(200, public_job(job))
+
+    def station_suggestions(self):
+        """로컬 역 목록 자동완성. 외부 API를 쓰지 않으므로 추천 작업 중에도 응답합니다."""
+        if not self.is_local_request():
+            return
+        query = parse_qs(urlsplit(self.path).query).get("query", [""])[0]
+        self.send_json(200, {"stations": suggest_stations(query)})
 
     def station_search(self):
         query = parse_qs(urlsplit(self.path).query).get("query", [""])[0]
@@ -120,17 +216,27 @@ class ComparisonHandler(BaseHTTPRequestHandler):
             raise ValueError()
         stations = []
         for key in ("station_a", "station_b"):
+            # 자동완성으로 고른 역(local-번호)은 로컬 목록에서, 카카오 검색으로 고른 역은 임시 선택 번호로 찾습니다.
+            local = resolve_local_station(payload[key])
+            if local is not None:
+                stations.append(local)
+                continue
             created, station = STATIONS[payload[key]]
             if time.monotonic() - created > 3600:
                 raise ValueError()
             stations.append(station)
-        report = build_recommendation(*stations, list(dict.fromkeys(preferences)), get_api_key(), mode=mode)
-        warning = None
-        try:
-            save_report(report)
-        except (OSError, ValueError):
-            warning = "비교는 완료했지만 파일을 저장하지 못했습니다. 현재 화면에서 결과를 확인하세요."
-        self.send_json(200, {"report": report, "warning": warning})
+        api_key = get_api_key()
+        # 입력 검증까지는 요청 안에서 끝내고, 오래 걸리는 계산은 작업으로 넘깁니다.
+        forget_old_jobs()
+        job = {"job_id": uuid.uuid4().hex, "status": "running", "stage": "queued",
+               "message": "추천을 준비하고 있어요.", "report": None, "warning": None,
+               "error": None, "error_status": None, "updated": time.monotonic()}
+        with JOBS_LOCK:
+            JOBS[job["job_id"]] = job
+        worker = threading.Thread(target=run_job, args=(job, stations, list(dict.fromkeys(preferences)), api_key, mode), daemon=True)
+        worker.start()
+        self.lock_handed_over = True
+        self.send_json(202, public_job(job))
 
     def do_HEAD(self):
         self.send_file(head_only=True)
@@ -154,7 +260,7 @@ class ComparisonHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(content)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self' https://dapi.kakao.com https://t1.daumcdn.net https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline'; connect-src 'self' https://dapi.kakao.com; img-src 'self' data: https://*.daumcdn.net https://*.kakaocdn.net; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; upgrade-insecure-requests")
+        self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self' https://dapi.kakao.com https://t1.daumcdn.net https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://dapi.kakao.com; img-src 'self' data: https://*.daumcdn.net https://*.kakaocdn.net; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; upgrade-insecure-requests")
         self.end_headers()
         if not head_only:
             self.wfile.write(content)

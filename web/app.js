@@ -45,10 +45,13 @@ function syncMotionSetting() {
   if (!document.documentElement) return;
   const disabled = !motionEnabled();
   document.documentElement.dataset.motion = disabled ? "off" : "on";
-  const button = $("motion-toggle");
-  button.textContent = motionPreference.matches ? "모션 줄임 · 기기 설정" : motionDisabled ? "모션 켜기" : "모션 줄이기";
-  button.setAttribute("aria-pressed", String(disabled));
-  button.disabled = motionPreference.matches;
+  // 상단과 '화면 설정'(모바일 안내 탭)에 같은 버튼이 있어 함께 갱신합니다.
+  const buttons = document.querySelectorAll?.("[data-motion-toggle]") ?? [$("motion-toggle")];
+  for (const button of buttons) {
+    button.textContent = motionPreference.matches ? "모션 줄임 · 기기 설정" : motionDisabled ? "모션 켜기" : "모션 줄이기";
+    button.setAttribute("aria-pressed", String(disabled));
+    button.disabled = motionPreference.matches;
+  }
   if (disabled) {
     for (const animation of activeAnimations) animation.cancel();
     activeAnimations.clear();
@@ -232,7 +235,8 @@ function routeUsageText(usage) {
   return `이 결과 계산 시 · 이전 경로 재사용 ${usage.cache_hits}건 · 새 경로 조회 ${usage.api_calls}회 · 경로 조회 시각 ${times} (한국 시간). 주변 장소·AI 호출은 별도예요.`;
 }
 
-function renderCard(item, maxTime) {
+// compact: '다른 선택지'로 작게 보여줄 때 장소 목록과 장단점을 접어 둡니다.
+function renderCard(item, { compact = false } = {}) {
   const report = state.report;
   const isRecommended = report.analysis.source === "gemini" && item.rank === report.analysis.recommended_rank;
   const card = element("article", `candidate-card${isRecommended ? " recommended" : ""}`);
@@ -248,25 +252,16 @@ function renderCard(item, maxTime) {
   station.id = titleId;
   top.append(rank, station, element("p", "line-name", item.station.line_name));
   if (typeof MeetingMap !== "undefined" && MeetingMap.coordinates(item.station)) top.append(mapButton(item.rank));
-  const travel = element("div", "travel");
+  // 이동시간 숫자는 위의 비교 표에 크게 있으므로, 카드에는 한 줄 요약만 둡니다.
+  // 경로 조회 시각은 결과 위 '계산 방식 자세히'에서 확인합니다.
+  const travel = element("div", "travel-compact");
   for (const [key, label, letter] of [["a", "첫 번째 사람", "A"], ["b", "두 번째 사람", "B"]]) {
-    const person = element("div");
-    const labelNode = element("div", "person-label");
-    labelNode.append(element("span", `person-letter ${key}`, letter), document.createTextNode(label));
-    const time = element("div", "travel-number", item[`minutes_${key}`].toFixed(1));
-    time.append(element("small", "", "분"));
-    const track = element("div", "bar-track");
-    track.setAttribute("aria-hidden", "true");
-    const bar = element("div", `bar ${key}`);
-    bar.style.width = `${Math.min(100, item[`minutes_${key}`] / maxTime * 100)}%`;
-    track.append(bar);
-    person.append(labelNode, time, element("p", "transfer", `환승 ${item[`transfers_${key}`]}회`), track);
-    const route = item[`route_${key}`];
-    if (route && ["api", "cache"].includes(route.source) && typeof route.fetched_at === "string" && Number.isFinite(Date.parse(route.fetched_at))) {
-      const fetched = new Intl.DateTimeFormat("ko-KR", {timeZone:"Asia/Seoul",dateStyle:"short",timeStyle:"short"}).format(new Date(route.fetched_at));
-      person.append(element("p", "route-date", `${route.source === "cache" ? "재사용" : "새 조회"} · ${fetched} 조회 (한국 시간)`));
-    }
-    travel.append(person);
+    const chip = element("p", `travel-chip ${key}`);
+    chip.setAttribute("aria-label", `${label} ${item[`minutes_${key}`].toFixed(1)}분, 환승 ${item[`transfers_${key}`]}회`);
+    chip.append(element("span", `person-letter ${key}`, letter),
+      element("strong", "", `${item[`minutes_${key}`].toFixed(1)}분`),
+      element("span", "travel-transfer", `환승 ${item[`transfers_${key}`]}회`));
+    travel.append(chip);
   }
   const difference = element("div", "time-difference");
   const gap = element("span", "gap-line", "시간 차이 ");
@@ -282,17 +277,18 @@ function renderCard(item, maxTime) {
   else if (!group.items.length) places.append(element("p", "place-empty", "반경 1km 검색에서 찾은 장소가 없어요."));
   else {
     const list = element("ul", "place-list");
-    const shown = visiblePlaceCount();
+    const shown = compact ? 0 : visiblePlaceCount();
+    const closedLabel = shown ? `장소 ${group.items.length - shown}곳 더 보기` : `장소 ${group.items.length}곳 보기`;
     group.items.slice(0, shown).forEach((place) => list.append(renderPlace(place, item.rank)));
-    places.append(list);
+    if (shown) places.append(list);
     if (group.items.length > shown) {
       const more = element("details", "more-places");
-      const summary = element("summary", "", `장소 ${group.items.length - shown}곳 더 보기`);
+      const summary = element("summary", "", closedLabel);
       const extra = element("ul", "place-list");
       group.items.slice(shown).forEach((place) => extra.append(renderPlace(place, item.rank)));
       more.append(summary, extra);
       more.addEventListener("toggle", () => {
-        summary.textContent = more.open ? "추가 장소 접기" : `장소 ${group.items.length - shown}곳 더 보기`;
+        summary.textContent = more.open ? (shown ? "추가 장소 접기" : "장소 접기") : closedLabel;
         if (more.open) animateEntry(extra);
       });
       places.append(more);
@@ -303,7 +299,7 @@ function renderCard(item, maxTime) {
   const comment = report.analysis.comparisons.find((entry) => entry.rank === item.rank);
   // 데스크톱은 펼친 상태, 모바일은 접힌 상태로 시작합니다.
   const analysis = element("details", "card-analysis");
-  analysis.open = !compactLayout.matches;
+  analysis.open = !compact && !compactLayout.matches;
   analysis.append(element("summary", "analysis-toggle", "좋은 점 · 생각해 볼 점"));
   for (const [key, label] of [["strengths", "좋은 점"], ["limitations", "생각해 볼 점"]]) {
     const list = element("ul", key);
@@ -367,14 +363,33 @@ function renderComparisonTable(items) {
 // 화면 폭이 모바일/데스크톱 경계를 넘으면 카드를 다시 그려 장소 수와 접힘 상태를 맞춥니다.
 compactLayout.addEventListener?.("change", () => { if (state.report) renderCards(); });
 
+// AI가 추천한 후보가 있으면 그 후보, 없으면 선택 기준 1순위를 강조합니다.
+function featuredCandidateRank(report) {
+  const ranks = report.recommendations.map((item) => item.rank);
+  const aiRank = report.analysis.source === "gemini" ? report.analysis.recommended_rank : null;
+  return ranks.includes(aiRank) ? aiRank : Math.min(...ranks);
+}
+
 function renderCards() {
   revealObserver?.disconnect();
   for (const animation of activeAnimations) animation.cancel();
   activeAnimations.clear();
   const items = sortedCandidates(state.report.recommendations, state.sort);
-  const maxTime = Math.max(1, ...items.flatMap((item) => [item.minutes_a, item.minutes_b]));
-  $("candidate-grid").replaceChildren(...items.map((item) => renderCard(item, maxTime)));
-  for (const [index, card] of [...$("candidate-grid").children].entries()) {
+  const grid = $("candidate-grid");
+  const featuredRank = state.sort === "rank" && items.length > 1 ? featuredCandidateRank(state.report) : null;
+  grid.classList.toggle("featured-layout", featuredRank !== null);
+  if (featuredRank === null) {
+    grid.replaceChildren(...items.map((item) => renderCard(item)));
+  } else {
+    // 추천 후보를 크게, 나머지는 '다른 선택지'로 작게 보여줍니다.
+    const featured = renderCard(items.find((item) => item.rank === featuredRank));
+    featured.classList.add("featured");
+    const others = element("div", "alternates");
+    others.append(element("h3", "alternates-title", "다른 선택지"),
+      ...items.filter((item) => item.rank !== featuredRank).map((item) => renderCard(item, { compact: true })));
+    grid.replaceChildren(featured, others);
+  }
+  for (const [index, card] of [...grid.querySelectorAll(".candidate-card")].entries()) {
     card.dataset.motionOrder = String(index);
     if (revealObserver) revealObserver.observe(card);
     else animateEntry(card);
@@ -418,6 +433,13 @@ function showReport(report, source) {
   }));
   renderCards();
   $("results").hidden = false;
+  // 다른 결과를 읽으면 대기 중이던 '결과 열기' 단계는 닫습니다.
+  $("reveal-stage").hidden = true;
+  $("summary-more").setAttribute("aria-expanded", "false");
+  $("summary-more").textContent = "설명 더 보기";
+  document.querySelector?.(".recommendation")?.classList.remove("is-expanded");
+  if (typeof markResultReady === "function") markResultReady();
+  if (typeof requestAnimationFrame === "function") requestAnimationFrame(updateSummaryMore);
   $("empty-state").hidden = true;
   $("feedback").textContent = "";
 }
@@ -436,7 +458,7 @@ async function loadLatest() {
     const response = await fetch("/data/latest_comparison.json", { cache: "no-store" });
     if (!response.ok) throw new Error(response.status === 404 ? "아직 저장된 비교 결과가 없어요." : "저장 결과를 읽지 못했어요.");
     const report = await response.json();
-    if (requestId === state.requestId) showReport(report, "저장된 결과");
+    if (requestId === state.requestId) { showReport(report, "저장된 결과"); return true; }
   } catch (error) {
     if (requestId === state.requestId) showError(error instanceof TypeError ? new Error("로컬 서버에 연결할 수 없어요. 서버를 실행하거나 결과 파일을 열어 주세요.") : error instanceof SyntaxError ? new Error("결과 파일의 JSON 형식이 올바르지 않아요.") : error);
   } finally {
@@ -447,11 +469,26 @@ async function loadLatest() {
   }
 }
 
-$("reload").addEventListener("click", loadLatest);
-$("motion-toggle").addEventListener("click", () => {
+// 사용자가 직접 다시 읽거나 파일을 열어 성공하면 모바일에서는 결과 탭으로 이동합니다.
+const openResultsTab = () => { if (typeof showTab === "function") showTab("results"); };
+$("reload").addEventListener("click", async () => { if (await loadLatest()) openResultsTab(); });
+for (const button of document.querySelectorAll?.("[data-motion-toggle]") ?? [$("motion-toggle")]) button.addEventListener("click", () => {
   motionDisabled = !motionDisabled;
   try { localStorage.setItem("date-meet-reduce-motion", String(motionDisabled)); } catch { /* 선택은 현재 탭에 반영 */ }
   syncMotionSetting();
+});
+// 긴 추천 설명은 몇 줄만 보여 주고 버튼으로 펼칩니다. 설명이 잘리지 않으면 버튼을 숨깁니다.
+function updateSummaryMore() {
+  const text = $("summary-text"), more = $("summary-more");
+  if (!text || typeof text.scrollHeight !== "number" || more.getAttribute("aria-expanded") === "true") return;
+  more.hidden = text.scrollHeight <= text.clientHeight + 1;
+}
+if (typeof window !== "undefined") window.addEventListener?.("resize", () => requestAnimationFrame(updateSummaryMore));
+$("summary-more").addEventListener("click", () => {
+  const open = $("summary-more").getAttribute("aria-expanded") !== "true";
+  $("summary-more").setAttribute("aria-expanded", String(open));
+  $("summary-more").textContent = open ? "설명 접기" : "설명 더 보기";
+  document.querySelector(".recommendation").classList.toggle("is-expanded", open);
 });
 motionPreference.addEventListener?.("change", syncMotionSetting);
 syncMotionSetting();
@@ -469,7 +506,7 @@ $("report-file").addEventListener("change", async (event) => {
   try {
     if (file.size > 2 * 1024 * 1024) throw new Error("2MB 이하의 비교 결과 파일을 선택해 주세요.");
     const data = JSON.parse(await file.text());
-    if (requestId === state.requestId) showReport(data, "직접 연 결과 파일");
+    if (requestId === state.requestId) { showReport(data, "직접 연 결과 파일"); openResultsTab(); }
   } catch (error) {
     if (requestId === state.requestId) showError(error instanceof SyntaxError ? new Error("JSON 형식의 비교 결과 파일을 선택해 주세요.") : error);
   }

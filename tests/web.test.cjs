@@ -115,3 +115,12 @@ test('시간 차이 구간: 5분 미만 거의 같음, 15분 이상 차이 큼',
   assert.equal(context.differenceLevel(15).key, 'large');
   assert.equal(context.differenceLevel(25).label, '차이 큼');
 });
+
+test('강조 후보: AI 추천이 있으면 그 후보, 없으면 1순위', () => {
+  const report = { recommendations: [{rank:1},{rank:2},{rank:3}], analysis: {source:'gemini', recommended_rank:2} };
+  assert.equal(context.featuredCandidateRank(report), 2);
+  report.analysis = {source:'rules', recommended_rank:null};
+  assert.equal(context.featuredCandidateRank(report), 1);
+  report.analysis = {source:'gemini', recommended_rank:null};
+  assert.equal(context.featuredCandidateRank(report), 1);
+});

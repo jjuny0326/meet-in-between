@@ -297,9 +297,15 @@ def main(argv=None):
     return show_and_save_report(build_recommendation(station_a, station_b, preferences, api_key, progress=print, mode=args.mode))
 
 
-def build_recommendation(station_a, station_b, preferences, api_key, progress=None, mode="burden"):
-    """두 출발역과 활동으로 결과를 계산합니다. 입력과 파일 저장은 호출자가 담당합니다."""
+def build_recommendation(station_a, station_b, preferences, api_key, progress=None, mode="burden", on_stage=None):
+    """두 출발역과 활동으로 결과를 계산합니다. 입력과 파일 저장은 호출자가 담당합니다.
+
+    progress는 콘솔용 문장, on_stage(단계, 안내문)는 웹 화면의 진행 표시용입니다.
+    단계는 candidates → routes → places → ai 순서로 실제 작업 직전에 알립니다.
+    """
     validate_mode(mode)
+    stage = on_stage or (lambda key, message: None)
+    stage("candidates", "두 출발역 사이의 후보 역을 고르고 있어요.")
     candidates = find_meeting_candidates(station_a, station_b)
 
     notify = progress or (lambda message: None)
@@ -315,7 +321,17 @@ def build_recommendation(station_a, station_b, preferences, api_key, progress=No
         )
 
     pairs = [(start, candidate) for candidate in candidates for start in (station_a, station_b)]
-    route_entries, route_usage = ROUTE_CACHE.load_batch(pairs, api_key, get_transit_routes, ensure_route_capacity)
+    stage("routes", f"후보 {len(candidates)}곳까지의 경로를 확인하고 있어요. 저장된 경로는 다시 조회하지 않아요.")
+    new_calls = 0
+
+    def fetch_with_stage(start, end, key):
+        # 캐시에 없는 구간을 실제로 조회할 때만 호출됩니다.
+        nonlocal new_calls
+        new_calls += 1
+        stage("routes", f"경로를 새로 조회하고 있어요 · {new_calls}번째 ({end['place_name']})")
+        return get_transit_routes(start, end, key)
+
+    route_entries, route_usage = ROUTE_CACHE.load_batch(pairs, api_key, fetch_with_stage, ensure_route_capacity)
     notify(f"경로 재사용 {route_usage['cache_hits']}건 / 새 조회 {route_usage['api_calls']}회")
 
     # 후보별 이동시간을 비교해서 상위 3곳을 출력
@@ -349,7 +365,9 @@ def build_recommendation(station_a, station_b, preferences, api_key, progress=No
     results = rank_candidates(results, mode)
 
     # 같은 구조를 콘솔 출력, 저장 파일, 웹 화면에서 함께 사용합니다.
+    stage("places", f"상위 {min(3, len(results))}곳 주변의 장소를 찾고 있어요.")
     recommendations = enrich_recommendations(results, preferences, api_key)
+    stage("ai", "후보별 설명을 정리하고 있어요.")
     report = {
         "schema_version": 1,
         "recommendation_mode": mode,
