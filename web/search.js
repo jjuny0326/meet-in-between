@@ -1,16 +1,25 @@
 "use strict";
 
 // 화면에는 서버가 발급한 선택 번호만 보관합니다. API 키와 좌표는 서버에 남습니다.
-const searchState = { selected: { a: null, b: null }, versions: { a: 0, b: 0 }, searching: false, busy: false };
+const searchState = { selected: { a: null, b: null }, names: { a: null, b: null }, versions: { a: 0, b: 0 }, searching: false, busy: false };
 const activityInputs = [...document.querySelectorAll('input[name="activity"]')];
 const modeInputs = [...document.querySelectorAll('input[name="recommendation-mode"]')];
 const selectedMode = () => modeInputs.find(input => input.checked)?.value || "burden";
 function selectedActivities() { return activityInputs.filter(input => input.checked).map(input => input.value); }
-function canRecommend(selected, activities, pending) {
-  return Boolean(selected.a && selected.b && activities.length && !pending);
+// 노선만 다른 같은 역('강남역 2호선'·'강남역 신분당선')도 같은 출발역으로 봅니다. 서버도 한 번 더 확인합니다.
+const stationKey = name => String(name || "").trim().split(/\s+/)[0].replace(/\(.*$/, "").replace(/역$/, "");
+const sameStation = names => Boolean(names?.a && names.a === names.b);
+const SAME_STATION_MESSAGE = "두 사람의 출발역이 같아요. 한 사람의 역을 바꿔 주세요.";
+const DEFAULT_SEARCH_STATUS = "두 출발역과 활동을 선택하면 후보 최대 3곳을 비교할 수 있어요.";
+function canRecommend(selected, activities, pending, names) {
+  return Boolean(selected.a && selected.b && activities.length && !pending && !sameStation(names));
 }
 function updateSearchButton() {
-  $("find-button").disabled = !canRecommend(searchState.selected, selectedActivities(), searchState.busy || searchState.searching);
+  $("find-button").disabled = !canRecommend(searchState.selected, selectedActivities(), searchState.busy || searchState.searching, searchState.names);
+  // 같은 역 안내는 상황이 바뀌면 바로 지웁니다(검색 중 안내는 건드리지 않음).
+  const status = $("search-status");
+  if (sameStation(searchState.names)) status.textContent = SAME_STATION_MESSAGE;
+  else if (status.textContent === SAME_STATION_MESSAGE) status.textContent = DEFAULT_SEARCH_STATUS;
   for (const person of ["a", "b"]) $( `station-${person}-search`).disabled = searchState.searching || searchState.busy;
 }
 async function requestJson(url, options) {
@@ -70,6 +79,14 @@ function renderStationOptions(person, stations) {
   const options = $(`station-${person}-options`);
   options.replaceChildren();
   const status = $(`station-${person}-status`);
+  const labels = [];
+  // 고른 뒤에는 선택한 역만 남겨 다음 입력칸이 밀려나지 않게 하고, 필요하면 다시 펼칩니다.
+  const change = element("button", "station-change", "다른 역·노선 보기");
+  change.type = "button"; change.hidden = true;
+  change.addEventListener("click", () => {
+    labels.forEach(item => { item.hidden = false; });
+    change.hidden = true;
+  });
   for (const station of stations) {
     const label = element("label", "station-option");
     const radio = document.createElement("input");
@@ -78,12 +95,19 @@ function renderStationOptions(person, stations) {
     copy.append(element("strong", "", station.name), element("small", "", station.detail || ""));
     radio.addEventListener("change", () => {
       searchState.selected[person] = station.token;
+      searchState.names[person] = stationKey(station.name);
       status.textContent = `선택 완료 · ${station.name}${station.detail && station.local ? ` ${station.detail}` : ""}`;
+      if (labels.length > 1) {
+        labels.forEach(item => { item.hidden = item !== label; });
+        change.hidden = false;
+      }
       updateSearchButton();
     });
     label.append(radio, copy);
+    labels.push(label);
     options.append(label);
   }
+  if (labels.length > 1) options.append(change);
 }
 
 async function suggestStations(person, query, version) {
@@ -106,6 +130,7 @@ async function findStations(person) {
   if (!query) { status.textContent = "역 이름을 입력해 주세요."; $(`station-${person}-query`).focus(); return; }
   const version = ++searchState.versions[person];
   searchState.selected[person] = null;
+  searchState.names[person] = null;
   searchState.searching = true;
   $(`station-${person}-options`).replaceChildren();
   status.textContent = "역을 찾고 있어요…";
@@ -127,6 +152,7 @@ for (const person of ["a", "b"]) {
   $(`station-${person}-query`).addEventListener("input", () => {
     const version = ++searchState.versions[person];
     searchState.selected[person] = null;
+    searchState.names[person] = null;
     $(`station-${person}-options`).replaceChildren();
     clearTimeout(suggestTimers[person]);
     const query = $(`station-${person}-query`).value.trim();
@@ -146,6 +172,9 @@ modeInputs.forEach(input => input.addEventListener("change", () => {
   $("mode-help").textContent = modeHelp[selectedMode()];
   $("search-status").textContent = "추천 기준을 바꿨어요. ‘만남 후보 찾기’를 누르면 새 기준으로 검색해요.";
 }));
+
+// 모바일은 결과가 다른 탭에 있으므로 '아래'가 아니라 탭 이름으로 안내합니다.
+const resultsPlace = () => typeof matchMedia === "function" && matchMedia("(max-width: 760px)").matches ? "‘결과’ 탭에서" : "아래에서";
 
 // 가장 먼저 읽을 결론(추천 요약)으로 이동합니다. 포커스는 화면 낭독기가 제목부터 읽게 합니다.
 function focusSummary() {
@@ -199,10 +228,10 @@ $("meeting-form").addEventListener("submit", async event => {
     $("search-status").scrollIntoView({ behavior: motionEnabled() ? "smooth" : "instant", block: "nearest" });
     const data = await waitForJob(started.job_id);
     showReport(data.report, "새 검색 결과");
-    $("search-status").textContent = data.warning || "비교를 마쳤어요. 아래에서 후보별 이동시간과 장소를 살펴보세요.";
+    $("search-status").textContent = data.warning || `비교를 마쳤어요. ${resultsPlace()} 후보별 이동시간과 장소를 살펴보세요.`;
     presentNewResult(data.report);
   } catch (error) {
-    $("search-status").textContent = connectionMessage(error) + (state.report ? " 아래의 기존 결과는 유지했어요." : "");
+    $("search-status").textContent = connectionMessage(error) + (state.report ? " 기존 결과는 그대로 남아 있어요." : "");
   } finally {
     searchState.busy = false;
     $("search-controls").disabled = false;
@@ -211,7 +240,7 @@ $("meeting-form").addEventListener("submit", async event => {
     $("report-file").disabled = false;
     $("meeting-form").setAttribute("aria-busy", "false");
     $("search-progress").hidden = true;
-    $("find-button").textContent = "만남 후보 찾기 ↗";
+    $("find-button").textContent = "만남 후보 찾기 →";
     updateSearchButton();
   }
 });

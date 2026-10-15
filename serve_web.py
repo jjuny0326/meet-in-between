@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import re
 import threading
 import time
 import uuid
@@ -104,6 +105,28 @@ def get_api_key():
     return key
 
 
+class SameStationError(ValueError):
+    """두 사람이 같은 역을 골랐을 때. 외부 API를 쓰기 전에 거절합니다."""
+
+
+def same_station(first, second):
+    """노선만 다른 같은 역('강남역 2호선'·'강남역 신분당선')도 같은 출발역으로 봅니다.
+
+    이름 첫 단어가 같거나, 좌표가 300m 안쪽이면 같은 역으로 판단합니다.
+    """
+    def key(station):
+        words = str(station.get("place_name", "")).split()
+        return re.sub(r"역$", "", re.sub(r"\(.*$", "", words[0])) if words else ""
+    if key(first) and key(first) == key(second):
+        return True
+    try:
+        dx = (float(first["x"]) - float(second["x"])) * 88.0  # 경도 1도 ≈ 88km (서울 부근)
+        dy = (float(first["y"]) - float(second["y"])) * 111.0
+    except (KeyError, TypeError, ValueError):
+        return False
+    return (dx * dx + dy * dy) ** 0.5 < 0.3
+
+
 class ComparisonHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if urlsplit(self.path).path == "/api/map-config":
@@ -158,6 +181,8 @@ class ComparisonHandler(BaseHTTPRequestHandler):
             action()
         except RouteLimitError as error:
             self.send_json(429, {"error": str(error)})
+        except SameStationError:
+            self.send_json(400, {"error": "두 사람의 출발역이 같아요. 서로 다른 역을 골라 주세요."})
         except (ValueError, KeyError, TypeError):
             self.send_json(400, {"error": "출발역을 다시 검색·선택하고 활동을 1개 이상 선택하세요."})
         except RuntimeError as error:
@@ -225,6 +250,8 @@ class ComparisonHandler(BaseHTTPRequestHandler):
             if time.monotonic() - created > 3600:
                 raise ValueError()
             stations.append(station)
+        if same_station(*stations):
+            raise SameStationError()
         api_key = get_api_key()
         # 입력 검증까지는 요청 안에서 끝내고, 오래 걸리는 계산은 작업으로 넘깁니다.
         forget_old_jobs()

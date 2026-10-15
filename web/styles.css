@@ -140,6 +140,8 @@ button { -webkit-tap-highlight-color: transparent; }
 .station-option small { display: block; font-size: 13px; color: var(--muted); }
 .station-option:has(input:checked) { border-color: var(--rose); background: var(--rose-tint); }
 .station-option:has(input:checked) strong { color: var(--rose-ink); }
+.station-change { align-self: flex-start; min-height: 36px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.station-change:hover { border-color: var(--rose); color: var(--rose-text); }
 .mode-picker legend, .activity-picker legend { padding: 0; margin-bottom: 10px; font-size: 14px; font-weight: 700; color: var(--ink-2); }
 .segmented { display: flex; gap: 8px; }
 .segmented label { flex: 1; position: relative; }

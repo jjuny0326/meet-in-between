@@ -87,21 +87,22 @@ class WebServerTests(unittest.TestCase):
 
     def test_station_tokens_hide_key_and_coordinates_and_recommend_uses_server_values(self):
         station = {"place_name": "테스트역", "address_name": "주소", "x": "127", "y": "37"}
+        other = {"place_name": "다른역", "address_name": "주소", "x": "127.1", "y": "37.1"}
         with patch.object(serve_web, "get_api_key", return_value="never-expose-this"), \
-                patch.object(serve_web, "search_stations", return_value=[station]), \
+                patch.object(serve_web, "search_stations", return_value=[station, other]), \
                 patch.object(serve_web, "build_recommendation", return_value={"example": True}) as build, \
                 patch.object(serve_web, "save_report") as save:
             status, _, body = self.request("/api/stations?query=test")
             self.assertEqual(status, 200)
-            result = json.loads(body)["stations"][0]
+            result, second = json.loads(body)["stations"]
             self.assertEqual(set(result), {"token", "name", "address"})
-            started = self.start_job({"station_a": result["token"], "station_b": result["token"], "preferences": ["cafe"]})
+            started = self.start_job({"station_a": result["token"], "station_b": second["token"], "preferences": ["cafe"]})
             job = self.wait_job(started["job_id"])
             self.assertEqual(job["status"], "done")
             self.assertEqual(job["report"], {"example": True})
             self.assertNotIn("never-expose-this", json.dumps(job, ensure_ascii=False))
             build.assert_called_once()
-            self.assertEqual(build.call_args.args, (station, station, ["cafe"], "never-expose-this"))
+            self.assertEqual(build.call_args.args, (station, other, ["cafe"], "never-expose-this"))
             self.assertEqual(build.call_args.kwargs["mode"], "burden")
             self.assertTrue(callable(build.call_args.kwargs["on_stage"]))
             save.assert_called_once()
@@ -200,7 +201,7 @@ class WebServerTests(unittest.TestCase):
         with patch.object(serve_web, "get_api_key", return_value="dummy"), \
                 patch.object(serve_web, "build_recommendation", return_value={"example": True}) as build, \
                 patch.object(serve_web, "save_report"):
-            job = self.wait_job(self.start_job({"station_a": "local-0", "station_b": "local-0", "preferences": ["cafe"]})["job_id"])
+            job = self.wait_job(self.start_job({"station_a": "local-0", "station_b": "local-1", "preferences": ["cafe"]})["job_id"])
             self.assertEqual(job["status"], "done")
             station = build.call_args.args[0]
             self.assertEqual(station["place_name"], "신사역 신분당선")
@@ -209,6 +210,23 @@ class WebServerTests(unittest.TestCase):
             for token in ("local-999999", "local-", "local-abc"):
                 self.assertEqual(self.post({"station_a": token, "station_b": "local-0", "preferences": ["cafe"]})[0], 400)
             build.assert_not_called()
+
+    def test_same_station_is_rejected_before_any_api_call(self):
+        import station_catalog
+        line2, sinbundang = (item["token"] for item in station_catalog.suggest("강남")[:2])
+        with patch.object(serve_web, "get_api_key") as key, patch.object(serve_web, "build_recommendation") as build:
+            for a, b in (("local-0", "local-0"), (line2, sinbundang)):
+                status, _, body = self.post({"station_a": a, "station_b": b, "preferences": ["cafe"]})
+                self.assertEqual(status, 400)
+                self.assertIn("출발역이 같아요", json.loads(body)["error"])
+            key.assert_not_called()
+            build.assert_not_called()
+        self.assertTrue(serve_web.same_station({"place_name": "강남역 2호선", "x": 127.0276, "y": 37.4979},
+                                               {"place_name": "강남역 신분당선", "x": 127.0281, "y": 37.4959}))
+        self.assertTrue(serve_web.same_station({"place_name": "A", "x": 127.0, "y": 37.0}, {"place_name": "B", "x": 127.001, "y": 37.001}))
+        self.assertFalse(serve_web.same_station({"place_name": "신사역 신분당선", "x": 127.0198, "y": 37.5161},
+                                                {"place_name": "논현역 신분당선", "x": 127.0214, "y": 37.5111}))
+        self.assertFalse(serve_web.same_station({}, {}))
 
     def test_unknown_job_and_foreign_origin_on_status(self):
         self.assertEqual(self.request("/api/recommendations/unknown")[0], 404)

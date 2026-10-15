@@ -76,6 +76,12 @@ def load_catalog():
     return catalog
 
 
+def line_order(line):
+    """같은 이름의 역은 서울 지하철(1~9호선)을 먼저, 그다음 광역철도·경전철 순으로 보여줍니다."""
+    match = re.match(r"(\d)호선", line)
+    return (0, int(match.group(1))) if match else (1, 0)
+
+
 def suggest(query, limit=6):
     """일치 → 앞부분 일치 → 포함 순으로 최대 limit개를 돌려줍니다."""
     if not isinstance(query, str) or not 1 <= len(query.strip()) <= 40:
@@ -93,8 +99,8 @@ def suggest(query, limit=6):
             rank = 2
         else:
             continue
-        ranked.append((rank, len(entry["key"]), entry["key"], order, entry))
-    ranked.sort(key=lambda item: item[:4])
+        ranked.append((rank, len(entry["key"]), entry["key"], line_order(entry["line"]), order, entry))
+    ranked.sort(key=lambda item: item[:5])
     return [{"token": e["token"], "name": e["display"], "line": e["line"]} for *_, e in ranked[:limit]]
 
 

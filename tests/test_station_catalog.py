@@ -10,6 +10,12 @@ class StationCatalogTests(unittest.TestCase):
         self.assertIn("강남구청역", names)
         self.assertLess(names.index("강남대역"), names.index("강남구청역"))
 
+    def test_same_name_lists_seoul_subway_lines_first(self):
+        # 대부분의 사용자가 떠올리는 노선(1~9호선)을 먼저 보여줍니다.
+        self.assertEqual([item["line"] for item in catalog.suggest("강남")[:2]], ["2호선", "신분당선"])
+        self.assertEqual(catalog.line_order("1호선 (경부선)"), (0, 1))
+        self.assertEqual(catalog.line_order("신분당선"), (1, 0))
+
     def test_mixed_station_suffix_is_normalized(self):
         # 원본에 '용산역'처럼 '역'이 붙은 이름과 '강남'처럼 없는 이름이 섞여 있습니다.
         self.assertEqual(catalog.suggest("용산역")[0]["name"], "용산역")

@@ -49,6 +49,11 @@ test('두 역과 활동을 선택해야 추천 가능', () => {
   assert.equal(context.canRecommend({a:'a',b:'b'},['cafe'],false),true);
   for(const [selected,activities,pending] of [[{a:null,b:'b'},['cafe'],false],[{a:'a',b:'b'},[],false],[{a:'a',b:'b'},['cafe'],true]])
     assert.equal(context.canRecommend(selected,activities,pending),false);
+  // 노선만 다른 같은 역은 추천하지 않습니다.
+  assert.equal(context.canRecommend({a:'a',b:'b'},['cafe'],false,{a:'강남',b:'강남'}),false);
+  assert.equal(context.canRecommend({a:'a',b:'b'},['cafe'],false,{a:'강남',b:'원인재'}),true);
+  assert.equal(vm.runInContext("stationKey('강남역 2호선')",context),'강남');
+  assert.equal(vm.runInContext("stationKey('수원역(분당)')",context),'수원');
 });
 
 test('입력 변경 후 늦게 도착한 검색 결과는 표시하지 않음', async () => {
@@ -203,6 +208,34 @@ test('입력하면 로컬 역 목록 후보를 보여주고 고르면 선택 번
   radio.events.change();
   assert.equal(vm.runInContext('searchState.selected.a',context),'local-105');
   assert.match(get('station-a-status').textContent,/강남역 2호선/);
+});
+
+test('여러 후보 중 고르면 선택한 역만 남기고, 다시 펼칠 수 있음', async () => {
+  const {get}=setup(async()=>ok({stations:[{token:'local-1',name:'강남역',line:'2호선'},{token:'local-2',name:'강남역',line:'신분당선'}]}));
+  get('station-a-query').value='강남';
+  get('station-a-query').events.input();
+  await new Promise(r=>setImmediate(r));
+  const [first,second,change]=get('station-a-options').children;
+  assert.equal(change.hidden,true);
+  second.children[0].events.change();
+  assert.equal(first.hidden,true); assert.equal(second.hidden,false); assert.equal(change.hidden,false);
+  change.events.click();
+  assert.equal(first.hidden,false); assert.equal(change.hidden,true);
+});
+
+test('두 사람이 같은 역을 고르면 버튼을 막고 안내하며, 바꾸면 안내를 지움', async () => {
+  const {get}=setup(async()=>ok({stations:[{token:'local-1',name:'강남역',line:'2호선'}]}));
+  for (const person of ['a','b']) {
+    get(`station-${person}-query`).value='강남';
+    get(`station-${person}-query`).events.input();
+    await new Promise(r=>setImmediate(r));
+    get(`station-${person}-options`).children[0].children[0].events.change();
+  }
+  assert.equal(get('find-button').disabled,true);
+  assert.match(get('search-status').textContent,/출발역이 같아요/);
+  get('station-b-query').value='원인재';
+  get('station-b-query').events.input();
+  assert.doesNotMatch(get('search-status').textContent,/출발역이 같아요/);
 });
 
 test('늦게 도착한 자동완성은 버리고 빈 입력은 요청하지 않음', async () => {
