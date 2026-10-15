@@ -46,12 +46,13 @@ class RecommendationPolicyTests(unittest.TestCase):
             find.assert_not_called()
 
     def test_build_uses_selected_routes_and_saves_policy_for_analysis(self):
-        with patch.object(app,"find_meeting_candidates",return_value=[{"place_name":"후보","line_name":"1"}]), \
+        with patch.object(app,"ROUTE_CACHE", app.RouteCache()), \
+                patch.object(app,"find_meeting_candidates",return_value=[{"place_name":"후보","line_name":"1","x":127,"y":37}]), \
                 patch.object(app,"ensure_route_capacity"), \
                 patch.object(app,"get_transit_routes",return_value=[route(30,2),route(45,0)]) as paths, \
                 patch.object(app,"enrich_recommendations",side_effect=lambda rows,*args:[{**r,"rank":i+1} for i,r in enumerate(rows[:3])]), \
                 patch.object(app,"analyze_recommendations",return_value={}) as analyze:
-            report = app.build_recommendation({"place_name":"A"},{"place_name":"B"},["cafe"],"dummy",mode="transfers")
+            report = app.build_recommendation({"place_name":"A","x":128,"y":37},{"place_name":"B","x":129,"y":37},["cafe"],"dummy",mode="transfers")
             self.assertEqual(report["recommendation_mode"], "transfers")
             self.assertEqual(report["recommendations"][0]["minutes_a"],45)
             self.assertEqual(report["recommendations"][0]["transfers_a"],0)

@@ -50,6 +50,55 @@ function syncMotionSetting() {
     for (const animation of activeAnimations) animation.cancel();
     activeAnimations.clear();
   }
+  updateJourneyScroll();
+}
+
+// 스크롤 위치는 바꾸지 않고 장식만 최대 12px 이동합니다.
+function updateJourneyScroll() {
+  const intro = document.querySelector?.(".intro");
+  const story = document.querySelector?.(".meeting-story");
+  if (!intro || !story) return;
+  const rect = intro.getBoundingClientRect();
+  const progress = Math.max(0, Math.min(1, -rect.top / Math.max(rect.height, 1)));
+  const shiftLimit = window.innerWidth <= 760 ? 4 : 12;
+  intro.style.setProperty("--postcard-shift", `${motionEnabled() ? progress * -shiftLimit : 0}px`);
+  const storyTop = story.getBoundingClientRect().top;
+  const storyProgress = Math.max(0, Math.min(1, (window.innerHeight - storyTop) / (window.innerHeight * .55)));
+  story.style.setProperty("--story-progress", motionEnabled() ? storyProgress : 1);
+}
+
+function initPageMotion() {
+  if (typeof window === "undefined" || !document.querySelectorAll) return;
+  if (typeof IntersectionObserver === "function") {
+    // 카드 재정렬용 observer와 분리해 검색 후에도 페이지 등장 효과를 유지합니다.
+    const sections = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        animateEntry(entry.target, Number(entry.target.dataset.revealOrder || 0) * 80);
+        sections.unobserve(entry.target);
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll("[data-reveal], .search-panel, .recommendation, .quick-comparison, .map-section, .reading-guide").forEach((node, index) => {
+      node.dataset.revealOrder = node.hasAttribute("data-reveal") ? index % 3 : 0;
+      sections.observe(node);
+    });
+    const art = document.querySelector(".journey");
+    if (art) {
+      const visibility = new IntersectionObserver(entries => {
+        art.dataset.visible = String(entries[0].isIntersecting);
+      });
+      visibility.observe(art);
+    }
+  }
+  let pending = false;
+  const schedule = () => {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => { pending = false; updateJourneyScroll(); });
+  };
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule);
+  updateJourneyScroll();
 }
 
 // 외부 데이터는 HTML 문자열로 삽입하지 않고 textContent로 표시합니다.
@@ -61,6 +110,13 @@ function element(tag, className, text) {
 }
 
 function validateReport(report) {
+  if (report?.route_usage !== undefined) {
+    const usage = report.route_usage;
+    if (!usage || !["cache_hits", "api_calls", "ttl_seconds"].every(key => Number.isInteger(usage[key]) && usage[key] >= 0) ||
+        !["oldest_fetched_at", "latest_fetched_at"].every(key => typeof usage[key] === "string" && Number.isFinite(Date.parse(usage[key])))) {
+      throw new Error("경로 조회 기록 형식을 확인해 주세요.");
+    }
+  }
   if (report && (report.recommendation_mode !== undefined && (typeof report.recommendation_mode !== "string" || !Object.hasOwn(recommendationModes, report.recommendation_mode)) || report.recommendation_note !== undefined && typeof report.recommendation_note !== "string")) {
     throw new Error("추천 기준 형식을 확인해 주세요.");
   }
@@ -147,6 +203,13 @@ function renderPlace(place, rank) {
   return li;
 }
 
+function routeUsageText(usage) {
+  if (!usage) return "이전 저장 결과에는 경로 재사용 기록이 없어요.";
+  const format = value => new Intl.DateTimeFormat("ko-KR", {timeZone:"Asia/Seoul",dateStyle:"short",timeStyle:"medium"}).format(new Date(value));
+  const times = usage.oldest_fetched_at === usage.latest_fetched_at ? format(usage.oldest_fetched_at) : `${format(usage.oldest_fetched_at)} ~ ${format(usage.latest_fetched_at)}`;
+  return `이 결과 계산 시 · 이전 경로 재사용 ${usage.cache_hits}건 · 새 경로 조회 ${usage.api_calls}회 · 경로 조회 시각 ${times} (한국 시간). 주변 장소·AI 호출은 별도예요.`;
+}
+
 function renderCard(item, maxTime) {
   const report = state.report;
   const isRecommended = report.analysis.source === "gemini" && item.rank === report.analysis.recommended_rank;
@@ -176,6 +239,11 @@ function renderCard(item, maxTime) {
     bar.style.width = `${Math.min(100, item[`minutes_${key}`] / maxTime * 100)}%`;
     track.append(bar);
     person.append(labelNode, time, element("p", "transfer", `환승 ${item[`transfers_${key}`]}회`), track);
+    const route = item[`route_${key}`];
+    if (route && ["api", "cache"].includes(route.source) && typeof route.fetched_at === "string" && Number.isFinite(Date.parse(route.fetched_at))) {
+      const fetched = new Intl.DateTimeFormat("ko-KR", {timeZone:"Asia/Seoul",dateStyle:"short",timeStyle:"short"}).format(new Date(route.fetched_at));
+      person.append(element("p", "route-date", `${route.source === "cache" ? "재사용" : "새 조회"} · ${fetched} 조회 (한국 시간)`));
+    }
     travel.append(person);
   }
   const difference = element("div", "time-difference");
@@ -293,6 +361,7 @@ function showReport(report, source) {
   $("sort-order").value = "rank";
   const mode = report.recommendation_mode || "burden";
   $("result-criterion").textContent = `이 결과의 추천 기준: ${recommendationModes[mode]} · 최대 3곳` + (report.recommendation_note ? ` — ${report.recommendation_note}` : "");
+  $("route-usage").textContent = routeUsageText(report.route_usage);
   if (!report.preferences.includes(state.category)) state.category = report.preferences[0];
   const analysis = report.analysis;
   const recommendation = analysis.source === "gemini" ? report.recommendations.find((item) => item.rank === analysis.recommended_rank) : null;
@@ -304,7 +373,7 @@ function showReport(report, source) {
   $("recommendation-link").textContent = recommendation ? "추천 후보 자세히 ↓" : "후보 비교하기 ↓";
   const date = new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", dateStyle: "medium", timeStyle: "short" }).format(new Date(report.collected_at));
   const origins = Array.isArray(report.origins) && report.origins.length === 2 && report.origins.every(value => typeof value === "string") ? `A ${report.origins[0]} · B ${report.origins[1]} · ` : "";
-  $("timestamp").textContent = `${origins}${source} · 조회 ${date} (한국 시간)`;
+  $("timestamp").textContent = `${origins}${source} · 결과 작성 ${date} (한국 시간)`;
   $("candidate-count").textContent = String(report.recommendations.length);
   $("category-filters").replaceChildren(...[...new Set(report.preferences)].map((key) => {
     const button = element("button", "", categories[key]);
@@ -352,6 +421,7 @@ $("motion-toggle").addEventListener("click", () => {
 });
 motionPreference.addEventListener?.("change", syncMotionSetting);
 syncMotionSetting();
+initPageMotion();
 $("sort-order").addEventListener("change", (event) => {
   state.sort = event.target.value;
   if (state.report) renderCards();

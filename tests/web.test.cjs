@@ -94,3 +94,15 @@ test('기준 없는 과거 파일과 세 기준은 허용하고 알 수 없는 �
     assert.throws(()=>context.validateReport(report));
   }
 });
+
+test('경로 재사용 표시에는 원래 조회 시각과 새 호출 수를 구분', () => {
+  const usage={cache_hits:10,api_calls:0,ttl_seconds:600,oldest_fetched_at:'2026-10-15T10:00:00+09:00',latest_fetched_at:'2026-10-15T10:01:00+09:00'};
+  const report=fixture();report.route_usage=usage;
+  assert.equal(context.validateReport(report),report);
+  assert.match(context.routeUsageText(usage),/재사용 10건.*새 경로 조회 0회.*한국 시간/);
+  assert.match(context.routeUsageText(undefined),/이전 저장 결과/);
+  for(const edit of [r=>r.route_usage.cache_hits=-1,r=>r.route_usage.oldest_fetched_at='bad']) {
+    const invalid=JSON.parse(JSON.stringify(report));edit(invalid);
+    assert.throws(()=>context.validateReport(invalid));
+  }
+});

@@ -19,10 +19,11 @@ class StationServiceTests(unittest.TestCase):
 
     def test_insufficient_quota_stops_before_network_or_ai(self):
         (self.base / ".route_usage.json").write_text(json.dumps({"date": datetime.now(app.KOREA_TIME).date().isoformat(), "count": 11}))
-        with patch.object(app, "find_meeting_candidates", return_value=[{"place_name": "후보", "line_name": "1"}] * 5), \
+        with patch.object(app, "ROUTE_CACHE", app.RouteCache()), \
+                patch.object(app, "find_meeting_candidates", return_value=[{"place_name": "후보", "line_name": "1", "x":127+i/100,"y":37} for i in range(5)]), \
                 patch.object(app, "get_transit_routes") as routes, patch.object(app, "analyze_recommendations") as ai:
             with self.assertRaises(app.RouteLimitError):
-                app.build_recommendation({}, {}, ["cafe"], "dummy")
+                app.build_recommendation({"x":128,"y":37}, {"x":129,"y":37}, ["cafe"], "dummy")
             routes.assert_not_called()
             ai.assert_not_called()
 

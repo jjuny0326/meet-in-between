@@ -323,6 +323,10 @@ def analyze_recommendations(recommendations, preferences, mode="burden"):
 def print_report(report):
     print("\n선택한 활동:", ", ".join(CATEGORIES[p]["label"] for p in report["preferences"]))
     print("조회 시각:", report["collected_at"])
+    usage = report.get("route_usage")
+    if usage:
+        print(f"경로 재사용 {usage['cache_hits']}건 / 새 조회 {usage['api_calls']}회")
+        print("경로 최초/최근 조회 시각:", usage["oldest_fetched_at"], "/", usage["latest_fetched_at"])
     print("\n만남 후보 비교 (후보 번호는 선택한 추천 기준의 순위)")
     print("추천 기준:", MODES[report.get("recommendation_mode", "burden")])
     print("출입 안내는 이름·주소의 단서에 기반합니다. 표시가 없는 장소도 자유 출입이 확인된 것은 아닙니다.")
@@ -333,6 +337,8 @@ def print_report(report):
         print(f"\n{result['rank']}. {station['place_name']} ({station['line_name']})")
         for person, key in (("첫 번째", "a"), ("두 번째", "b")):
             print(f"{person} 사람: {result['minutes_' + key]:.1f}분, 환승 {result['transfers_' + key]}회")
+            if result.get("route_" + key):
+                print("  경로 조회 시각:", result["route_" + key]["fetched_at"])
         print(f"이동시간 합계: {result['total']:.1f}분 / 차이: {result['difference']:.1f}분")
         for group in result["places"].values():
             print(f"주변 {group['label']} (반경 1km, 최대 5곳)")

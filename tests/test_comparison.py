@@ -17,7 +17,7 @@ import station_search as app
 
 def result(number=1):
     return {
-        "station": {"place_name": f"후보{number}역", "line_name": "1호선", "x": 127, "y": 37},
+        "station": {"place_name": f"후보{number}역", "line_name": "1호선", "x": 127 + number / 100, "y": 37},
         "minutes_a": 40 + number, "minutes_b": 42 + number,
         "transfers_a": 1, "transfers_b": 2,
         "total": 82 + 2 * number, "difference": 2, "longest": 42 + number,
@@ -64,6 +64,7 @@ class ComparisonTests(unittest.TestCase):
         self.stack.enter_context(patch.object(c, "REPORT_PATH", self.base / "report.json"))
         self.stack.enter_context(patch.dict(os.environ, {}, clear=True))
         self.stack.enter_context(patch.object(app, "load_dotenv"))
+        self.stack.enter_context(patch.object(app, "ROUTE_CACHE", app.RouteCache()))
         self.get = self.stack.enter_context(patch.object(requests, "get", side_effect=AssertionError("Unexpected GET")))
         self.post = self.stack.enter_context(patch.object(requests, "post", side_effect=AssertionError("Unexpected POST")))
         self.stack.enter_context(redirect_stdout(io.StringIO()))
@@ -275,7 +276,7 @@ class ComparisonTests(unittest.TestCase):
                   for minutes in (60, 60, 40, 42, 45, 43, 70, 72, 90, 95)]
         with patch.object(app, "select_preferences", return_value=["cafe", "culture"]), \
                 patch.object(app, "ensure_route_capacity"), \
-                patch.object(app, "select_station", return_value=candidates[0]), \
+                patch.object(app, "select_station", side_effect=[result(10)["station"], result(11)["station"]]), \
                 patch.object(app, "find_meeting_candidates", return_value=candidates), \
                 patch.object(app, "get_transit_routes", side_effect=routes) as transit, \
                 patch.object(c, "search_nearby_places", return_value=[]) as places:

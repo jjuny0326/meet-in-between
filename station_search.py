@@ -15,8 +15,10 @@ from comparison import (
     analyze_recommendations, print_report, save_report, load_report,
 )
 from recommendation_policy import MODES, validate_mode, select_route, rank_candidates, mode_description
+from route_cache import RouteCache
 
 BASE_DIR = Path(__file__).resolve().parent
+ROUTE_CACHE = RouteCache()
 
 
 class RouteLimitError(RuntimeError):
@@ -312,16 +314,18 @@ def build_recommendation(station_a, station_b, preferences, api_key, progress=No
             f"({station['line_name']})"
         )
 
-    ensure_route_capacity(len(candidates) * 2)
+    pairs = [(start, candidate) for candidate in candidates for start in (station_a, station_b)]
+    route_entries, route_usage = ROUTE_CACHE.load_batch(pairs, api_key, get_transit_routes, ensure_route_capacity)
+    notify(f"경로 재사용 {route_usage['cache_hits']}건 / 새 조회 {route_usage['api_calls']}회")
 
     # 후보별 이동시간을 비교해서 상위 3곳을 출력
     results = []
 
-    for candidate in candidates:
+    for index, candidate in enumerate(candidates):
         notify(f"\n이동시간 확인 중: {candidate['place_name']}")
 
-        routes_a = get_transit_routes(station_a, candidate, api_key)
-        routes_b = get_transit_routes(station_b, candidate, api_key)
+        entry_a, entry_b = route_entries[index * 2:index * 2 + 2]
+        routes_a, routes_b = entry_a["routes"], entry_b["routes"]
 
         selected_a = select_route(routes_a, mode)
         selected_b = select_route(routes_b, mode)
@@ -331,6 +335,8 @@ def build_recommendation(station_a, station_b, preferences, api_key, progress=No
 
         results.append({
             "station": candidate,
+            "route_a": {"source": entry_a["source"], "fetched_at": entry_a["fetched_at"]},
+            "route_b": {"source": entry_b["source"], "fetched_at": entry_b["fetched_at"]},
             "minutes_a": minutes_a,
             "minutes_b": minutes_b,
             "transfers_a": selected_a["properties"]["transfers"],
@@ -348,6 +354,7 @@ def build_recommendation(station_a, station_b, preferences, api_key, progress=No
         "schema_version": 1,
         "recommendation_mode": mode,
         "recommendation_note": mode_description(mode),
+        "route_usage": route_usage,
         "origins": [station_a["place_name"], station_b["place_name"]],
         "collected_at": datetime.now(KOREA_TIME).isoformat(),
         "preferences": preferences,
