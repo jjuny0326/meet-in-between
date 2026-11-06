@@ -51,7 +51,8 @@ test('지도는 명시적으로 열 때만 설정 조회, 키 누락시 카드 �
   assert.equal(calls.length,0);
   await api.focus(null);
   assert.deepEqual(calls,['/api/map-config']);assert.equal(scripts(),0);
-  assert.match(get('map-status').textContent,/KAKAO_JAVASCRIPT_KEY/);
+  assert.match(get('map-status').textContent,/지금은 지도를 불러올 수 없어요/);
+  assert.equal(get('map-help').hidden,false); // 설정 방법은 접힌 안내로 제공
   assert.equal(data.recommendations.length,3);assert.equal(get('map-load').disabled,false);
 });
 test('SDK 한 번 로딩 후 필터 전환은 마커만 교체, 클릭시 상세 정보 표시',async()=>{

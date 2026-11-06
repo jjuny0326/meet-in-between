@@ -200,6 +200,9 @@ body:has(#report-file:focus-visible) .file-button { outline: 3px solid var(--foc
 .empty-icon { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--rose-tint); color: var(--rose); font-size: 24px; }
 .empty-state h2 { margin: 14px 0 6px; font-size: 22px; }
 .empty-state p { margin: 0; color: var(--muted); font-size: 15px; }
+.empty-action { margin-top: 18px; min-height: 48px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--rose-strong); color: var(--on-accent); font: inherit; font-size: 15px; font-weight: 900; cursor: pointer; }
+.empty-action:hover { filter: brightness(1.05); }
+.data-toolbar p:empty { display: none; }
 
 /* ===== 결과 공개 단계 ===== */
 .reveal-stage { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 40px 0 64px; text-align: center; scroll-margin-top: 40px; }
@@ -582,7 +585,7 @@ html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="
 .filter-row { margin-top: 4px; margin-bottom: 16px; }
 
 /* 지도: 후보 선택 버튼을 지도 위에 띄웁니다 */
-.map-section { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "map" "status" "detail" "foot"; }
+.map-section { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "map" "status" "help" "detail" "foot"; }
 .map-heading { grid-area: head; margin-bottom: 12px; }
 #map-candidates { grid-area: map; align-self: start; z-index: 2; margin: 0; padding: 10px 56px 10px 10px; pointer-events: none; }
 #map-candidates button { pointer-events: auto; background: color-mix(in srgb, var(--surface) 94%, transparent); box-shadow: var(--shadow-sm); }
@@ -636,4 +639,12 @@ html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="
   html[data-tab="map"] .map-heading { flex-wrap: wrap; gap: 6px 10px; }
   html[data-tab="map"] .map-heading h3 { font-size: 17px; }
   .map-heading .text-button { white-space: nowrap; min-height: 38px; padding: 0 12px; font-size: 13px; }
+}
+
+/* 지도 설정 방법(관리자용)은 접어 두고, 지도 실패 시에만 보입니다. */
+#map-help { grid-area: help; margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+#map-help code { font-size: 12px; }
+/* 모바일 결과 탭에서는 '결과 다시 읽기·파일 열기'를 안내 탭에만 둡니다. */
+@media (max-width: 760px) {
+  html[data-tab="results"] .data-toolbar .data-actions { display: none; }
 }

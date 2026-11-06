@@ -109,7 +109,8 @@ test('한도 오류는 이전 결과를 보존하고 버튼을 복구', async ()
 
 test('모션을 켜면 결과 열기 단계를 거친 뒤 요약으로 부드럽게 이동하고 서버 안내도 유지', async () => {
   const warning='결과 파일 저장에 실패했지만 계산 결과는 표시해요.';
-  const {context,get,shown}=setup(jobFetch([done({recommendations:[{},{},{}]},warning)]),{motion:true});
+  const jobs=[done({recommendations:[{},{},{}]},warning)];
+  const {context,get,shown}=setup(jobFetch(jobs),{motion:true});
   vm.runInContext('searchState.selected={a:"a",b:"b"}',context);
   await get('meeting-form').events.submit({preventDefault(){}});
   assert.equal(shown.length,1);
@@ -126,6 +127,12 @@ test('모션을 켜면 결과 열기 단계를 거친 뒤 요약으로 부드럽
   assert.deepEqual(get('summary-title').focusCalls,[{preventScroll:true}]);
   assert.deepEqual(get('recommendation').scrollCalls,[{behavior:'smooth',block:'start'}]);
   assert.equal(get('meeting-form').attributes['aria-busy'],'false');
+  // 한 번 열어 본 뒤의 검색은 '결과 열기' 없이 바로 공개합니다.
+  get('results').hidden=true; jobs.push(done({recommendations:[{}]}));
+  await get('meeting-form').events.submit({preventDefault(){}});
+  assert.equal(get('reveal-stage').hidden,true);
+  assert.equal(get('results').hidden,false);
+  assert.equal(get('summary-title').focusCalls.length,2);
 });
 
 test('추천 기준 변경만으로는 호출하지 않고 제출할 때 선택값 전송', async () => {
@@ -208,6 +215,21 @@ test('입력하면 로컬 역 목록 후보를 보여주고 고르면 선택 번
   radio.events.change();
   assert.equal(vm.runInContext('searchState.selected.a',context),'local-105');
   assert.match(get('station-a-status').textContent,/강남역 2호선/);
+});
+
+test('목록에 없을 때만 전체 검색 버튼을 보여주고, 다시 입력하면 숨김', async () => {
+  let stations=[];
+  const {get}=setup(async()=>ok({stations}));
+  const query=get('station-a-query'), button=get('station-a-search');
+  query.value='없는역'; query.events.input();
+  await new Promise(r=>setImmediate(r));
+  assert.equal(button.hidden,false);
+  assert.match(get('station-a-status').textContent,/전체 검색/);
+  stations=[{token:'local-1',name:'강남역',line:'2호선'}];
+  query.value='강남'; query.events.input();
+  assert.equal(button.hidden,true);
+  await new Promise(r=>setImmediate(r));
+  assert.equal(button.hidden,true);
 });
 
 test('여러 후보 중 고르면 선택한 역만 남기고, 다시 펼칠 수 있음', async () => {

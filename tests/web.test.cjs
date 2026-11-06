@@ -45,6 +45,14 @@ test('파일 오류일 때 빈 화면 안내와 로딩 문구를 갱신', () => 
   assert.equal(nodes.get('empty-state').hidden, false);
   assert.match(nodes.get('timestamp').textContent, /없어요/);
 });
+test('저장 결과가 아직 없으면 오류 문구 없이 빈 화면 안내만 표시', () => {
+  vm.runInContext('state.report=null', context);
+  nodes.get('feedback').textContent='이전 오류';
+  context.showEmpty();
+  assert.equal(nodes.get('feedback').textContent, '');
+  assert.equal(nodes.get('timestamp').textContent, '');
+  assert.equal(nodes.get('empty-state').hidden, false);
+});
 test('정렬 기준을 바꿔도 후보 번호와 원본 순서는 보존', () => {
   const items = [
     {rank:1,difference:4,transfers_a:0,transfers_b:2},

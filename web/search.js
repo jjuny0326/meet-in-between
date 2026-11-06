@@ -116,10 +116,13 @@ async function suggestStations(person, query, version) {
     if (version !== searchState.versions[person]) return; // 그사이 입력이 바뀌었으면 버립니다.
     renderStationOptions(person, data.stations.map(item => ({ token: item.token, name: item.name, detail: item.line, local: true })));
     $(`station-${person}-status`).textContent = data.stations.length
-      ? "이용할 역과 노선을 선택해 주세요. 찾는 역이 없으면 ‘역 검색’을 눌러 주세요."
-      : "수도권 역 목록에 없어요. ‘역 검색’을 눌러 찾아 주세요.";
+      ? "이용할 역과 노선을 선택해 주세요."
+      : "수도권 역 목록에 없어요. ‘전체 검색’으로 찾아볼 수 있어요.";
+    $(`station-${person}-search`).hidden = data.stations.length > 0;
   } catch (error) {
-    if (version === searchState.versions[person]) $(`station-${person}-status`).textContent = "역 목록을 불러오지 못했어요. ‘역 검색’을 눌러 주세요.";
+    if (version !== searchState.versions[person]) return;
+    $(`station-${person}-status`).textContent = "역 목록을 불러오지 못했어요. ‘전체 검색’을 눌러 주세요.";
+    $(`station-${person}-search`).hidden = false;
   }
 }
 
@@ -154,6 +157,7 @@ for (const person of ["a", "b"]) {
     searchState.selected[person] = null;
     searchState.names[person] = null;
     $(`station-${person}-options`).replaceChildren();
+    $(`station-${person}-search`).hidden = true; // 목록 결과를 보고 다시 판단합니다.
     clearTimeout(suggestTimers[person]);
     const query = $(`station-${person}-query`).value.trim();
     $(`station-${person}-status`).textContent = query ? "역 목록에서 찾고 있어요…" : "역 이름을 입력하면 목록이 나타나요.";
@@ -183,10 +187,33 @@ function focusSummary() {
   document.querySelector(".recommendation").scrollIntoView({ behavior: motionEnabled() ? "smooth" : "instant", block: "start" });
 }
 
-// 새 검색 결과는 '결과 열기' 단계를 거쳐 공개합니다. 모션을 끈 경우에는 바로 보여줍니다.
+// '결과 열기' 연출은 처음 한 번만 보여 주고, 이후 검색은 바로 공개합니다(이 브라우저에 기억).
+const REVEAL_SEEN_KEY = "date-meet-reveal-seen";
+let revealSeenInTab = false;
+function revealSeen() {
+  try { return revealSeenInTab || localStorage.getItem(REVEAL_SEEN_KEY) === "true"; } catch { return revealSeenInTab; }
+}
+function rememberReveal() {
+  revealSeenInTab = true;
+  try { localStorage.setItem(REVEAL_SEEN_KEY, "true"); } catch { /* 현재 탭에서만 기억 */ }
+}
+function openResults() {
+  $("reveal-stage").hidden = true;
+  const results = $("results");
+  results.hidden = false;
+  // 카드가 나타나는 효과는 CSS(.is-revealing)가 담당하고, 끝나면 표시를 지웁니다.
+  if (motionEnabled()) {
+    results.classList?.add("is-revealing");
+    setTimeout(() => results.classList?.remove("is-revealing"), 1600);
+  }
+  focusSummary();
+}
+
+// 새 검색 결과는 처음에만 '결과 열기' 단계를 거쳐 공개합니다. 모션을 끈 경우에는 바로 보여줍니다.
 function presentNewResult(report) {
   if (typeof showTab === "function") showTab("results", { scroll: false });
   if (!motionEnabled()) { focusSummary(); return; }
+  if (revealSeen()) { openResults(); return; }
   const count = Array.isArray(report?.recommendations) ? report.recommendations.length : 0;
   $("results").hidden = true;
   $("reveal-title").textContent = count ? `후보 ${count}곳을 비교했어요` : "후보를 비교했어요";
@@ -195,15 +222,7 @@ function presentNewResult(report) {
   $("reveal-button").focus({ preventScroll: true });
 }
 
-$("reveal-button").addEventListener("click", () => {
-  $("reveal-stage").hidden = true;
-  const results = $("results");
-  results.hidden = false;
-  // 카드가 뒤집히며 나타나는 효과는 CSS(.is-revealing)가 담당하고, 끝나면 표시를 지웁니다.
-  results.classList?.add("is-revealing");
-  setTimeout(() => results.classList?.remove("is-revealing"), 1600);
-  focusSummary();
-});
+$("reveal-button").addEventListener("click", () => { rememberReveal(); openResults(); });
 $("meeting-form").addEventListener("submit", async event => {
   event.preventDefault();
   const preferences = selectedActivities();

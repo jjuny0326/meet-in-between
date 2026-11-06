@@ -450,17 +450,26 @@ function showError(error) {
   if (!state.report) $("timestamp").textContent = "표시할 저장 결과가 없어요.";
 }
 
+// 저장된 결과가 아직 없는 것은 오류가 아니므로 안내 문구를 겹쳐 띄우지 않습니다.
+function showEmpty() {
+  if (state.report) { showError(new Error("저장된 결과 파일이 없어요.")); return; }
+  $("feedback").textContent = "";
+  $("timestamp").textContent = "";
+  $("empty-state").hidden = false;
+}
+
 async function loadLatest() {
   const requestId = ++state.requestId;
   $("reload").disabled = true;
   $("reload").textContent = "읽는 중…";
   try {
     const response = await fetch("/data/latest_comparison.json", { cache: "no-store" });
-    if (!response.ok) throw new Error(response.status === 404 ? "아직 저장된 비교 결과가 없어요." : "저장 결과를 읽지 못했어요.");
+    if (response.status === 404) { if (requestId === state.requestId) showEmpty(); return false; }
+    if (!response.ok) throw new Error("저장 결과를 읽지 못했어요.");
     const report = await response.json();
     if (requestId === state.requestId) { showReport(report, "저장된 결과"); return true; }
   } catch (error) {
-    if (requestId === state.requestId) showError(error instanceof TypeError ? new Error("로컬 서버에 연결할 수 없어요. 서버를 실행하거나 결과 파일을 열어 주세요.") : error instanceof SyntaxError ? new Error("결과 파일의 JSON 형식이 올바르지 않아요.") : error);
+    if (requestId === state.requestId) showError(error instanceof TypeError ? new Error("로컬 서버에 연결할 수 없어요. 서버를 실행하거나 결과 파일을 열어 주세요.") : error instanceof SyntaxError ? new Error("결과 파일을 읽을 수 없어요. 이 앱에서 저장한 파일인지 확인해 주세요.") : error);
   } finally {
     if (requestId === state.requestId) {
       $("reload").disabled = false;
@@ -471,6 +480,12 @@ async function loadLatest() {
 
 // 사용자가 직접 다시 읽거나 파일을 열어 성공하면 모바일에서는 결과 탭으로 이동합니다.
 const openResultsTab = () => { if (typeof showTab === "function") showTab("results"); };
+$("empty-start").addEventListener("click", () => {
+  if (typeof showTab === "function") showTab("search");
+  const input = $("station-a-query");
+  input.scrollIntoView?.({ behavior: motionEnabled() ? "smooth" : "instant", block: "center" });
+  input.focus?.({ preventScroll: true });
+});
 $("reload").addEventListener("click", async () => { if (await loadLatest()) openResultsTab(); });
 for (const button of document.querySelectorAll?.("[data-motion-toggle]") ?? [$("motion-toggle")]) button.addEventListener("click", () => {
   motionDisabled = !motionDisabled;

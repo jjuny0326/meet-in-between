@@ -152,9 +152,10 @@ const MeetingMap = (() => {
     get("map-status").textContent = "지도를 불러오는 중…";
     try {
       const response = await fetch("/api/map-config", {cache: "no-store"});
-      if (!response.ok) throw new Error("지도 설정을 읽지 못했어요. 로컬 서버 연결을 확인해 주세요.");
+      if (!response.ok) throw new Error("지도를 불러오지 못했어요. 서버 연결을 확인한 뒤 다시 시도해 주세요.");
       const config = await response.json();
-      if (!config.javascript_key) throw new Error("지도 설정이 필요해요. .env에 KAKAO_JAVASCRIPT_KEY를 추가하고 카카오 개발자 콘솔에 이 화면의 접속 주소를 등록한 뒤 서버를 재시작해 주세요. REST API 키와는 다른 키예요.");
+      // 사용자에게는 짧게 알리고, 설정 방법은 '지도 설정 방법'에 접어 둡니다.
+      if (!config.javascript_key) throw Object.assign(new Error("지금은 지도를 불러올 수 없어요. 후보 카드에서 이동시간과 장소를 확인해 주세요."), {setup: true});
       await loadSdk(config.javascript_key);
       get("meeting-map").hidden = false;
       const first = pointsFor(report, category).points[0]?.position || {lat:37.5665, lng:126.978};
@@ -163,8 +164,10 @@ const MeetingMap = (() => {
       map.setZoomable(false); // 페이지를 스크롤하다 지도가 확대되는 것을 방지합니다.
       if (typeof ResizeObserver === "function") new ResizeObserver(() => fit(pointsFor(report, category, selectedRank).points)).observe(get("meeting-map"));
       draw(); get("map-load").textContent = "지도 범위 맞추기";
+      get("map-help").hidden = true;
     } catch (error) {
       get("map-status").textContent = error.message || "지도 로딩에 실패했어요. 비교 카드는 계속 사용할 수 있어요.";
+      get("map-help").hidden = !error.setup;
       get("map-load").textContent = "지도 다시 불러오기";
       get("meeting-map").hidden = true;
     } finally { loading = false; get("map-load").disabled = false; }
