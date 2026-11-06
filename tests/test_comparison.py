@@ -167,6 +167,15 @@ class ComparisonTests(unittest.TestCase):
         self.assertTrue(evidence[0]["places"]["cafe"]["items"][0]["access_check_required"])
         self.assertNotIn("서울 구로구 경인로 430", json.dumps(payload, ensure_ascii=False))
 
+    def test_rule_summary_names_best_candidate_and_reason_by_mode(self):
+        items = recommendations()
+        self.assertEqual(c.rule_summary(items, "burden"),
+                         "후보1역을 추천해요. 더 오래 걸리는 사람도 43분이면 도착해요. (A 41분 · B 43분)")
+        self.assertIn("시간 차이가 2분", c.rule_summary(items, "fair"))
+        self.assertIn("환승이 합쳐 3번", c.rule_summary(items, "transfers"))
+        self.assertEqual(c.rule_summary([]), "비교할 후보가 없어요.")
+        self.assertIn("후보1역을 추천해요", c.basic_analysis(items, ["cafe"], "테스트")["summary"])
+
     def test_search_failure_does_not_hide_other_candidates(self):
         with patch.object(c, "search_nearby_places", side_effect=[RuntimeError("조회 실패"), [], []]):
             items = c.enrich_recommendations([result(i) for i in range(3)], ["cafe"], "dummy")

@@ -18,3 +18,6 @@ docs/comparison-preview.png
 docs/comparison-preview-v2.png
 
 data/전체_도시철도역사정보_20260630.xlsx
+
+# IDE 개인 설정
+.idea/

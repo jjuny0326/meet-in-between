@@ -161,6 +161,24 @@ def enrich_recommendations(results, preferences, api_key):
     return recommendations
 
 
+def rule_summary(recommendations, mode="burden"):
+    """AI 없이 계산값만으로 1위 후보와 추천 이유를 한 문장으로 만듭니다."""
+    if not recommendations:
+        return "비교할 후보가 없어요."
+    best = recommendations[0]
+    name = best["station"]["place_name"].split()[0]
+
+    a, b = best["minutes_a"], best["minutes_b"]
+    transfers = best["transfers_a"] + best["transfers_b"]
+    if mode == "fair":
+        reason = f"두 사람의 시간 차이가 {best['difference']:.0f}분으로 가장 적어요"
+    elif mode == "transfers":
+        reason = "두 사람 모두 환승 없이 갈 수 있어요" if transfers == 0 else f"두 사람 환승이 합쳐 {transfers}번으로 가장 적어요"
+    else:
+        reason = f"더 오래 걸리는 사람도 {max(a, b):.0f}분이면 도착해요"
+    return f"{name}을 추천해요. {reason}. (A {a:.0f}분 · B {b:.0f}분)"
+
+
 def basic_analysis(recommendations, preferences, reason, mode="burden"):
     """AI가 아닌 계산된 사실 설명. 조회 실패와 검색 결과 없음을 구분합니다."""
     comparisons = []
@@ -185,7 +203,7 @@ def basic_analysis(recommendations, preferences, reason, mode="burden"):
         comparisons.append({"rank": item["rank"], "strengths": strengths, "limitations": limitations})
     return {
         "source": "rules", "status": reason, "recommended_rank": None,
-        "summary": f"‘{MODES[mode]}’ 기준의 순위와 선택한 활동의 검색 결과를 비교하세요. 검색 건수는 인기나 품질 점수가 아니에요.",
+        "summary": rule_summary(recommendations, mode),
         "comparisons": comparisons,
     }
 
