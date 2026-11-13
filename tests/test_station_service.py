@@ -27,6 +27,25 @@ class StationServiceTests(unittest.TestCase):
             routes.assert_not_called()
             ai.assert_not_called()
 
+    def test_transfer_station_gets_bonus_and_unknown_station_is_not_penalized(self):
+        a, b = {"x": 127.0, "y": 37.5}, {"x": 127.2, "y": 37.5}
+        middle = {"x": 127.1, "y": 37.5}
+        distance = app.distance_km(a, middle)
+        counts = {"한줄": 1, "두줄": 2, "세줄": 3}  # 없는 이름은 0 → 노선 1개로 봅니다.
+        with patch.object(app, "line_counts", return_value=__import__("collections").Counter(counts)):
+            score = lambda name: app.candidate_score(a, b, {**middle, "place_name": name})
+            self.assertAlmostEqual(score("한줄"), distance)
+            self.assertAlmostEqual(score("두줄역"), distance - app.HUB_BONUS_KM)
+            self.assertAlmostEqual(score("세줄"), distance - 2 * app.HUB_BONUS_KM)
+            self.assertAlmostEqual(score("목록에없는역"), distance)
+
+    def test_candidates_prefer_transfer_station_within_bonus_distance(self):
+        # 실제 역 목록: 양주역↔청량리역은 가산점 덕분에 도봉산(1·7호선)이 방학역보다 앞에 옵니다.
+        stations = {s["place_name"]: s for s in json.loads((Path(app.__file__).parent / "data" / "capital_stations.json").read_text(encoding="utf-8"))}
+        names = [s["place_name"] for s in app.find_meeting_candidates(stations["양주역"], stations["청량리역"])]
+        self.assertEqual(len(names), 5)
+        self.assertLess(names.index("도봉산"), names.index("방학역"))
+
     def test_corrupt_or_future_usage_is_not_reset(self):
         usage = self.base / ".route_usage.json"
         tomorrow = (datetime.now(app.KOREA_TIME) + timedelta(days=1)).date().isoformat()

@@ -5,6 +5,7 @@
 """
 import json
 import re
+from collections import Counter
 from functools import lru_cache
 from pathlib import Path
 
@@ -74,6 +75,12 @@ def load_catalog():
             },
         })
     return catalog
+
+
+@lru_cache(maxsize=1)
+def line_counts():
+    """역 이름별로 지나는 노선 수를 셉니다. 2 이상이면 환승역이에요."""
+    return Counter(entry["key"] for entry in load_catalog())
 
 
 def line_order(line):

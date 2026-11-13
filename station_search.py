@@ -16,9 +16,11 @@ from comparison import (
 )
 from recommendation_policy import MODES, validate_mode, select_route, rank_candidates, mode_description
 from route_cache import RouteCache
+from station_catalog import line_counts, normalize
 
 BASE_DIR = Path(__file__).resolve().parent
 ROUTE_CACHE = RouteCache()
+HUB_BONUS_KM = 0.5  # 노선이 하나 더 지나면 500m 더 멀어도 같은 점수로 봅니다.
 
 
 class RouteLimitError(RuntimeError):
@@ -207,6 +209,14 @@ def distance_km(station_a, station_b):
 
     return 6371 * 2 * asin(sqrt(min(1.0, max(0.0, value))))
 
+
+def candidate_score(station_a, station_b, station):
+    """작을수록 좋은 점수(km). 더 먼 사람의 직선거리에서 환승역 가산점을 뺍니다."""
+    farther = max(distance_km(station_a, station), distance_km(station_b, station))
+    lines = max(1, line_counts()[normalize(station["place_name"])])
+    return farther - HUB_BONUS_KM * (lines - 1)
+
+
 # 저장한 역 목록에서 후보 고르기
 def find_meeting_candidates(station_a, station_b, limit=5):
     file_path = (
@@ -219,12 +229,8 @@ def find_meeting_candidates(station_a, station_b, limit=5):
     ranked = []
 
     for station in stations:
-        distance_a = distance_km(station_a, station)
-        distance_b = distance_km(station_b, station)
-
-        # 두 사람 중 더 멀리 이동하는 사람의 거리를 기준으로 비교
-        score = max(distance_a, distance_b)
-        ranked.append((score, station))
+        # 더 멀리 이동하는 사람의 거리를 기준으로 하되, 환승역은 가산점만큼 가깝게 봅니다.
+        ranked.append((candidate_score(station_a, station_b, station), station))
 
     ranked.sort(key=lambda item: item[0])
 
