@@ -27,6 +27,26 @@ class StationServiceTests(unittest.TestCase):
             routes.assert_not_called()
             ai.assert_not_called()
 
+    def test_place_search_uses_keyword_first_and_normalizes_shape(self):
+        keyword = [{"place_name": "스타벅스 강남역점", "road_address_name": "서울 강남구 강남대로 390", "address_name": "역삼동 1", "x": "127.02", "y": "37.49"},
+                   {"place_name": "", "x": "127", "y": "37"}]  # 이름 없는 결과는 버립니다.
+        with patch.object(app, "kakao_local", return_value=keyword) as local:
+            places = app.search_places("  스타벅스 강남  ", "dummy")
+        local.assert_called_once_with("keyword", {"query": "스타벅스 강남", "size": 5}, "dummy")
+        self.assertEqual(places, [{"place_name": "스타벅스 강남역점", "address_name": "서울 강남구 강남대로 390", "x": "127.02", "y": "37.49"}])
+
+    def test_place_search_falls_back_to_address_only_when_keyword_is_empty(self):
+        address = [{"address_name": "서울 강남구 테헤란로 152", "x": "127.03", "y": "37.50"}]
+        with patch.object(app, "kakao_local", side_effect=[[], address]) as local:
+            places = app.search_places("서울 강남구 테헤란로 152", "dummy")
+        self.assertEqual([call.args[0] for call in local.call_args_list], ["keyword", "address"])
+        self.assertEqual(places[0]["place_name"], "서울 강남구 테헤란로 152")
+        with patch.object(app, "kakao_local") as local:
+            for value in ("", " " * 3, "가" * 81, None):
+                with self.assertRaises(ValueError):
+                    app.search_places(value, "dummy")
+            local.assert_not_called()
+
     def test_transfer_station_gets_bonus_and_unknown_station_is_not_penalized(self):
         a, b = {"x": 127.0, "y": 37.5}, {"x": 127.2, "y": 37.5}
         middle = {"x": 127.1, "y": 37.5}

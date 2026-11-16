@@ -27,44 +27,69 @@ class RouteLimitError(RuntimeError):
     """자체 경로 조회 한도가 부족할 때 발생합니다."""
 
 
+KAKAO_LOCAL_URL = "https://dapi.kakao.com/v2/local/search/{kind}.json"
+
+
+def kakao_local(kind, params, api_key):
+    """카카오 로컬 검색(keyword 또는 address)을 부르고, 좌표가 올바른 결과만 돌려줍니다."""
+    try:
+        response = requests.get(
+            KAKAO_LOCAL_URL.format(kind=kind),
+            headers={"Authorization": f"KakaoAK {api_key}"},
+            params=params,
+            timeout=10,
+        )
+    except requests.RequestException:
+        raise RuntimeError("장소 검색 서버에 연결하지 못했습니다.") from None
+    if response.status_code != 200:
+        raise RuntimeError("장소 검색에 실패했습니다. 키 설정과 사용량을 확인하세요.")
+    try:
+        documents = response.json()["documents"]
+        if not isinstance(documents, list):
+            raise ValueError()
+        for document in documents:
+            if not (-180 <= float(document["x"]) <= 180 and -90 <= float(document["y"]) <= 90):
+                raise ValueError()
+        return documents
+    except (ValueError, KeyError, TypeError):
+        raise RuntimeError("장소 검색 응답 형식이 올바르지 않습니다.") from None
+
+
 def search_stations(station_name, api_key):
     """입력/출력 없이 역 검색 결과를 반환하므로 웹에서도 사용합니다."""
     if not isinstance(station_name, str) or not 1 <= len(station_name.strip()) <= 80:
         raise ValueError("역 이름을 1~80자로 입력하세요.")
     station_name = station_name.strip()
+    params = {"query": station_name, "category_group_code": "SW8", "size": 5}
+    stations = kakao_local("keyword", params, api_key)
+    for station in stations:
+        if not isinstance(station.get("place_name"), str) or not station["place_name"]:
+            raise RuntimeError("역 검색 응답 형식이 올바르지 않습니다.")
+    return stations
 
-    url = "https://dapi.kakao.com/v2/local/search/keyword.json"
-    headers = {"Authorization": f"KakaoAK {api_key}"}
-    params = {
-        "query": station_name,
-        "category_group_code": "SW8",
-        "size": 5,
-    }
 
-    try:
-        response = requests.get(
-            url,
-            headers=headers,
-            params=params,
-            timeout=10,
-        )
-    except requests.RequestException:
-        raise RuntimeError("역 검색 서버에 연결하지 못했습니다.") from None
+def search_places(query, api_key):
+    """출발지 검색: 역·건물·가게 이름을 먼저 찾고, 없으면 도로명·지번 주소로 찾습니다.
 
-    if response.status_code != 200:
-        raise RuntimeError("역 검색에 실패했습니다. 키 설정과 사용량을 확인하세요.")
-    try:
-        stations = response.json()["documents"]
-        if not isinstance(stations, list):
-            raise ValueError()
-        for station in stations:
-            if not isinstance(station["place_name"], str) or not station["place_name"]:
-                raise ValueError()
-            if not (-180 <= float(station["x"]) <= 180 and -90 <= float(station["y"]) <= 90):
-                raise ValueError()
-        return stations
-    except (ValueError, KeyError, TypeError):
-        raise RuntimeError("역 검색 응답 형식이 올바르지 않습니다.") from None
+    두 검색의 결과 모양이 달라서, 계산 코드가 쓰는 같은 모양(place_name, address_name, x, y)으로 맞춥니다.
+    """
+    if not isinstance(query, str) or not 1 <= len(query.strip()) <= 80:
+        raise ValueError("출발지를 1~80자로 입력하세요.")
+    query = query.strip()
+    places = []
+    for document in kakao_local("keyword", {"query": query, "size": 5}, api_key):
+        name = document.get("place_name")
+        if isinstance(name, str) and name:
+            address = document.get("road_address_name") or document.get("address_name") or ""
+            places.append({"place_name": name, "address_name": address, "x": document["x"], "y": document["y"]})
+    if places:
+        return places
+    # 이름으로 못 찾았을 때만 주소 검색을 한 번 더 합니다(예: "서울 강남구 테헤란로 152").
+    for document in kakao_local("address", {"query": query, "size": 5}, api_key):
+        address = document.get("address_name")
+        if isinstance(address, str) and address:
+            places.append({"place_name": address, "address_name": address, "x": document["x"], "y": document["y"]})
+    return places
 
 
 def select_station(person_name, api_key):
