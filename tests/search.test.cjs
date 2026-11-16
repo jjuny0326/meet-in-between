@@ -245,6 +245,17 @@ test('여러 후보 중 고르면 선택한 역만 남기고, 다시 펼칠 수 
   assert.equal(first.hidden,false); assert.equal(change.hidden,true);
 });
 
+test('전체 검색으로 고른 장소는 첫 단어가 같아도 화면에서 막지 않음', async () => {
+  const {context,get}=setup(async()=>ok({stations:[{token:'t1',name:'스타벅스 강남역점',address:'서울 강남구'}]}));
+  for (const person of ['a','b']) {
+    get(`station-${person}-query`).value='스타벅스';
+    await context.findStations(person);
+    get(`station-${person}-options`).children[0].children[0].events.change();
+  }
+  assert.equal(get('find-button').disabled,false);
+  assert.doesNotMatch(get('search-status').textContent,/출발역이 같아요/);
+});
+
 test('두 사람이 같은 역을 고르면 버튼을 막고 안내하며, 바꾸면 안내를 지움', async () => {
   const {get}=setup(async()=>ok({stations:[{token:'local-1',name:'강남역',line:'2호선'}]}));
   for (const person of ['a','b']) {

@@ -16,7 +16,7 @@ import comparison
 def stations(query, key):
     if query == "없음":
         return []
-    return [{"place_name": f"{query} {line} (테스트)", "address_name": "가상 검색 결과", "x": 126 if "원인재" in query else 127, "y": 37} for line in ("1호선", "2호선")]
+    return [{"place_name": f"{query} {line} (테스트)", "address_name": "가상 검색 결과", "x": 126.7 if "원인재" in query else 127, "y": 37} for line in ("1호선", "2호선")]
 
 
 def routes(*args):
@@ -35,7 +35,7 @@ class PreviewHandler(serve_web.ComparisonHandler):
 if __name__ == "__main__":
     candidates = [{"place_name": f"테스트 후보{i}역", "line_name": "가상 노선", "x": 127+i/100, "y": 37} for i in range(1, 6)]
     with patch.object(serve_web, "get_api_key", return_value="test-only"), \
-            patch.object(serve_web, "search_stations", side_effect=stations), \
+            patch.object(serve_web, "search_places", side_effect=stations), \
             patch.object(serve_web, "save_report"), \
             patch.object(station_search, "find_meeting_candidates", return_value=candidates), \
             patch.object(station_search, "ensure_route_capacity"), \

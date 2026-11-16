@@ -11,7 +11,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit, parse_qs
 from dotenv import load_dotenv
-from station_search import search_stations, build_recommendation, RouteLimitError
+from station_search import search_places, build_recommendation, RouteLimitError
 from comparison import save_report
 from recommendation_policy import validate_mode
 from station_catalog import suggest as suggest_stations, resolve as resolve_local_station
@@ -109,15 +109,35 @@ class SameStationError(ValueError):
     """두 사람이 같은 역을 골랐을 때. 외부 API를 쓰기 전에 거절합니다."""
 
 
-def same_station(first, second):
-    """노선만 다른 같은 역('강남역 2호선'·'강남역 신분당선')도 같은 출발역으로 봅니다.
+class OutsideAreaError(ValueError):
+    """수도권 밖 출발지. 후보 역 데이터가 수도권뿐이라 외부 API를 쓰기 전에 거절합니다."""
 
-    이름 첫 단어가 같거나, 좌표가 300m 안쪽이면 같은 역으로 판단합니다.
+
+# 후보 역 데이터가 닿는 범위(서쪽 인천공항·강화, 남쪽 평택, 북쪽 연천, 동쪽 양평)를 감싸는 사각형입니다.
+CAPITAL_AREA = {"min_x": 126.3, "max_x": 127.9, "min_y": 36.85, "max_y": 38.3}
+
+
+def in_capital_area(place):
+    """좌표가 수도권 사각형 안에 있으면 True. 좌표가 없거나 잘못되면 False."""
+    try:
+        x, y = float(place["x"]), float(place["y"])
+    except (KeyError, TypeError, ValueError):
+        return False
+    return CAPITAL_AREA["min_x"] <= x <= CAPITAL_AREA["max_x"] and CAPITAL_AREA["min_y"] <= y <= CAPITAL_AREA["max_y"]
+
+
+def same_station(first, second):
+    """두 출발지가 사실상 같은 곳인지 판단합니다.
+
+    - 둘 다 역 목록의 역(line_name 있음)이면 이름이 같을 때 같은 역('강남역 2호선'·'강남역 신분당선')
+    - 장소는 이름이 겹쳐도 다른 곳일 수 있으므로('스타벅스 강남역점'·'스타벅스 홍대점') 거리만 봅니다
+    - 공통: 좌표가 300m 안쪽이면 같은 곳
     """
     def key(station):
         words = str(station.get("place_name", "")).split()
         return re.sub(r"역$", "", re.sub(r"\(.*$", "", words[0])) if words else ""
-    if key(first) and key(first) == key(second):
+    both_stations = "line_name" in first and "line_name" in second
+    if both_stations and key(first) and key(first) == key(second):
         return True
     try:
         dx = (float(first["x"]) - float(second["x"])) * 88.0  # 경도 1도 ≈ 88km (서울 부근)
@@ -181,8 +201,10 @@ class ComparisonHandler(BaseHTTPRequestHandler):
             action()
         except RouteLimitError as error:
             self.send_json(429, {"error": str(error)})
+        except OutsideAreaError:
+            self.send_json(400, {"error": "지금은 수도권(서울·경기·인천) 출발지만 비교할 수 있어요."})
         except SameStationError:
-            self.send_json(400, {"error": "두 사람의 출발역이 같아요. 서로 다른 역을 골라 주세요."})
+            self.send_json(400, {"error": "두 사람의 출발지가 같아요. 서로 다른 곳을 골라 주세요."})
         except (ValueError, KeyError, TypeError):
             self.send_json(400, {"error": "출발역을 다시 검색·선택하고 활동을 1개 이상 선택하세요."})
         except RuntimeError as error:
@@ -214,7 +236,8 @@ class ComparisonHandler(BaseHTTPRequestHandler):
 
     def station_search(self):
         query = parse_qs(urlsplit(self.path).query).get("query", [""])[0]
-        stations = search_stations(query, get_api_key())
+        # 역·건물·주소를 모두 찾되, 후보 역 데이터가 있는 수도권 안의 결과만 보여줍니다.
+        stations = [place for place in search_places(query, get_api_key()) if in_capital_area(place)]
         now = time.monotonic()
         for token, (created, _) in list(STATIONS.items()):
             if now - created > 3600:
@@ -250,6 +273,8 @@ class ComparisonHandler(BaseHTTPRequestHandler):
             if time.monotonic() - created > 3600:
                 raise ValueError()
             stations.append(station)
+        if not all(in_capital_area(station) for station in stations):
+            raise OutsideAreaError()
         if same_station(*stations):
             raise SameStationError()
         api_key = get_api_key()

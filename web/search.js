@@ -95,7 +95,8 @@ function renderStationOptions(person, stations) {
     copy.append(element("strong", "", station.name), element("small", "", station.detail || ""));
     radio.addEventListener("change", () => {
       searchState.selected[person] = station.token;
-      searchState.names[person] = stationKey(station.name);
+      // 역 이름 비교는 역 목록의 역끼리만 합니다. 장소('스타벅스 ○○점')는 서버가 거리로 확인합니다.
+      searchState.names[person] = station.local ? stationKey(station.name) : null;
       status.textContent = `선택 완료 · ${station.name}${station.detail && station.local ? ` ${station.detail}` : ""}`;
       if (labels.length > 1) {
         labels.forEach(item => { item.hidden = item !== label; });
