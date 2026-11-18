@@ -10,7 +10,7 @@ function selectedActivities() { return activityInputs.filter(input => input.chec
 const stationKey = name => String(name || "").trim().split(/\s+/)[0].replace(/\(.*$/, "").replace(/역$/, "");
 const sameStation = names => Boolean(names?.a && names.a === names.b);
 const SAME_STATION_MESSAGE = "두 사람의 출발역이 같아요. 한 사람의 역을 바꿔 주세요.";
-const DEFAULT_SEARCH_STATUS = "두 출발역과 활동을 선택하면 후보 최대 3곳을 비교할 수 있어요.";
+const DEFAULT_SEARCH_STATUS = "두 사람의 출발지와 활동을 선택하면 후보 최대 3곳을 비교할 수 있어요.";
 function canRecommend(selected, activities, pending, names) {
   return Boolean(selected.a && selected.b && activities.length && !pending && !sameStation(names));
 }
@@ -71,7 +71,7 @@ function connectionMessage(error) {
     ? "서버와 연결이 끊겼어요. 처리 중이던 요청이 완료됐을 수 있으니 ‘결과 다시 읽기’를 먼저 눌러 주세요."
     : error.message;
 }
-// 입력하는 동안 로컬 역 목록에서 후보를 보여줍니다(외부 API 없음). 목록에 없으면 '역 검색'(카카오)을 씁니다.
+// 입력하는 동안 로컬 역 목록에서 후보를 보여줍니다(외부 API 없음). 역이 아닌 장소·주소는 '장소·주소 검색'(카카오)을 씁니다.
 const SUGGEST_DELAY_MS = 200;
 const suggestTimers = { a: null, b: null };
 
@@ -117,13 +117,11 @@ async function suggestStations(person, query, version) {
     if (version !== searchState.versions[person]) return; // 그사이 입력이 바뀌었으면 버립니다.
     renderStationOptions(person, data.stations.map(item => ({ token: item.token, name: item.name, detail: item.line, local: true })));
     $(`station-${person}-status`).textContent = data.stations.length
-      ? "이용할 역과 노선을 선택해 주세요."
-      : "수도권 역 목록에 없어요. ‘전체 검색’으로 찾아볼 수 있어요.";
-    $(`station-${person}-search`).hidden = data.stations.length > 0;
+      ? "역이면 아래에서 고르고, 다른 장소라면 ‘장소·주소 검색’을 눌러 주세요."
+      : "역 목록에 없어요. ‘장소·주소 검색’을 눌러 찾아 주세요.";
   } catch (error) {
     if (version !== searchState.versions[person]) return;
-    $(`station-${person}-status`).textContent = "역 목록을 불러오지 못했어요. ‘전체 검색’을 눌러 주세요.";
-    $(`station-${person}-search`).hidden = false;
+    $(`station-${person}-status`).textContent = "역 목록을 불러오지 못했어요. ‘장소·주소 검색’을 눌러 주세요.";
   }
 }
 
@@ -131,18 +129,18 @@ async function findStations(person) {
   if (searchState.searching || searchState.busy) return;
   const query = $(`station-${person}-query`).value.trim();
   const status = $(`station-${person}-status`);
-  if (!query) { status.textContent = "역 이름을 입력해 주세요."; $(`station-${person}-query`).focus(); return; }
+  if (!query) { status.textContent = "역이나 장소·주소를 입력해 주세요."; $(`station-${person}-query`).focus(); return; }
   const version = ++searchState.versions[person];
   searchState.selected[person] = null;
   searchState.names[person] = null;
   searchState.searching = true;
   $(`station-${person}-options`).replaceChildren();
-  status.textContent = "역을 찾고 있어요…";
+  status.textContent = "장소를 찾고 있어요…";
   updateSearchButton();
   try {
     const data = await requestJson(`/api/stations?query=${encodeURIComponent(query)}`, { cache: "no-store" });
     if (version !== searchState.versions[person]) return;
-    status.textContent = data.stations.length ? "이용할 역과 노선을 선택해 주세요." : "검색 결과가 없어요. 역 이름을 바꿔 보세요.";
+    status.textContent = data.stations.length ? "출발지를 선택해 주세요." : "수도권에서 찾지 못했어요. 지역 이름을 함께 넣어 보세요(예: 스타벅스 강남).";
     renderStationOptions(person, data.stations.map(item => ({ token: item.token, name: item.name, detail: item.address })));
   } catch (error) {
     if (version === searchState.versions[person]) status.textContent = connectionMessage(error);
@@ -158,10 +156,11 @@ for (const person of ["a", "b"]) {
     searchState.selected[person] = null;
     searchState.names[person] = null;
     $(`station-${person}-options`).replaceChildren();
-    $(`station-${person}-search`).hidden = true; // 목록 결과를 보고 다시 판단합니다.
     clearTimeout(suggestTimers[person]);
     const query = $(`station-${person}-query`).value.trim();
-    $(`station-${person}-status`).textContent = query ? "역 목록에서 찾고 있어요…" : "역 이름을 입력하면 목록이 나타나요.";
+    // 입력이 있으면 언제든 장소·주소로 찾을 수 있게 버튼을 보여줍니다(역 목록은 그대로 자동으로 나옴).
+    $(`station-${person}-search`).hidden = !query;
+    $(`station-${person}-status`).textContent = query ? "역 목록에서 찾고 있어요…" : "역·장소·주소를 입력하세요. 역은 바로 목록이 나와요.";
     updateSearchButton();
     // 글자를 칠 때마다 요청하지 않도록 잠깐 기다렸다가 마지막 입력으로만 찾습니다.
     if (query) suggestTimers[person] = setTimeout(() => suggestStations(person, query, version), SUGGEST_DELAY_MS);

@@ -29,31 +29,31 @@
         <h1 id="page-title">너와 나 사이,<br><span class="accent">만나고 싶은 곳.</span></h1>
         <p class="hero-lead">조금 덜 멀리, 조금 더 오래 함께. <br>서로의 출발점에서 우리만의 만날 곳을 찾아요.</p>
         <div class="route-strip" aria-hidden="true"><span class="route-dot a">A</span><span class="route-line"></span><span class="route-heart"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.3 5 6.8 5c2 0 3.6 1.1 5.2 3 1.6-1.9 3.2-3 5.2-3 3.5 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span class="route-line"></span><span class="route-dot b">B</span></div>
-        <ol class="step-pills" aria-label="만날 곳을 찾는 세 단계"><li><span>01</span>출발역 고르기</li><li><span>02</span>둘의 중간 찾기</li><li><span>03</span>함께 갈 곳 고르기</li></ol>
+        <ol class="step-pills" aria-label="만날 곳을 찾는 세 단계"><li><span>01</span>출발지 고르기</li><li><span>02</span>둘의 중간 찾기</li><li><span>03</span>함께 갈 곳 고르기</li></ol>
       </div>
       <section class="search-panel" id="find-meeting" aria-labelledby="search-title">
         <span class="panel-sticker" aria-hidden="true">수도권 역 780곳 바로 검색</span>
         <h2 id="search-title">어디에서 출발하나요?</h2>
   <form id="meeting-form">
         <fieldset id="search-controls">
-          <legend class="sr-only">출발역과 활동 선택</legend>
+          <legend class="sr-only">출발지와 활동 선택</legend>
           <div class="station-inputs">
-            <div class="station-field"><label for="station-a-query"><span class="person-dot">A</span> 첫 번째 사람</label><div class="station-search"><input id="station-a-query" placeholder="예: 청량리역" maxlength="80" autocomplete="off"><button id="station-a-search" type="button" hidden>전체 검색</button></div><p id="station-a-status" class="station-status" role="status">역 이름을 입력하면 목록이 나타나요.</p><div id="station-a-options" class="station-options" role="group" aria-label="첫 번째 출발역 검색 결과"></div></div>
-            <div class="station-field"><label for="station-b-query"><span class="person-dot person-dot-b">B</span> 두 번째 사람</label><div class="station-search"><input id="station-b-query" placeholder="예: 원인재역" maxlength="80" autocomplete="off"><button id="station-b-search" type="button" hidden>전체 검색</button></div><p id="station-b-status" class="station-status" role="status">역 이름을 입력하면 목록이 나타나요.</p><div id="station-b-options" class="station-options" role="group" aria-label="두 번째 출발역 검색 결과"></div></div>
+            <div class="station-field"><label for="station-a-query"><span class="person-dot">A</span> 첫 번째 사람</label><div class="station-search"><input id="station-a-query" placeholder="예: 청량리역, 회사 이름, 주소" maxlength="80" autocomplete="off"><button id="station-a-search" type="button" hidden>장소·주소 검색</button></div><p id="station-a-status" class="station-status" role="status">역·장소·주소를 입력하세요. 역은 바로 목록이 나와요.</p><div id="station-a-options" class="station-options" role="group" aria-label="첫 번째 사람 출발지 검색 결과"></div></div>
+            <div class="station-field"><label for="station-b-query"><span class="person-dot person-dot-b">B</span> 두 번째 사람</label><div class="station-search"><input id="station-b-query" placeholder="예: 원인재역, 집 근처 장소" maxlength="80" autocomplete="off"><button id="station-b-search" type="button" hidden>장소·주소 검색</button></div><p id="station-b-status" class="station-status" role="status">역·장소·주소를 입력하세요. 역은 바로 목록이 나와요.</p><div id="station-b-options" class="station-options" role="group" aria-label="두 번째 사람 출발지 검색 결과"></div></div>
           </div>
           <fieldset class="mode-picker" aria-describedby="mode-help"><legend>어떤 만남을 우선할까요?</legend><div class="segmented"><label><input type="radio" name="recommendation-mode" value="burden" checked><span>이동 부담 줄이기</span></label><label><input type="radio" name="recommendation-mode" value="fair"><span>공평하게 만나기</span></label><label><input type="radio" name="recommendation-mode" value="transfers"><span>환승 적게 하기</span></label></div><p id="mode-help">두 사람 중 더 오래 걸리는 시간을 먼저 줄여요. 같으면 이동시간 합계를 비교해요.</p><small>기준을 바꾼 뒤 ‘만남 후보 찾기’를 누르면 새로 계산해요. 기존 결과는 그대로 유지돼요.</small></fieldset>
           <div class="search-bottom"><fieldset class="activity-picker"><legend>함께 무엇을 할까요?</legend><div class="chips"><label class="chip"><input type="checkbox" name="activity" value="cafe" checked><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 9h1.5a2.5 2.5 0 0 1 0 5H17"/></svg><span>카페</span></label><label class="chip"><input type="checkbox" name="activity" value="food"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 3v8M5 3v4a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-2 6 0 8v10"/></svg><span>식사</span></label><label class="chip"><input type="checkbox" name="activity" value="culture"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg><span>문화시설</span></label></div></fieldset><button class="find-button" id="find-button" type="submit" disabled>만남 후보 찾기 <span aria-hidden="true">→</span></button></div>
         </fieldset>
         <div class="search-journey" aria-hidden="true"><span class="loading-person">A</span><span class="loading-path"><i></i><b>♡</b><i></i></span><span class="loading-person">B</span></div>
         <ol id="search-progress" class="search-progress" aria-label="추천 진행 단계" hidden><li data-stage="candidates">후보 역 고르기</li><li data-stage="routes">경로 확인</li><li data-stage="places">주변 장소 찾기</li><li data-stage="ai">설명 정리</li></ol>
-        <p id="search-status" class="search-status" role="status" aria-live="polite">두 출발역과 활동을 선택하면 후보 최대 3곳을 비교할 수 있어요.</p>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">두 사람의 출발지와 활동을 선택하면 후보 최대 3곳을 비교할 수 있어요.</p>
         <details class="search-note calc-details"><summary>조회 횟수 안내</summary><p>같은 구간의 경로는 서버에서 10분간 재사용해요. 없는 구간만 새로 조회하며 최대 10회, 하루 20회로 제한해요. 주변 장소·AI 조회는 별도예요.</p></details>
       </form>
       </section>
     </section>
     <div class="data-toolbar" data-view="results guide"><p id="timestamp">저장된 결과를 불러오는 중…</p><div class="data-actions"><button id="reload" class="text-button" type="button">↻ 결과 다시 읽기</button><label class="file-button" for="report-file">결과 파일 열기</label><input id="report-file" type="file" accept=".json,application/json"></div></div>
     <div id="feedback" role="status" aria-live="polite" data-view="results map guide"></div>
-    <section id="empty-state" class="empty-state" data-view="results map" hidden><span class="empty-icon" aria-hidden="true">♡</span><h2>아직 찾아본 만남 장소가 없어요</h2><p>두 사람의 출발역을 고르면 만나기 좋은 곳을 비교해 드려요.</p><button id="empty-start" class="empty-action" type="button">출발역 고르러 가기 <span aria-hidden="true">→</span></button></section>
+    <section id="empty-state" class="empty-state" data-view="results map" hidden><span class="empty-icon" aria-hidden="true">♡</span><h2>아직 찾아본 만남 장소가 없어요</h2><p>두 사람의 출발지를 고르면 만나기 좋은 곳을 비교해 드려요.</p><button id="empty-start" class="empty-action" type="button">출발지 고르러 가기 <span aria-hidden="true">→</span></button></section>
     <section id="reveal-stage" class="reveal-stage" aria-labelledby="reveal-title" data-view="results" hidden>
       <p class="eyebrow-chip">결과 도착</p>
       <h2 id="reveal-title">후보를 비교했어요</h2>

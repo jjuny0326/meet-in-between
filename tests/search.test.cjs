@@ -217,18 +217,19 @@ test('입력하면 로컬 역 목록 후보를 보여주고 고르면 선택 번
   assert.match(get('station-a-status').textContent,/강남역 2호선/);
 });
 
-test('목록에 없을 때만 전체 검색 버튼을 보여주고, 다시 입력하면 숨김', async () => {
+test('입력이 있으면 장소·주소 검색 버튼을 보여주고, 비우면 숨김', async () => {
   let stations=[];
   const {get}=setup(async()=>ok({stations}));
   const query=get('station-a-query'), button=get('station-a-search');
-  query.value='없는역'; query.events.input();
-  await new Promise(r=>setImmediate(r));
+  query.value='롯데월드'; query.events.input();
   assert.equal(button.hidden,false);
-  assert.match(get('station-a-status').textContent,/전체 검색/);
+  await new Promise(r=>setImmediate(r));
+  assert.match(get('station-a-status').textContent,/역 목록에 없어요.*장소·주소 검색/);
   stations=[{token:'local-1',name:'강남역',line:'2호선'}];
   query.value='강남'; query.events.input();
-  assert.equal(button.hidden,true);
   await new Promise(r=>setImmediate(r));
+  assert.equal(button.hidden,false); // 역 후보가 있어도 다른 장소를 찾을 수 있게 유지
+  query.value=''; query.events.input();
   assert.equal(button.hidden,true);
 });
 
@@ -283,5 +284,5 @@ test('늦게 도착한 자동완성은 버리고 빈 입력은 요청하지 않�
   await new Promise(r=>setImmediate(r));
   assert.equal(urls.length,1);
   assert.equal(get('station-a-options').children.length,0);
-  assert.equal(get('station-a-status').textContent,'역 이름을 입력하면 목록이 나타나요.');
+  assert.equal(get('station-a-status').textContent,'역·장소·주소를 입력하세요. 역은 바로 목록이 나와요.');
 });
