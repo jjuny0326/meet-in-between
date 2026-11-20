@@ -28,6 +28,15 @@ class StationCatalogTests(unittest.TestCase):
         self.assertIn("1호선 (경인선)", lines)
         self.assertIn("경원선 (1호선·경의중앙선)", {item["line"] for item in catalog.suggest("청량리")})
 
+    def test_every_station_is_inside_capital_area(self):
+        # 데이터 검증: 양원역(서울 중랑구)에 경북 봉화 양원역 좌표가 들어가 있던 오류를 다시 막습니다.
+        import serve_web
+        outside = [item["display"] for item in catalog.load_catalog() if not serve_web.in_capital_area(item["station"])]
+        self.assertEqual(outside, [])
+        yangwon = catalog.resolve(catalog.suggest("양원")[0]["token"])
+        self.assertAlmostEqual(yangwon["x"], 127.1079, places=3)
+        self.assertAlmostEqual(yangwon["y"], 37.6066, places=3)
+
     def test_invalid_queries_and_tokens(self):
         for query in ("", "   ", None, "가" * 41):
             self.assertEqual(catalog.suggest(query), [])
